@@ -10,7 +10,7 @@ if (!defined('BASEPATH'))
  *  http://codecanyon.net/user/Creativeitem
  *  http://support.creativeitem.com
  */
-class Usuarios extends CI_Controller
+class Usuario extends CI_Controller
 {
 	function __construct()
 	{
@@ -39,7 +39,7 @@ class Usuarios extends CI_Controller
         if ($this->session->userdata('usuario_login') != 1)
             redirect(site_url('login'), 'refresh');
         $page_data['page_name']  = 'dashboard';
-        $page_data['page_title'] = get_phrase('Inicio');
+        $page_data['page_title'] = get_phrase('Inicio Usuario');
         $this->load->view('backend/index', $page_data);
     }
 

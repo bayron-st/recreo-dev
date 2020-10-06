@@ -33,6 +33,15 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 					</a>
 					<h2 class="title"><?php echo $system_name; ?></h2>
 				</div>
+
+        <div class="login-bottom-links">
+        <!--	<a href="<?php echo site_url('login/forgot_password');?>" class="link">
+            <?php echo '¿Olvidaste tu contraseña?' ?>
+          </a> -->
+
+          <h2 style= "color: #ffffff"> ¿No tienes una cuenta?<a style= "color: #ffffff" href="<?php echo site_url('login/register_account');?>" class="link" >Registrate</a> </h2>
+        </div> <br>
+
 				<div class="login-content">
 					<form method="post" role="form" id="form_login"
             action="<?php echo site_url('login/validate_login');?>">
@@ -50,14 +59,7 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 						<button type="submit" class="btn btn-primary"><?php echo 'Iniciar sesión' ?><i class="fa fa-lock"></i></button>
 					</form>
 
-					<div class="login-bottom-links">
-						<a href="<?php echo site_url('login/forgot_password');?>" class="link">
-							<?php echo '¿Olvidaste tu contraseña?' ?>
-						</a>
-            <a href="<?php echo site_url('login/register_account');?>" class="link">
-              <?php echo '¿Desea registrarse?' ?>
-            </a>
-					</div>
+
 				</div>
 			</div>
 			<div class="image-area"></div>

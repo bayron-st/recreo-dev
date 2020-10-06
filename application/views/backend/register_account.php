@@ -46,6 +46,17 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
           <?php echo form_open(site_url('login/register/create') , array('enctype' => 'multipart/form-data'));?>
 
 
+          <div class="form-group">
+
+              <select name="ID_PAIS" class="form-control selectboxit">
+                            <option value=""><?php echo 'Selecionar pais';?></option>
+                              <option value="CO"><?php echo 'COLOMBIA';?></option>
+                              <option value="EC"><?php echo 'ECUADOR';?></option>
+                              <option value="PE"><?php echo 'PERU';?></option>
+
+                          </select>
+          </div>
+
 
 						<div class="form-group">
 							<input type="text" class="form-control" name="nombres" placeholder="<?php echo 'NOMBRES'?>"
@@ -70,34 +81,28 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
                             </select>
             </div>
 
+
+
             <div class="form-group">
 							<input type="text" class="form-control" name="identificacion" onkeypress="return check1(event)" placeholder="<?php echo 'NUMERO DE DOCUMENTO'?>"
                 required autocomplete="off">
 						</div>
 
-            <div class="form-group">
 
-                <select name="id_pais" class="form-control selectboxit">
-
-                                <option value="CO"><?php echo 'COLOMBIA';?></option>
-                                <option value="EC"><?php echo 'ECUADOR';?></option>
-                                <option value="PE"><?php echo 'PERU';?></option>
-
-                            </select>
-            </div>
 
 
             <div class="form-group">
 
-                <input type="text" name="fecha_nacimiento" id="datepicker" class="form-control" placeholder="<?php echo 'FECHA DE NACIMIENTO'?>" autocomplete="off" >
+                <input type="text" name="ANO_NACIMIENTO" id="datepicker" class="form-control" placeholder="<?php echo 'FECHA DE NACIMIENTO'?>" autocomplete="off" >
 
               </div>
+
               <script type="text/javascript">
               var maxBirthdayDate = new Date();
               maxBirthdayDate.setFullYear( maxBirthdayDate.getFullYear() - 18 );
 
               $( "#datepicker" ).datepicker({
-                dateFormat: 'd/m/y',
+                dateFormat: 'yy-mm-dd',
                 changeMonth: true,
                 changeYear: true,
                 maxDate: maxBirthdayDate

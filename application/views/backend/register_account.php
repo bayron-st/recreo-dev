@@ -84,11 +84,22 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
                             </select>
             </div>
 
-            <div class="form-group">
+              <div class="form-group">
 
                 <input type="text" name="fecha_nacimiento" id="datepicker" class="form-control" placeholder="<?php echo 'FECHA DE NACIMIENTO'?>" autocomplete="off" >
 
               </div>
+
+              <script>
+                var maxBirthdayDate = new Date();
+                maxBirthdayDate.setFullYear( maxBirthdayDate.getFullYear() - 18 );
+                $( "#datepicker" ).datepicker({
+                  dateFormat: 'dd.mm.yy',
+                  changeMonth: true,
+                  changeYear: true,
+                  maxDate: maxBirthdayDate
+                });
+              </script>
 
             <div class="form-group">
 							<input type="text" class="form-control" name="telefono" placeholder="<?php echo 'CELULAR'?>"
@@ -149,17 +160,7 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
           patron = /[0-9]/;
           tecla_final = String.fromCharCode(tecla);
           return patron.test(tecla_final);
-        }
-
-        var maxBirthdayDate = new Date();
-        maxBirthdayDate.setFullYear( maxBirthdayDate.getFullYear() - 18 );
-
-        $( "#datepicker" ).datepicker({
-          dateFormat: 'dd.mm.yy',
-          changeMonth: true,
-          changeYear: true,
-          maxDate: maxBirthdayDate
-        });
+        };
 
     </script>
 

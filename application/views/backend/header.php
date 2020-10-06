@@ -1,43 +1,53 @@
 
-
 	<header class="navbar"><!-- set fixed position by adding class "navbar-fixed-top" -->
 
 		<div class="navbar-inner">
 			<!-- main menu -->
 			<div class="navbar-brand">
 			</div>
+			<?php 
 
+				$count=1;
+				$ID_PARTICIPANTE = $this->session->userdata('login_user_id');
+
+				$query = "SELECT  id_pais  from participantes where ID_PARTICIPANTE = $ID_PARTICIPANTE ";
+				$query = $this->db->query($query);
+				$data = $query->result_array();
+
+				$loc = '';
+				$loc2 = '';
+
+				foreach($data as $row):
+
+				if($row['id_pais'] == 1) {$loc = "co"; $loc2 = "";}
+				if($row['id_pais'] == 2) {$loc = "ec"; $loc2 = "-ec";}
+				if($row['id_pais'] == 3) {$loc = "pe"; $loc2 = "-pe";}
+			?> 
 			<ul class="navbar-nav pull-sm-left">
 				<li class="has-sub" >
-					<a href="https://elrecreoesdetodos.com/co/inicio/">
+					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/inicio'.$loc2.'/">'; ?>
 						<span class="title">Home</span>
 					</a>
 				</li>
 				<li class="has-sub" >
-					<a href="https://elrecreoesdetodos.com/co/como-participar/">
+					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/como-participar'.$loc2.'/">'; ?>
 						<span class="title">Cómo participar</span>
 					</a>
 				</li>
-
-
 				<li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
 						<a href="<?php echo site_url('participante/juego'); ?>">
-
 								<span><?php echo 'Juego'; ?></span>
 						</a>
 				</li>
-
-				<li class="<?php if ($page_name == 'Whatsapp') echo 'active'; ?> ">
-						<a href="<?php echo site_url('participante/whatsapp'); ?>">
-
-								<span><?php echo 'Whatsapp'; ?></span>
-						</a>
-				</li>
-
 				<li class="has-sub" >
-					<a href="https://elrecreoesdetodos.com/co/premios/">
+					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/premios'.$loc2.'/">'; ?>
 						<span class="title">Premios</span>
 					</a>
+				</li>
+				<li class="<?php if ($page_name == 'Whatsapp') echo 'active'; ?> ">
+						<a href="<?php echo site_url('participante/whatsapp'); ?>">
+								<span><?php echo 'Registrar Compras'; ?></span>
+						</a>
 				</li>
 				<li class="has-sub <?php if ($page_name == 'dashboard') echo 'active'; ?>" >
 					<a href="<?php echo site_url('asesor/dashboard'); ?>">
@@ -46,6 +56,7 @@
 				</li>
 			</ul>
 
+			<?php endforeach;?>
 			<!-- notifications and other links -->
 			<ul class="nav navbar-right pull-right">
 

@@ -68,12 +68,12 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 					<form method="post" role="form" id="form_login"
             action="<?php echo site_url('login/validate_login');?>">
 						<div class="form-group">
-              <label>Usuario</label>
+              <label>Documento</label>
 						  <input type="text" class="form-control text-center" name="identificacion" onkeypress="return check1(event)" placeholder="<?php echo 'N° de Identificacion'?>" required autocomplete="off">
 						</div>
 
 						<div class="form-group">
-              <label>Contraseña</label>
+              <label>Teléfono Celular</label>
 							<input type="password" class="form-control text-center" name="telefono" onkeypress="return check1(event)" placeholder="<?php echo 'N° Celular'?>" required>
 						</div>
 

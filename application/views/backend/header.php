@@ -18,26 +18,21 @@
 						<span class="title">Cómo participar</span>
 					</a>
 				</li>
-
-
 				<li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
 						<a href="<?php echo site_url('participante/juego'); ?>">
 
 								<span><?php echo 'Juego'; ?></span>
 						</a>
 				</li>
-
-				<li class="<?php if ($page_name == 'Whatsapp') echo 'active'; ?> ">
-						<a href="<?php echo site_url('participante/whatsapp'); ?>">
-
-								<span><?php echo 'Whatsapp'; ?></span>
-						</a>
-				</li>
-
 				<li class="has-sub" >
 					<a href="https://elrecreoesdetodos.com/co/premios/">
 						<span class="title">Premios</span>
 					</a>
+				</li>
+				<li class="<?php if ($page_name == 'Whatsapp') echo 'active'; ?> ">
+						<a href="<?php echo site_url('participante/whatsapp'); ?>">
+								<span><?php echo 'Registrar Compras'; ?></span>
+						</a>
 				</li>
 				<li class="has-sub <?php if ($page_name == 'dashboard') echo 'active'; ?>" >
 					<a href="<?php echo site_url('asesor/dashboard'); ?>">

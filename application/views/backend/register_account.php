@@ -39,7 +39,8 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 					<a href="<?php echo site_url('login');?>" class="logo">
 						<img src="<?php echo base_url('assets/login_page/img/logo.png');?>"  alt="">
 					</a>
-					<h2 class="title"><?php echo $system_name; ?></h2>
+          <h2 class="title"><?php echo $system_name; ?></h2>
+          <p>Para registrarte debes ser mayor de edad.</p>
 				</div>
 				<div class="login-content">
           <?php echo form_open(site_url('login/register/create') , array('enctype' => 'multipart/form-data'));?>
@@ -134,8 +135,23 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
             </div>
 
 
-						<button type="submit" class="btn btn-primary"><?php echo 'REGISTRARSE' ?><i class="fa fa-unlock"></i></button>
-
+            <button type="submit" class="btn btn-primary">REGISTRARSE<i class="fa fa-unlock"></i></button>
+            <?php
+              $loc = 'w';
+              $loc = $_GET['loc'];
+              if ($loc != 'w' && $loc == 'co') {
+                echo '<p>¿Ya tienes una cuenta? <a style="color:#ffffff; text-decoration: underline;" href="'.base_url('/?loc=co').'">Inicia sesión</a></p>';
+              }
+              if ($loc != 'w' && $loc == 'ec') {
+                echo '<p>¿Ya tienes una cuenta? <a style="color:#ffffff; text-decoration: underline;" href="'.base_url('/?loc=ec').'">Inicia sesión</a></p>';
+              }
+              if ($loc != 'w' && $loc == 'pe') {
+                echo '<p>¿Ya tienes una cuenta? <a style="color:#ffffff; text-decoration: underline;" href="'.base_url('/?loc=pe').'">Inicia sesión</a></p>';
+              }
+              if ($loc == 'w' || !isset($_GET['loc'])) {
+                echo '<p>¿Ya tienes una cuenta? <a style="color:#ffffff; text-decoration: underline;" href="'.base_url('/?loc=co').'">Inicia sesión</a></p>';
+              }
+            ?>
 				</div>
 			</div>
 

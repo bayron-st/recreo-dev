@@ -3,56 +3,41 @@
 	<header class="navbar"><!-- set fixed position by adding class "navbar-fixed-top" -->
 
 		<div class="navbar-inner">
-
-			<!-- logo -->
-
-
-
+			<!-- main menu -->
 			<div class="navbar-brand">
-
 			</div>
 
-
-			<!-- main menu -->
-			<ul class="navbar-nav">
-
-				<li class="has-sub <?php if ($page_name == 'dashboard') echo 'active'; ?>" >
-					<a href="<?php echo site_url('asesor/dashboard'); ?>">
+			<ul class="navbar-nav pull-sm-left">
+				<li class="has-sub" >
+					<a href="https://elrecreoesdetodos.com/co/inicio/">
 						<span class="title">Home</span>
 					</a>
 				</li>
-
-
 				<li class="has-sub" >
 					<a href="https://elrecreoesdetodos.com/co/como-participar/">
 						<span class="title">Cómo participar</span>
 					</a>
 				</li>
-
-
 				<li class="has-sub" >
 					<a href="https://elrecreoesdetodos.com/co/premios/">
 						<span class="title">Premios</span>
 					</a>
 				</li>
-
-
-
+				<li class="has-sub <?php if ($page_name == 'dashboard') echo 'active'; ?>" >
+					<a href="<?php echo site_url('asesor/dashboard'); ?>">
+						<span class="title">Mi cuenta</span>
+					</a>
+				</li>
 			</ul>
-
 
 			<!-- notifications and other links -->
 			<ul class="nav navbar-right pull-right">
 
-
-
-				<li>
-			<a href="<?php echo site_url('login/logout');?>">
-				<?php echo 'Cerrar Sesión' ?><i class="entypo-logout right"></i>
-			</a>
-		</li>
-
-
+				<li class="has-sub">
+					<a href="<?php echo site_url('login/logout');?>">
+					<span class="title" style="font-size:16px !important;">Cerrar Sesión</span><i class="entypo-logout right"></i>
+					</a>
+				</li>
 				<!-- mobile only -->
 				<li class="visible-xs">
 

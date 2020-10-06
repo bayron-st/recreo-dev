@@ -9,9 +9,7 @@
 
 
 			<div class="navbar-brand">
-				<a href="<?php echo site_url('login'); ?>">
-					<img src="<?php echo base_url('uploads/logo.png');?>"  width="88" alt=""/>
-				</a>
+
 			</div>
 
 
@@ -39,12 +37,6 @@
 				</li>
 
 
-				<li class="has-sub" >
-					<a href="https://elrecreoesdetodos.com/dashboard/">
-						<span class="title">Iniciar Sesión</span>
-					</a>
-				</li>
-
 
 			</ul>
 
@@ -52,20 +44,13 @@
 			<!-- notifications and other links -->
 			<ul class="nav navbar-right pull-right">
 
-				<!-- raw links -->
-				<li class="dropdown">
-										<li>
-						<a href="#">Sitio Web</a>
-					</li>
-									</li>
 
-				<li class="sep"></li>
 
 				<li>
-					<a href="extra-login.html">
-						cerrar session <i class="entypo-logout right"></i>
-					</a>
-				</li>
+			<a href="<?php echo site_url('login/logout');?>">
+				<?php echo 'Cerrar Sesión' ?><i class="entypo-logout right"></i>
+			</a>
+		</li>
 
 
 				<!-- mobile only -->

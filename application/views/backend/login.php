@@ -38,12 +38,12 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
             action="<?php echo site_url('login/validate_login');?>">
 						<div class="form-group">
 
-						<input type="text" class="form-control" name="num_documento" onkeyup="format(this)" onchange="format(this)" value="" placeholder="<?php echo 'N° Identificacion'?>"
+						<input type="text" class="form-control" name="identificacion" value="" placeholder="<?php echo 'N° Identificacion'?>"
                 required autocomplete="off">
 						</div>
 
 						<div class="form-group">
-							<input type="password" class="form-control" name="password" placeholder="<?php echo 'Contraseña'?>"
+							<input type="password" class="form-control" name="telefono" placeholder="<?php echo 'Contraseña'?>"
                 required>
 						</div>
 

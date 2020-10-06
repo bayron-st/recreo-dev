@@ -82,12 +82,12 @@ $(document).ready(function(){
 
 
 						<div class="form-group">
-							<input type="text" class="form-control" name="name" placeholder="<?php echo 'NOMBRES'?>"
+							<input type="text" class="form-control" name="nombres" placeholder="<?php echo 'NOMBRES'?>"
                 required autocomplete="off">
 						</div>
 
             <div class="form-group">
-							<input type="text" class="form-control" name="apellido" placeholder="<?php echo 'APELLIDOS'?>"
+							<input type="text" class="form-control" name="apellidos" placeholder="<?php echo 'APELLIDOS'?>"
                 required autocomplete="off">
 						</div>
 
@@ -96,8 +96,11 @@ $(document).ready(function(){
 
                 <select name="identificacion" class="form-control selectboxit">
                                 <option value=""><?php echo 'Tipo de Documento';?></option>
-                                <option value="cedula"><?php echo 'CEDULA';?></option>
-                                <option value="dni"><?php echo 'DNI';?></option>
+                                <option value="CC"><?php echo 'CEDULA DE CIUDADANIA';?></option>
+                                <option value="CE"><?php echo 'CEDULA DE EXTRANJERIA';?></option>
+                                <option value="DNIE"><?php echo 'DNI ECUADOR';?></option>
+                                <option value="DNIP"><?php echo 'DNI PERO';?></option>
+
                             </select>
             </div>
 
@@ -110,9 +113,9 @@ $(document).ready(function(){
 
                 <select name="pais" class="form-control selectboxit">
                                 <option value=""><?php echo 'Seleccionar Pais';?></option>
-                                <option value="1"><?php echo 'COLOMBIA';?></option>
-                                <option value="2"><?php echo 'ECUADOR';?></option>
-                                <option value="3"><?php echo 'PERU';?></option>
+                                <option value="CO"><?php echo 'COLOMBIA';?></option>
+                                <option value="EC"><?php echo 'ECUADOR';?></option>
+                                <option value="PE"><?php echo 'PERU';?></option>
 
                             </select>
             </div>

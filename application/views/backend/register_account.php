@@ -59,12 +59,12 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 
 
 						<div class="form-group">
-							<input type="text" class="form-control" name="nombres" placeholder="<?php echo 'NOMBRES'?>"
+							<input type="text" class="form-control" name="nombres" onkeypress="return check2(event)" placeholder="<?php echo 'NOMBRES'?>"
                 required autocomplete="off">
 						</div>
 
             <div class="form-group">
-							<input type="text" class="form-control" name="apellidos" placeholder="<?php echo 'APELLIDOS'?>"
+							<input type="text" class="form-control" name="apellidos" onkeypress="return check2(event)" placeholder="<?php echo 'APELLIDOS'?>"
                 required autocomplete="off">
 						</div>
 
@@ -183,10 +183,21 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
           patron = /[0-9]/;
           tecla_final = String.fromCharCode(tecla);
           return patron.test(tecla_final);
-        }
+        };
+        function check2(e) {
+          tecla = (document.all) ? e.keyCode : e.which;
 
+          //Tecla de retroceso para borrar, siempre la permite
+          if (tecla == 8) {
+              return true;
+          }
 
-
+          // Patron de entrada, en este caso solo acepta numeros y letras
+          // patron = /[A-Za-z0-9]/;
+          patron = /[A-Za-z]/;
+          tecla_final = String.fromCharCode(tecla);
+          return patron.test(tecla_final);
+        };
     </script>
 
 

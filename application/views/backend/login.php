@@ -41,7 +41,7 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 					<a href="<?php echo site_url('login');?>" class="logo">
 						<img src="<?php echo base_url('assets/login_page/img/logo.png');?>"  alt="">
 					</a>
-					<h2 class="title"><?php echo $system_name; ?></h2>
+					<h2 class="title">Tetra Pak&reg;</h2>
 				</div>
 
         <h3 style= "color: #ffffff">¿No tienes una cuenta?</h3>

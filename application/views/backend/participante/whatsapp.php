@@ -15,17 +15,16 @@
                         $query = "SELECT  id_pais  from participantes where ID_PARTICIPANTE = $ID_PARTICIPANTE ";
                         $query = $this->db->query($query);
                         $data = $query->result_array();
-
-
                         foreach($data as $row):
+
+                        $url_ws = '';
+                        if ($row['id_pais'] == 'CO') {$url_ws = "https://api.whatsapp.com/send?phone=+573229341371";}
+                        elseif ($row['id_pais'] == 'EC') {$url_ws = "https://api.whatsapp.com/send?phone=+5930986704692";}
+                        elseif ($row['id_pais'] == 'PE') {$url_ws = "https://api.whatsapp.com/send?phone=+51902030519";}
+                        else {$url_ws = "https://api.whatsapp.com/send?phone=+573229341371";}
                    ?>
 
-        <a  style='width:150px; height:30px' href="<?php if($row['id_pais'] == 'CO'){echo "https://api.whatsapp.com/send?phone=+573229341371";}
-          elseif ($row['id_pais'] == 'EC') {echo "https://api.whatsapp.com/send?phone=+5930986704692";}
-            elseif ($row['id_pais'] == 'PE') {echo "https://api.whatsapp.com/send?phone=+51902030519";}
-            ?> " type="button" class="btn btn-green btn-icon"> ENVIAR FACTURA
-            <i class="entypo-list"></i>
-          </a>
+                      <a  style='width:150px; height:30px' href="<?php echo $url_ws ?>" type="button" class="btn btn-green btn-icon">Registrar factura<i class="fa fa-whatsapp"></i></a>
 
 
 <?php endforeach;?>

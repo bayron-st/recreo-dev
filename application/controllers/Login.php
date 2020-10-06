@@ -154,9 +154,8 @@ class Login extends CI_Controller {
 
                 $data['nombres']          = $this->input->post('nombres');
                 $data['apellidos']        = $this->input->post('apellidos');
+                $data['tipo_documento']   = $this->input->post('tipo_documento');
                 $data['identificacion']   = $this->input->post('identificacion');
-
-
                 $data['id_pais']          = $this->input->post('id_pais');
 
                 $fecha = strtotime($this->input->post('fecha_nacimiento'));//tu variable
@@ -171,7 +170,6 @@ class Login extends CI_Controller {
                 $data['telefono']         = $this->input->post('telefono');
                 $data['email']            = $this->input->post('email');
                 $data['aceptar']          = $this->input->post('aceptar');
-                $data['tipo_documento']   = $this->input->post('tipo_documento');
 
 
                 $query = $this->db->get_where('participantes', array('identificacion' => $data['identificacion']));

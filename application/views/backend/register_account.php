@@ -58,7 +58,7 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 
             <div class="form-group">
 
-                <select name="identificacion" class="form-control selectboxit">
+                <select name="tipo_documento" class="form-control selectboxit">
                                 <option value=""><?php echo 'Tipo de Documento';?></option>
                                 <option value="CC"><?php echo 'CEDULA DE CIUDADANIA';?></option>
                                 <option value="CE"><?php echo 'CEDULA DE EXTRANJERIA';?></option>
@@ -69,7 +69,7 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
             </div>
 
             <div class="form-group">
-							<input type="text" class="form-control" name="identificacion" placeholder="<?php echo 'NUMERO DE DOCUMENTO'?>"
+							<input type="text" class="form-control" name="identificacion" onkeypress="return check1(event)" placeholder="<?php echo 'NUMERO DE DOCUMENTO'?>"
                 required autocomplete="off">
 						</div>
 
@@ -88,19 +88,6 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 
                 <input type="text" name="fecha_nacimiento" id="datepicker" class="form-control" placeholder="<?php echo 'FECHA DE NACIMIENTO'?>" autocomplete="off" >
 
-
-                <script type="text/javascript">
-                                  var maxBirthdayDate = new Date();
-                  maxBirthdayDate.setFullYear( maxBirthdayDate.getFullYear() - 18 );
-
-                  $( "#datepicker" ).datepicker({
-                    dateFormat: 'dd.mm.yy',
-                    changeMonth: true,
-                    changeYear: true,
-                    maxDate: maxBirthdayDate
-                  });
-                </script>
-
               </div>
 
             <div class="form-group">
@@ -115,12 +102,23 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 
 
             <div class="form-group">
-
-            <label for=""><a href="https://elrecreoesdetodos.com/TYC/terminosYCondiciones.pdf" target="_blank" style="color:white"> Ver terminos y condiciones </a></label>
-                   <label>
-                        <input type="radio"  name="aceptar" value="ACEPTÓ"   checked="" required> Aceptar términos y condiciones
-                  </label>
-      </div>
+                <?php
+                  $loc = "w";
+                  $loc = $_GET['loc'];
+                  if ($loc != 'w' && $loc == 'co') {
+                    echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Colombia-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
+                  }
+                  if ($loc != 'w' && $loc == 'ec') {
+                    echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Ecuador-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
+                  }
+                  if ($loc != 'w' && $loc == 'pe') {
+                    echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Peru-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
+                  }
+                  if ($loc == 'w') {
+                    echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Colombia-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
+                  }
+                ?>
+            </div>
 
 
 						<button type="submit" class="btn btn-primary"><?php echo 'REGISTRARSE' ?><i class="fa fa-unlock"></i></button>
@@ -137,6 +135,33 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 
     <script src="<?php echo base_url('assets/login_page/js/vendor/jquery-1.12.0.min.js');?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>
+    <script type="text/javascript">
+      function check1(e) {
+          tecla = (document.all) ? e.keyCode : e.which;
+
+          //Tecla de retroceso para borrar, siempre la permite
+          if (tecla == 8) {
+              return true;
+          }
+
+          // Patron de entrada, en este caso solo acepta numeros y letras
+          // patron = /[A-Za-z0-9]/;
+          patron = /[0-9]/;
+          tecla_final = String.fromCharCode(tecla);
+          return patron.test(tecla_final);
+        }
+
+        var maxBirthdayDate = new Date();
+        maxBirthdayDate.setFullYear( maxBirthdayDate.getFullYear() - 18 );
+
+        $( "#datepicker" ).datepicker({
+          dateFormat: 'dd.mm.yy',
+          changeMonth: true,
+          changeYear: true,
+          maxDate: maxBirthdayDate
+        });
+
+    </script>
 
 
     </body>

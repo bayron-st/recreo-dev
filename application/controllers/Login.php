@@ -181,7 +181,7 @@ class Login extends CI_Controller {
 
                 //$this->form_validation->set_rules('Identificacion', 'Identificacion', 'Ya existe un registro con ese numero de identificacion');
                 $this->session->set_flashdata('flash_message' ,'Ya existe un registro con ese numero de identificacion');
-                redirect(site_url('login'), 'refresh');
+                redirect(site_url('login/register_account'), 'refresh');
         }
 
         else {

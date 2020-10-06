@@ -156,7 +156,6 @@ class Login extends CI_Controller {
                 $data['apellidos']        = $this->input->post('apellidos');
                 $data['tipo_documento']   = $this->input->post('tipo_documento');
                 $data['identificacion']   = $this->input->post('identificacion');
-
                 $data['ID_PAIS']          = $this->input->post('ID_PAIS');
 
 

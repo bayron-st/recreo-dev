@@ -49,12 +49,12 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
           <div class="form-group">
 
               <select name="ID_PAIS" class="form-control selectboxit">
-                            <option value=""><?php echo 'Selecionar pais';?></option>
-                              <option value="CO"><?php echo 'COLOMBIA';?></option>
-                              <option value="EC"><?php echo 'ECUADOR';?></option>
-                              <option value="PE"><?php echo 'PERU';?></option>
+                <option value=""><?php echo 'Selecionar pais';?></option>
+                <option value="CO"><?php echo 'COLOMBIA';?></option>
+                <option value="EC"><?php echo 'ECUADOR';?></option>
+                <option value="PE"><?php echo 'PERU';?></option>
 
-                          </select>
+              </select>
           </div>
 
 

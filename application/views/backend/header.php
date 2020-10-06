@@ -19,9 +19,9 @@
 
 				foreach($data as $row):
 
-				if($row['id_pais'] == 1) {$loc = "co"; $loc2 = "";}
-				if($row['id_pais'] == 2) {$loc = "ec"; $loc2 = "-ec";}
-				if($row['id_pais'] == 3) {$loc = "pe"; $loc2 = "-pe";}
+				if($row['id_pais'] == 'CO') {$loc = "co"; $loc2 = "";}
+				if($row['id_pais'] == 'EC') {$loc = "ec"; $loc2 = "-ec";}
+				if($row['id_pais'] == 'PE') {$loc = "pe"; $loc2 = "-pe";}
 			?> 
 			<ul class="navbar-nav pull-sm-left">
 				<li class="has-sub" >

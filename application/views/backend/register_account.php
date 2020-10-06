@@ -1,3 +1,6 @@
+
+
+
 <!doctype html>
 <?php
 //$system_title = $this->db->get_where('settings', array('type' => 'system_title'))->row()->description;
@@ -26,40 +29,8 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
 
-
-<script>
-$(document).ready(function(){
-
-	$("#div1").hide();
-	$("#div2").hide();
-
-
-	$("#id_captacion").change(function(){
-
-					var  referencias_com_cliente = $('select[id=id_captacion]').val();
-
-
-				if (referencias_com_cliente == "otro") {
-						$("#div1").show();
-						$("#div2").show();
-
-
-					}
-
-					else if (referencias_com_cliente != "otro"  ) {
-
-						$("#div1").hide();
-						$("#div2").hide();
-
-					}
-
-	});
-
-});
-
-</script>
-
     </head>
+
     <body>
 		<div class="main-content-wrapper">
 			<div class="login-area">
@@ -72,13 +43,6 @@ $(document).ready(function(){
 				<div class="login-content">
           <?php echo form_open(site_url('login/register/create') , array('enctype' => 'multipart/form-data'));?>
 
-
-          <div class="form-group">
-                  <label for=""><a href="https://elrecreoesdetodos.com/TYC/terminosYCondiciones.pdf"> Ver terminos y condiciones </a></label>
-                         <label>
-                         			<input type="radio" name="optionsRadios" value="aceptar"  name="terminos" checked="" required> Aceptar términos y condiciones
-                        </label>
-         		</div>
 
 
 						<div class="form-group">
@@ -98,20 +62,20 @@ $(document).ready(function(){
                                 <option value=""><?php echo 'Tipo de Documento';?></option>
                                 <option value="CC"><?php echo 'CEDULA DE CIUDADANIA';?></option>
                                 <option value="CE"><?php echo 'CEDULA DE EXTRANJERIA';?></option>
-                                <option value="DNIE"><?php echo 'DNI ECUADOR';?></option>
-                                <option value="DNIP"><?php echo 'DNI PERO';?></option>
+                                <option value="DNIEC"><?php echo 'DNI ECUADOR';?></option>
+                                <option value="DNIPE"><?php echo 'DNI PERU';?></option>
 
                             </select>
             </div>
 
             <div class="form-group">
-							<input type="text" class="form-control" name="num_documento" placeholder="<?php echo 'NUMERO DE DOCUMENTO'?>"
+							<input type="text" class="form-control" name="identificacion" placeholder="<?php echo 'NUMERO DE DOCUMENTO'?>"
                 required autocomplete="off">
 						</div>
 
             <div class="form-group">
 
-                <select name="pais" class="form-control selectboxit">
+                <select name="id_pais" class="form-control selectboxit">
                                 <option value=""><?php echo 'Seleccionar Pais';?></option>
                                 <option value="CO"><?php echo 'COLOMBIA';?></option>
                                 <option value="EC"><?php echo 'ECUADOR';?></option>
@@ -140,7 +104,7 @@ $(document).ready(function(){
               </div>
 
             <div class="form-group">
-							<input type="text" class="form-control" name="phone" placeholder="<?php echo 'CELULAR'?>"
+							<input type="text" class="form-control" name="telefono" placeholder="<?php echo 'CELULAR'?>"
                 required autocomplete="off">
 						</div>
 
@@ -150,40 +114,13 @@ $(document).ready(function(){
 						</div>
 
 
-              <div class="form-group">
-                <div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Radio Input 1
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio Input 2
-										</label>
-									</div>
-              </div>
-
-              <div class="col-sm-5" id="div1">
-                            <h4>&nbsp;<strong>Marca:</strong> </h4>
-
-
-                         <input  id="marca5" type="text" class="form-control" name="marca"  value=" " onkeyup="cap_marca();">
-
-                          </div>
-
-                          <div id="div2" class="col-sm-5" >
-                            <h4>&nbsp;<strong>Modelo:</strong> </h4>
-
-
-                              <input id="modelo5" type="text" class="form-control" name="modelo"   value=" " onkeyup="cap_modelo();">
-                            </div>
-
-
-
             <div class="form-group">
-							<input type="password" class="form-control" name="password" placeholder="<?php echo 'CONTRASEÑA'?>"
-                required autocomplete="off">
-						</div>
+
+            <label for=""><a href="https://elrecreoesdetodos.com/TYC/terminosYCondiciones.pdf" target="_blank" style="color:white"> Ver terminos y condiciones </a></label>
+                   <label>
+                        <input type="radio"  name="aceptar" value="ACEPTÓ"   checked="" required> Aceptar términos y condiciones
+                  </label>
+      </div>
 
 
 						<button type="submit" class="btn btn-primary"><?php echo 'REGISTRARSE' ?><i class="fa fa-unlock"></i></button>

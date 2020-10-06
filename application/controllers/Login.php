@@ -156,20 +156,24 @@ class Login extends CI_Controller {
                 $data['apellidos']        = $this->input->post('apellidos');
                 $data['tipo_documento']   = $this->input->post('tipo_documento');
                 $data['identificacion']   = $this->input->post('identificacion');
+
                 $data['id_pais']          = $this->input->post('id_pais');
 
                 $fecha = strtotime($this->input->post('fecha_nacimiento'));//tu variable
+
+
                 $dia   = strftime("%d",$fecha);
                 $mes   = strftime("%m",$fecha);
                 $anio  = strftime("%Y",$fecha);
 
-                $dia = $this->input->post('DIA_NACIMIENTO');
-                $mes = $this->input->post('MES_NACIMIENTO');
-                $anio = $this->input->post('ANO_NACIMIENTO');
+                $dia                      = $this->input->post('DIA_NACIMIENTO');
+                $mes                      = $this->input->post('MES_NACIMIENTO');
+                $anio                     = $this->input->post('ANO_NACIMIENTO');
 
                 $data['telefono']         = $this->input->post('telefono');
                 $data['email']            = $this->input->post('email');
                 $data['aceptar']          = $this->input->post('aceptar');
+                $data['fecha']            = date("Y-m-d");
 
 
                 $query = $this->db->get_where('participantes', array('identificacion' => $data['identificacion']));

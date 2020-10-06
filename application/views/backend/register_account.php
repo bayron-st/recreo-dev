@@ -31,6 +31,7 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 
     </head>
 
+
     <body>
 		<div class="main-content-wrapper">
 			<div class="login-area">
@@ -76,7 +77,7 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
             <div class="form-group">
 
                 <select name="id_pais" class="form-control selectboxit">
-                                <option value=""><?php echo 'Seleccionar Pais';?></option>
+
                                 <option value="CO"><?php echo 'COLOMBIA';?></option>
                                 <option value="EC"><?php echo 'ECUADOR';?></option>
                                 <option value="PE"><?php echo 'PERU';?></option>
@@ -84,25 +85,26 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
                             </select>
             </div>
 
-              <div class="form-group">
+
+            <div class="form-group">
 
                 <input type="text" name="fecha_nacimiento" id="datepicker" class="form-control" placeholder="<?php echo 'FECHA DE NACIMIENTO'?>" autocomplete="off" >
 
               </div>
+              <script type="text/javascript">
+              var maxBirthdayDate = new Date();
+              maxBirthdayDate.setFullYear( maxBirthdayDate.getFullYear() - 18 );
 
-              <script>
-                var maxBirthdayDate = new Date();
-                maxBirthdayDate.setFullYear( maxBirthdayDate.getFullYear() - 18 );
-                $( "#datepicker" ).datepicker({
-                  dateFormat: 'dd.mm.yy',
-                  changeMonth: true,
-                  changeYear: true,
-                  maxDate: maxBirthdayDate
-                });
+              $( "#datepicker" ).datepicker({
+                dateFormat: 'd/m/y',
+                changeMonth: true,
+                changeYear: true,
+                maxDate: maxBirthdayDate
+              });
               </script>
 
             <div class="form-group">
-							<input type="text" class="form-control" name="telefono" placeholder="<?php echo 'CELULAR'?>"
+							<input type="text" class="form-control" name="telefono"  onkeypress="return check1(event)" placeholder="<?php echo 'CELULAR'?>"
                 required autocomplete="off">
 						</div>
 
@@ -160,7 +162,9 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
           patron = /[0-9]/;
           tecla_final = String.fromCharCode(tecla);
           return patron.test(tecla_final);
-        };
+        }
+
+
 
     </script>
 

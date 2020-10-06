@@ -43,6 +43,16 @@ class Participante extends CI_Controller
         $this->load->view('backend/index', $page_data);
     }
 
+    function whatsapp()
+    {
+        if ($this->session->userdata('participante_login') != 1)
+            redirect(site_url('login'), 'refresh');
+        $page_data['page_name']  = 'Whatsapp';
+        $page_data['page_title'] = get_phrase('Registra tus compras');
+        $this->load->view('backend/index', $page_data);
+    }
+
+
     /***participante DASHBOARD***/
     function juego($param1 = '', $param2 = '', $param3 = '')
     {

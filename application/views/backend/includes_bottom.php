@@ -93,3 +93,18 @@
 	});
 
 </script>
+
+<script type="text/javascript">
+
+document.getElementById('message').onclick = function() {
+  swal({
+   title: 'Proximamente',
+   text: "Estamos trabajando para que disfrutes muy pronto esta caracteristica",
+   type: 'warning',
+
+   showCancelButton: true,
+
+ })
+};
+
+</script>

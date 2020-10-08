@@ -86,8 +86,6 @@ class Login extends CI_Controller {
           redirect(site_url('participante/dashboard'), 'refresh');
       }
 
-
-
       $this->session->set_flashdata('login_error', get_phrase('login no valido'));
       redirect(site_url('login'), 'refresh');
     }
@@ -146,7 +144,6 @@ class Login extends CI_Controller {
         $this->load->view('backend/register_account');
     }
 
-
     function register($param1 = '', $param2 = '', $param3 = '')
     {
 
@@ -158,29 +155,22 @@ class Login extends CI_Controller {
                 $data['identificacion']   = $this->input->post('identificacion');
                 $data['ID_PAIS']          = $this->input->post('ID_PAIS');
 
-
-
-
-
                 $data['ANO_NACIMIENTO'] = $this->input->post('ANO_NACIMIENTO');
-
-
-
 
                 $data['telefono']         = $this->input->post('telefono');
                 $data['email']            = $this->input->post('email');
                 $data['aceptar']          = $this->input->post('aceptar');
                 $data['fecha']            = date("Y-m-d");
 
+                $identificacion = $data['identificacion'];
 
-                $query = $this->db->get_where('participantes', array('identificacion' => $data['identificacion']));
+                $query = $this->db->get_where('participantes', array('identificacion' => $identificacion));
 
                if ($query->num_rows() > 0) {
 
 
-                //$this->form_validation->set_rules('Identificacion', 'Identificacion', 'Ya existe un registro con ese numero de identificacion');
-                $this->session->set_flashdata('flash_message' ,'Ya existe un registro con ese numero de identificacion');
-                redirect(site_url('login/register_account'), 'refresh');
+                 $this->session->set_flashdata('login_error', get_phrase('Ya existe un registro con ese numero de identificacion'));
+                 redirect(site_url('login/register_account'), 'refresh');
         }
 
         else {

@@ -5,7 +5,7 @@
 			<!-- main menu -->
 			<div class="navbar-brand">
 			</div>
-			<?php 
+			<?php
 
 				$count=1;
 				$ID_PARTICIPANTE = $this->session->userdata('login_user_id');
@@ -22,7 +22,7 @@
 				if($row['id_pais'] == 'CO') {$loc = "co"; $loc2 = "";}
 				if($row['id_pais'] == 'EC') {$loc = "ec"; $loc2 = "-ec";}
 				if($row['id_pais'] == 'PE') {$loc = "pe"; $loc2 = "-pe";}
-			?> 
+			?>
 			<ul class="navbar-nav pull-sm-left">
 				<li class="has-sub" >
 					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/inicio'.$loc2.'/">'; ?>
@@ -34,11 +34,18 @@
 						<span class="title">Cómo participar</span>
 					</a>
 				</li>
+
+				<li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
+				<a id="message"> 	<span><?php echo 'Juego'; ?></span> </a>
+				</li>
+
+			<!--
 				<li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
 						<a href="<?php echo site_url('participante/juego'); ?>">
 								<span><?php echo 'Juego'; ?></span>
 						</a>
-				</li>
+				</li> -->
+
 				<li class="has-sub" >
 					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/premios'.$loc2.'/">'; ?>
 						<span class="title">Premios</span>

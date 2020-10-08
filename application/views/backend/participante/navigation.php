@@ -53,11 +53,11 @@
 						</a>
 				</li>
 
-			<!--	<li class="<?php if ($page_name == 'redimir') echo 'active'; ?> ">
+				<li class="<?php if ($page_name == 'redimir') echo 'active'; ?> ">
 						<a href="<?php echo site_url('participante/redimir'); ?>">
 								<span><?php echo 'Redimir'; ?></span>
 						</a>
-				</li> -->
+				</li>
 
 				<li class="has-sub <?php if ($page_name == 'dashboard') echo 'active'; ?>" >
 					<a href="<?php echo site_url('participante/dashboard'); ?>">

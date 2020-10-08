@@ -65,8 +65,8 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'username' => 'elrecqcg_admin',
+	'password' => '7?0U4O7$9%^FvKzV',
 	'database' => 'elrecqcg_dashboard',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
@@ -83,5 +83,3 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-
-// Text

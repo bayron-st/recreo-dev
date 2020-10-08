@@ -65,8 +65,7 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
         <hr style="padding: 0px 15px 0px 15px">
         
         <div class="login-content">
-					<form method="post" role="form" id="form_login"
-            action="<?php echo site_url('login/validate_login');?>">
+					<form method="post" role="form" id="form_login" action="<?php echo site_url('login/validate_login');?>">
 						<div class="form-group">
               <label>Documento</label>
 						  <input type="text" class="form-control text-center" name="identificacion" onkeypress="return check1(event)" placeholder="<?php echo 'N° de Identificacion'?>" required autocomplete="off">

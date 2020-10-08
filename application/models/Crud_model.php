@@ -14,6 +14,16 @@ class Crud_model extends CI_Model {
         $this->output->set_header('Pragma: no-cache');
     }
 
+    public function getLastCodeID($lim){
+              
+        $this->db->where('TIPO_CODIGO', 'JUEGO');
+        $this->db->where('ESTADO', 'INACTIVO');
+        $this->db->limit($lim);
+        $this->db->select('CODIGO');
+        $this->db->from('codigos');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 
     function get_type_name_by_id($type = '', $type_id = '', $field = 'name') {

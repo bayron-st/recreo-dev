@@ -56,7 +56,7 @@ class Participante extends CI_Controller
 
     function redimir()
               {
-                if ($this->session->userdata('usuario_login') != 1)
+                if ($this->session->userdata('participante_login') != 1)
                         redirect(base_url(), 'refresh');
 
                 $page_data['page_name']  = 'redimir';

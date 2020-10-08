@@ -27,8 +27,8 @@
                       <a  style='width:150px; height:30px' href="<?php echo $url_ws ?>" type="button" class="btn btn-green btn-icon">Registrar factura<i class="fa fa-whatsapp"></i></a>
 
 
-<?php endforeach;?>
-            </center>
+            <?php endforeach;?>
+          </center>
 		</div>
 	</div>
   <br>
@@ -56,7 +56,3 @@
 		</div>
 	</div>
 </div>
-
-
-
-      <center>	</center>

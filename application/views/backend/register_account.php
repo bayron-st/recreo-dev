@@ -70,15 +70,13 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 
 
             <div class="form-group">
-
                 <select name="tipo_documento" class="form-control selectboxit">
-                                <option value=""><?php echo 'Tipo de Documento';?></option>
-                                <option value="CC"><?php echo 'CEDULA DE CIUDADANIA';?></option>
-                                <option value="CE"><?php echo 'CEDULA DE EXTRANJERIA';?></option>
-                                <option value="DNIEC"><?php echo 'DNI ECUADOR';?></option>
-                                <option value="DNIPE"><?php echo 'DNI PERU';?></option>
-
-                            </select>
+                    <option value=""><?php echo 'Tipo de Documento';?></option>
+                    <option value="CC"><?php echo 'CEDULA DE CIUDADANIA';?></option>
+                    <option value="CE"><?php echo 'CEDULA DE EXTRANJERIA';?></option>
+                    <option value="DNI"><?php echo 'DNI ECUADOR';?></option>
+                    <option value="DNI"><?php echo 'DNI PERU';?></option>
+                </select>
             </div>
 
 

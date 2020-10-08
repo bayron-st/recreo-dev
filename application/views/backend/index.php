@@ -33,7 +33,7 @@
 	<div class="page-container horizontal-menu sidebar-collapsed">
 
 
-	<?php include 'header.php';?>
+		<?php include $account_type.'/navigation.php';?>
 
 		<div class="main-content">
 

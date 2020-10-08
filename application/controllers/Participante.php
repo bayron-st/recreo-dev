@@ -53,6 +53,19 @@ class Participante extends CI_Controller
     }
 
 
+
+    function redimir()
+              {
+                if ($this->session->userdata('usuario_login') != 1)
+                        redirect(base_url(), 'refresh');
+
+                $page_data['page_name']  = 'redimir';
+                $page_data['page_title'] = 'Redime tus creditos';
+                $this->load->view('backend/index', $page_data);
+              }
+
+
+
     /***participante DASHBOARD***/
     function juego($param1 = '', $param2 = '', $param3 = '')
     {

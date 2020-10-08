@@ -34,8 +34,11 @@
 						<span class="title">Cómo participar</span>
 					</a>
 				</li>
+
+
+				<!--href="<?php echo site_url('participante/juego'); ?>" -->
 				<li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
-						<a href="<?php echo site_url('participante/juego'); ?>">
+						<a  id="message" >
 								<span><?php echo 'Juego'; ?></span>
 						</a>
 				</li>
@@ -49,8 +52,15 @@
 								<span><?php echo 'Registrar Compras'; ?></span>
 						</a>
 				</li>
+
+				<li class="<?php if ($page_name == 'redimir') echo 'active'; ?> ">
+						<a href="<?php echo site_url('participante/redimir'); ?>">
+								<span><?php echo 'Redimir'; ?></span>
+						</a>
+				</li>
+
 				<li class="has-sub <?php if ($page_name == 'dashboard') echo 'active'; ?>" >
-					<a href="<?php echo site_url('asesor/dashboard'); ?>">
+					<a href="<?php echo site_url('participante/dashboard'); ?>">
 						<span class="title">Mi cuenta</span>
 					</a>
 				</li>

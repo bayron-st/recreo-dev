@@ -47,7 +47,7 @@ class Participante extends CI_Controller
     {
         if ($this->session->userdata('participante_login') != 1)
             redirect(site_url('login'), 'refresh');
-        $page_data['page_name']  = 'Whatsapp';
+        $page_data['page_name']  = 'whatsapp';
         $page_data['page_title'] = get_phrase('Registra tus compras');
         $this->load->view('backend/index', $page_data);
     }
@@ -56,7 +56,7 @@ class Participante extends CI_Controller
 
     function redimir()
               {
-                if ($this->session->userdata('usuario_login') != 1)
+                if ($this->session->userdata('participante_login') != 1)
                         redirect(base_url(), 'refresh');
 
                 $page_data['page_name']  = 'redimir';

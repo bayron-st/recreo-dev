@@ -1,51 +1,84 @@
-<div class="sidebar-menu">
-    <header class="logo-env" >
 
+	<header class="navbar"><!-- set fixed position by adding class "navbar-fixed-top" -->
 
-        <!-- logo collapse icon -->
-        <div class="sidebar-collapse" style="">
-            <a href="#" class="sidebar-collapse-icon with-animation">
+		<div class="navbar-inner">
+			<!-- main menu -->
+			<div class="navbar-brand">
+			</div>
+			<?php
 
-                <i class="entypo-menu"></i>
-            </a>
-        </div>
+				$count=1;
+				$ID_PARTICIPANTE = $this->session->userdata('login_user_id');
 
-        <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
-        <div class="sidebar-mobile-menu visible-xs">
-            <a href="#" class="with-animation">
-                <i class="entypo-menu"></i>
-            </a>
-        </div>
-    </header>
+				$query = "SELECT  id_pais  from participantes where ID_PARTICIPANTE = $ID_PARTICIPANTE ";
+				$query = $this->db->query($query);
+				$data = $query->result_array();
 
-    <div style=""></div>
-    <ul id="main-menu" class="">
+				$loc = '';
+				$loc2 = '';
 
+				foreach($data as $row):
 
-        <!-- DASHBOARD -->
-        <li class="<?php if ($page_name == 'dashboard') echo 'active'; ?> ">
-            <a href="<?php echo site_url('asesor/dashboard'); ?>">
-                <i class="entypo-gauge"></i>
-                <span><?php echo 'dashboard'; ?></span>
-            </a>
-        </li>
+				if($row['id_pais'] == 'CO') {$loc = "co"; $loc2 = "";}
+				if($row['id_pais'] == 'EC') {$loc = "ec"; $loc2 = "-ec";}
+				if($row['id_pais'] == 'PE') {$loc = "pe"; $loc2 = "-pe";}
+			?>
+			<ul class="navbar-nav pull-sm-left">
+				<li class="has-sub" >
+					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/inicio'.$loc2.'/">'; ?>
+						<span class="title">Home</span>
+					</a>
+				</li>
+				<li class="has-sub" >
+					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/como-participar'.$loc2.'/">'; ?>
+						<span class="title">Cómo participar</span>
+					</a>
+				</li>
+				<li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
+						<a href="<?php echo site_url('participante/juego'); ?>">
+								<span><?php echo 'Juego'; ?></span>
+						</a>
+				</li>
+				<li c lass="has-sub" >
+					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/premios'.$loc2.'/">'; ?>
+						<span class="title">Premios</span>
+					</a>
+				</li>
+				<li class="<?php if ($page_name == 'Whatsapp') echo 'active'; ?> ">
+						<a href="<?php echo site_url('participante/whatsapp'); ?>">
+								<span><?php echo 'Registrar Compras'; ?></span>
+						</a>
+				</li>
+				<li class="has-sub <?php if ($page_name == 'dashboard') echo 'active'; ?>" >
+					<a href="<?php echo site_url('asesor/dashboard'); ?>">
+						<span class="title">Mi cuenta</span>
+					</a>
+				</li>
+			</ul>
 
-        <!-- JUEGO MENTAL -->
-        <li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
-            <a href="<?php echo site_url('asesor/juego'); ?>">
-                <i class="entypo-gauge"></i>
-                <span><?php echo 'Juego Mental'; ?></span>
-            </a>
-        </li>
+			<?php endforeach;?>
+			<!-- notifications and other links -->
+			<ul class="nav navbar-right pull-right">
 
-        <!-- ACCOUNT -->
-        <li class="<?php if ($page_name == 'manage_profile') echo 'active'; ?> ">
-            <a href="<?php echo site_url('asesor/manage_profile'); ?>">
-                <i class="entypo-lock"></i>
-                <span><?php echo 'Cuenta'; ?></span>
-            </a>
-        </li>
+				<li class="has-sub">
+					<a href="<?php echo site_url('login/logout');?>">
+					<span class="title" style="font-size:16px !important;">Cerrar Sesión</span><i class="entypo-logout right"></i>
+					</a>
+				</li>
+				<!-- mobile only -->
+				<li class="visible-xs">
 
-    </ul>
+					<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+					<div class="horizontal-mobile-menu visible-xs">
+						<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+							<i class="entypo-menu"></i>
+						</a>
+					</div>
 
-</div>
+				</li>
+
+			</ul>
+
+		</div>
+
+	</header>

@@ -31,8 +31,6 @@ class Login extends CI_Controller {
         if ($this->session->userdata('usuario_login') == 1)
             redirect(site_url('usuario/dashboard'), 'refresh');
 
-        if ($this->session->userdata('asesor_login') == 1)
-        redirect(site_url('asesor/dashboard'), 'refresh');
 
         if ($this->session->userdata('participante_login') == 1)
         redirect(site_url('participante/dashboard'), 'refresh');
@@ -61,17 +59,6 @@ class Login extends CI_Controller {
           redirect(site_url('usuario/dashboard'), 'refresh');
       }
 
-      $query = $this->db->get_where('asesor', $credential);
-      if ($query->num_rows() > 0) {
-          $row = $query->row();
-          $this->session->set_userdata('asesor_login', '1');
-          $this->session->set_userdata('asesor_id', $row->asesor_id);
-          $this->session->set_userdata('login_user_id', $row->asesor_id);
-          $this->session->set_userdata('name', $row->name);
-          $this->session->set_userdata('last_name', $row->last_name);
-          $this->session->set_userdata('login_type', 'asesor');
-          redirect(site_url('asesor/dashboard'), 'refresh');
-      }
 
       $query = $this->db->get_where('participantes', $credential);
 
@@ -122,19 +109,7 @@ class Login extends CI_Controller {
             redirect(site_url('login/forgot_password'), 'refresh');
         }
 
-        $query = $this->db->get_where('asesor' , array('email' => $email));
-        if ($query->num_rows() > 0)
-        {
-            $reset_account_type     =   'asesor';
-            $this->db->where('email' , $email);
-            $this->db->update('asesor' , array('password' => sha1($new_password)));
-            // send new password to user email
-            $this->email_model->password_reset_email($new_password , $reset_account_type , $email);
-            $this->session->set_flashdata('reset_success', get_phrase('Por favor revise su correo electrónico para obtener una nueva contraseña'));
-            redirect(site_url('login/forgot_password'), 'refresh');
-        }
 
-        // Checking credential for student
           $this->session->set_flashdata('reset_error', get_phrase('password_reset_was_failed'));
         redirect(site_url('login/forgot_password'), 'refresh');
     }

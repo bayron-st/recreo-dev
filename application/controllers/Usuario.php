@@ -44,133 +44,48 @@ class Usuario extends CI_Controller
     }
 
 
-//INGRESAR USUARIOS
-    function asesor_add()
-{
-  if ($this->session->userdata('usuario_login') != 1)
-          redirect(base_url(), 'refresh');
+          function participantes()
+                    {
+                      if ($this->session->userdata('usuario_login') != 1)
+                              redirect(base_url(), 'refresh');
 
-  $page_data['page_name']  = 'asesor_add';
-  $page_data['page_title'] = 'Ingresar asesor';
-  $this->load->view('backend/index', $page_data);
-}
-
-
-//FUNCION USUARIOS
-  function asesor($param1 = '', $param2 = '', $param3 = '')
-  {
-      if ($this->session->userdata('usuario_login') != 1)
-          redirect('login', 'refresh');
-      if ($param1 == 'create') {
-          $data['name']           = $this->input->post('name');
-          $data['sex']            = $this->input->post('sex');
-          $data['address']        = $this->input->post('address');
-          $data['phone']          = $this->input->post('phone');
-          $data['email']          = $this->input->post('email');
-          $data['password']       =sha1($this->input->post('password'));
+                      $page_data['page_name']  = 'participantes';
+                      $page_data['page_title'] = 'Listado Participantes';
+                      $this->load->view('backend/index', $page_data);
+                    }
 
 
-          $this->db->insert('asesor', $data);
-          $asesor_id = $this->db->insert_id();
-          move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/asesor_image/' . $asesor_id . '.jpg');
-          $this->session->set_flashdata('flash_message' , 'Datos almacenados correctamente');
-          $this->email_model->account_opening_email('asesor', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
-           redirect(site_url('usuario/asesor'), 'refresh');
-      }
-      if ($param1 == 'do_update') {
-          $data['name']        = $this->input->post('name');
-          $data['sex']         = $this->input->post('sex');
-          $data['address']     = $this->input->post('address');
-          $data['phone']       = $this->input->post('phone');
-          $data['email']       = $this->input->post('email');
+          function tiendas()
+                    {
+                      if ($this->session->userdata('usuario_login') != 1)
+                              redirect(base_url(), 'refresh');
 
-          $this->db->where('asesor_id', $param2);
-          $this->db->update('asesor', $data);
-          move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/asesor_image/' . $param2 . '.jpg');
-          $this->session->set_flashdata('flash_message' , 'Registro Actualizado');
-          redirect(site_url('usuario/asesor'), 'refresh');
-      }
-      if ($param1 == 'delete') {
-          $this->db->where('asesor_id', $param2);
-          $this->db->delete('asesor');
-          $this->session->set_flashdata('flash_message' , 'Registro Eliminado');
-          redirect(site_url('usuario/asesor'), 'refresh');
-      }
-      $page_data['asesores']   = $this->db->get('asesor')->result_array();
-      $page_data['page_name']  = 'asesor';
-      $page_data['page_title'] = 'Gestionar asesor';
-      $this->load->view('backend/index', $page_data);
-  }
+                      $page_data['page_name']  = 'tiendas';
+                      $page_data['page_title'] = 'Listado Tiendas';
+                      $this->load->view('backend/index', $page_data);
+                    }
 
 
+          function creditos()
+                    {
+                      if ($this->session->userdata('usuario_login') != 1)
+                              redirect(base_url(), 'refresh');
 
+                      $page_data['page_name']  = 'creditos';
+                      $page_data['page_title'] = 'Créditos Participantes';
+                      $this->load->view('backend/index', $page_data);
+                    }
 
+          function canjes()
+                    {
+                      if ($this->session->userdata('usuario_login') != 1)
+                              redirect(base_url(), 'refresh');
 
+                      $page_data['page_name']  = 'canjes';
+                      $page_data['page_title'] = 'Créditos de créditos participantes';
+                      $this->load->view('backend/index', $page_data);
+                    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        function contado()
-          {
-            if ($this->session->userdata('usuario_login') != 1)
-                    redirect(base_url(), 'refresh');
-
-            $page_data['page_name']  = 'contado';
-            $page_data['page_title'] = 'Gestion de pagos de contado';
-            $this->load->view('backend/index', $page_data);
-          }
-
-
-      function llamadas_contado($id_marketing) {
-      if ($this->session->userdata('usuario_login') != 1)
-      redirect(site_url('login'), 'refresh');
-
-      $page_data['page_name']  = 'llamadas_contado';
-      $page_data['id_marketing'] = $id_marketing;
-      $page_data['page_title'] = 'llamadas compra de contado';
-      $this->load->view('backend/index', $page_data);
-      }
-
-
-      function llamadas_contado_edit($param1 = '', $param2 = '', $param3 = '')
-      {
-        if ($this->session->userdata('usuario_login') != 1)
-            redirect('login', 'refresh');
-        if ($param1 == 'create') {
-
-            $data['id_marketing']     		 = $this->input->post('id_marketing');
-            $id_marketing                  =  $data['id_marketing'] ;
-            $data['llamadas_calendario']   = date("Y-m-d H:i:s");
-            $data['llamadas_comentarios']  = $this->input->post('llamadas_comentarios');
-            $data['fecha_cita_mark']     	 = $this->input->post('fecha_cita_mark');
-            $data['fecha_modificacion']    = date("Y-m-d H:i");
-            $data['cronometro']     	     = $this->input->post('cronometro');
-            $data['proceso']     	         = $this->input->post('proceso');
-            $data['estadocontado_id']             = $this->input->post('estadocontado_id');
-
-            $this->db->insert('llamadas_contado', $data);
-            $this->session->set_flashdata('flash_message' , 'Datos almacenados correctamente');
-
-            redirect(site_url('usuario/llamadas_contado/'. $id_marketing), 'refresh');
-        }
-
-       $page_data['clientes']   = $this->db->get('llamadas_contado')->result_array();
-       $page_data['page_name']  = 'llamadas_contado';
-       $page_data['page_title'] = 'Gestion de Llamadas';
-       $this->load->view('backend/index', $page_data);
-      }
 
 
     /*****SITE/SYSTEM SETTINGS*********/
@@ -247,83 +162,6 @@ class Usuario extends CI_Controller
     }
 
 
-    function frontend_pages($param1 = '', $param2 = '', $param3 = '') {
-      if ($this->session->userdata('usuario_login') != 1) {
-        redirect(site_url('login'), 'refresh');
-      }
-      if ($param1 == 'events') {
-        $page_data['page_content']  = 'frontend_events';
-      }
-      if ($param1 == 'gallery') {
-        $page_data['page_content']  = 'frontend_gallery';
-      }
-      if ($param1 == 'privacy_policy') {
-        $page_data['page_content']  = 'frontend_privacy_policy';
-      }
-      if ($param1 == 'about_us') {
-        $page_data['page_content']  = 'frontend_about_us';
-      }
-      if ($param1 == 'terms_conditions') {
-        $page_data['page_content']  = 'frontend_terms_conditions';
-      }
-      if ($param1 == 'homepage_slider') {
-        $page_data['page_content']  = 'frontend_slider';
-      }
-      if ($param1 == '' || $param1 == 'general') {
-        $page_data['page_content']  = 'frontend_general_settings';
-      }
-      if ($param1 == 'gallery_image') {
-        $page_data['page_content']  = 'frontend_gallery_image';
-        $page_data['gallery_id']  = $param2;
-      }
-      $page_data['page_name'] = 'frontend_pages';
-      $page_data['page_title']  = get_phrase('pages');
-      $this->load->view('backend/index', $page_data);
-    }
-
-    function frontend_events($param1 = '', $param2 = '') {
-      if ($param1 == 'add_event') {
-        $this->frontend_model->add_event();
-        $this->session->set_flashdata('flash_message' , get_phrase('event_added_successfully'));
-        redirect(site_url('usuario/frontend_pages/events'), 'refresh');
-      }
-      if ($param1 == 'edit_event') {
-        $this->frontend_model->edit_event($param2);
-        $this->session->set_flashdata('flash_message' , get_phrase('event_updated_successfully'));
-        redirect(site_url('usuario/frontend_pages/events'), 'refresh');
-      }
-      if ($param1 == 'delete') {
-        $this->frontend_model->delete_event($param2);
-        $this->session->set_flashdata('flash_message' , get_phrase('event_deleted'));
-        redirect(site_url('usuario/frontend_pages/events'), 'refresh');
-      }
-    }
-
-    function frontend_gallery($param1 = '', $param2 = '', $param3 = '') {
-      if ($param1 == 'add_gallery') {
-        $this->frontend_model->add_gallery();
-        $this->session->set_flashdata('flash_message' , get_phrase('gallery_added_successfully'));
-        redirect(site_url('usuario/frontend_pages/gallery'), 'refresh');
-      }
-      if ($param1 == 'edit_gallery') {
-        $this->frontend_model->edit_gallery($param2);
-        $this->session->set_flashdata('flash_message' , get_phrase('gallery_updated_successfully'));
-        redirect(site_url('usuario/frontend_pages/gallery'), 'refresh');
-      }
-      if ($param1 == 'upload_images') {
-        $this->frontend_model->add_gallery_images($param2);
-        $this->session->set_flashdata('flash_message' , get_phrase('images_uploaded'));
-        redirect(site_url('usuario/frontend_pages/gallery_image/'.$param2), 'refresh');
-      }
-      if ($param1 == 'delete_image') {
-        $this->frontend_model->delete_gallery_image($param2);
-        $this->session->set_flashdata('flash_message' , get_phrase('images_deleted'));
-        redirect(site_url('usuario/frontend_pages/gallery_image/'.$param3), 'refresh');
-      }
-
-    }
-
-
 
     function frontend_settings($task) {
       if ($task == 'update_terms_conditions') {
@@ -353,16 +191,7 @@ class Usuario extends CI_Controller
       }
     }
 
-    function frontend_themes() {
-      if ($this->session->userdata('usuario_login') != 1) {
-        redirect(site_url('login'), 'refresh');
-      }
-      $page_data['page_name'] = 'frontend_themes';
-      $page_data['page_title']  = get_phrase('themes');
-      $this->load->view('backend/index', $page_data);
-    }
 
-    // FRONTEND
 
 
     function get_session_changer()
@@ -378,58 +207,6 @@ class Usuario extends CI_Controller
         $this->session->set_flashdata('flash_message' , get_phrase('session_changed'));
         redirect(site_url('usuario/dashboard'), 'refresh');
     }
-
-	/***** UPDATE PRODUCT *****/
-
-	function update( $task = '', $purchase_code = '' ) {
-
-        if ($this->session->userdata('usuario_login') != 1)
-            redirect(site_url('login'), 'refresh');
-
-        // Create update directory.
-        $dir    = 'update';
-        if ( !is_dir($dir) )
-            mkdir($dir, 0777, true);
-
-        $zipped_file_name   = $_FILES["file_name"]["name"];
-        $path               = 'update/' . $zipped_file_name;
-
-        move_uploaded_file($_FILES["file_name"]["tmp_name"], $path);
-
-        // Unzip uploaded update file and remove zip file.
-        $zip = new ZipArchive;
-        $res = $zip->open($path);
-        if ($res === TRUE) {
-            $zip->extractTo('update');
-            $zip->close();
-            unlink($path);
-        }
-
-        $unzipped_file_name = substr($zipped_file_name, 0, -4);
-        $str                = file_get_contents('./update/' . $unzipped_file_name . '/update_config.json');
-        $json               = json_decode($str, true);
-
-		// Run php modifications
-		require './update/' . $unzipped_file_name . '/update_script.php';
-
-        // Create new directories.
-        if(!empty($json['directory'])) {
-            foreach($json['directory'] as $directory) {
-                if ( !is_dir( $directory['name']) )
-                    mkdir( $directory['name'], 0777, true );
-            }
-        }
-
-        // Create/Replace new files.
-        if(!empty($json['files'])) {
-            foreach($json['files'] as $file)
-                copy($file['root_directory'], $file['update_directory']);
-        }
-
-        $this->session->set_flashdata('flash_message' , get_phrase('product_updated_successfully'));
-        redirect(site_url('usuario/system_settings'), 'refresh');
-    }
-
 
 
     /*****LANGUAGE SETTINGS*********/

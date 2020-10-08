@@ -22,7 +22,17 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
       <link rel="stylesheet" href="<?php echo base_url('assets/login_page/css/style.css');?>">
       <script src="<?php echo base_url('assets/login_page/js/vendor/modernizr-2.8.3.min.js');?>"></script>
 		  <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+      <style>
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none !important;
+            margin: 0 !important;
+        }
 
+        input[type=number] {
+            -moz-appearance: textfield !important;
+        }
+      </style>
     </head>
     <body>
 		<div class="main-content-wrapper">
@@ -31,33 +41,46 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 					<a href="<?php echo site_url('login');?>" class="logo">
 						<img src="<?php echo base_url('assets/login_page/img/logo.png');?>"  alt="">
 					</a>
-					<h2 class="title"><?php echo $system_name; ?></h2>
+					<h2 class="title">Tetra Pak&reg;</h2>
 				</div>
-				<div class="login-content">
+
+        <h3 style= "color: #ffffff">¿No tienes una cuenta?</h3>
+        <?php
+          $loc = 'w';
+          $loc = $_GET['loc'];
+          if ($loc != 'w' && $loc == 'co') {
+            echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=co') .'" class="link" >Registrate</a>';
+          }
+          if ($loc != 'w' && $loc == 'ec') {
+            echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=ec') .'" class="link" >Registrate</a>';
+          }
+          if ($loc != 'w' && $loc == 'pe') {
+            echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=pe') .'" class="link" >Registrate</a>';
+          }
+          if ($loc == 'w' || !isset($_GET['loc'])) {
+            echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=co') .'" class="link" >Registrate</a>';
+          }
+        ?>
+
+        <hr style="padding: 0px 15px 0px 15px">
+        
+        <div class="login-content">
 					<form method="post" role="form" id="form_login"
             action="<?php echo site_url('login/validate_login');?>">
 						<div class="form-group">
-
-						<input type="text" class="form-control" name="num_documento" onkeyup="format(this)" onchange="format(this)" value="" placeholder="<?php echo 'N° Identificacion'?>"
-                required autocomplete="off">
+              <label>Documento</label>
+						  <input type="text" class="form-control text-center" name="identificacion" onkeypress="return check1(event)" placeholder="<?php echo 'N° de Identificacion'?>" required autocomplete="off">
 						</div>
 
 						<div class="form-group">
-							<input type="password" class="form-control" name="password" placeholder="<?php echo 'Contraseña'?>"
-                required>
+              <label>Teléfono Celular</label>
+							<input type="password" class="form-control text-center" name="telefono" onkeypress="return check1(event)" placeholder="<?php echo 'N° Celular'?>" required>
 						</div>
 
-						<button type="submit" class="btn btn-primary"><?php echo 'Iniciar sesión' ?><i class="fa fa-lock"></i></button>
+						<button type="submit" class="btn btn-primary"><?php echo 'Iniciar sesión' ?><i class="fa fa-sign-in"></i></button>
 					</form>
 
-					<div class="login-bottom-links">
-						<a href="<?php echo site_url('login/forgot_password');?>" class="link">
-							<?php echo '¿Olvidaste tu contraseña?' ?>
-						</a>
-            <a href="<?php echo site_url('login/register_account');?>" class="link">
-              <?php echo '¿Desea registrarse?' ?>
-            </a>
-					</div>
+
 				</div>
 			</div>
 			<div class="image-area"></div>
@@ -65,8 +88,6 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 
     <script src="<?php echo base_url('assets/login_page/js/vendor/jquery-1.12.0.min.js');?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>
-
-
 
     <script type="text/javascript">
     		function format(input)
@@ -88,7 +109,23 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
           });;
     			input.value = input.value.replace(/[^\d\.]*/g,'');
     			}
-    		}
+        }
+        
+        function check1(e) {
+          tecla = (document.all) ? e.keyCode : e.which;
+
+          //Tecla de retroceso para borrar, siempre la permite
+          if (tecla == 8) {
+              return true;
+          }
+
+          // Patron de entrada, en este caso solo acepta numeros y letras
+          // patron = /[A-Za-z0-9]/;
+          patron = /[0-9]/;
+          tecla_final = String.fromCharCode(tecla);
+          return patron.test(tecla_final);
+        }
+
     </script>
 
     <?php if ($this->session->flashdata('login_error') != '') { ?>
@@ -101,6 +138,7 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
           // settings
           type: 'danger'
         });
+
       </script>
     <?php } ?>
 

@@ -28,11 +28,14 @@ class Login extends CI_Controller {
     //Default function, redirects to logged in user area
     public function index() {
 
-        if ($this->session->userdata('admin_login') == 1)
-            redirect(site_url('admin/dashboard'), 'refresh');
+        if ($this->session->userdata('usuario_login') == 1)
+            redirect(site_url('usuario/dashboard'), 'refresh');
 
         if ($this->session->userdata('asesor_login') == 1)
         redirect(site_url('asesor/dashboard'), 'refresh');
+
+        if ($this->session->userdata('participante_login') == 1)
+        redirect(site_url('participante/dashboard'), 'refresh');
 
 
         $this->load->view('backend/login');
@@ -41,21 +44,21 @@ class Login extends CI_Controller {
     //Validating login from ajax request
     function validate_login() {
 
-      $num_documento =  str_replace('.','',$this->input->post('num_documento'));
+      $identificacion = $this->input->post('identificacion');
+      $password = $this->input->post('telefono');
 
-      $password = $this->input->post('password');
-      $credential = array('num_documento' => $num_documento, 'password' => sha1($password));
-      // Checking login credential for admin
-      $query = $this->db->get_where('admin', $credential);
+      $credential = array('identificacion' => $identificacion, 'telefono' => $password);
+      // Checking login credential for usuario
+      $query = $this->db->get_where('usuarios', $credential);
       if ($query->num_rows() > 0) {
           $row = $query->row();
-          $this->session->set_userdata('admin_login', '1');
-          $this->session->set_userdata('admin_id', $row->admin_id);
-          $this->session->set_userdata('login_user_id', $row->admin_id);
+          $this->session->set_userdata('usuario_login', '1');
+          $this->session->set_userdata('id_usuario', $row->id_usuario);
+          $this->session->set_userdata('login_user_id', $row->id_usuario);
           $this->session->set_userdata('name', $row->name);
           $this->session->set_userdata('last_name', $row->last_name);
-          $this->session->set_userdata('login_type', 'admin');
-          redirect(site_url('admin/dashboard'), 'refresh');
+          $this->session->set_userdata('login_type', 'usuario');
+          redirect(site_url('usuario/dashboard'), 'refresh');
       }
 
       $query = $this->db->get_where('asesor', $credential);
@@ -68,6 +71,19 @@ class Login extends CI_Controller {
           $this->session->set_userdata('last_name', $row->last_name);
           $this->session->set_userdata('login_type', 'asesor');
           redirect(site_url('asesor/dashboard'), 'refresh');
+      }
+
+      $query = $this->db->get_where('participantes', $credential);
+
+      if ($query->num_rows() > 0) {
+          $row = $query->row();
+          $this->session->set_userdata('participante_login', '1');
+          $this->session->set_userdata('id_participante', $row->id_participante);
+          $this->session->set_userdata('login_user_id', $row->id_participante);
+          $this->session->set_userdata('name', $row->name);
+          $this->session->set_userdata('last_name', $row->last_name);
+          $this->session->set_userdata('login_type', 'participante');
+          redirect(site_url('participante/dashboard'), 'refresh');
       }
 
       $this->session->set_flashdata('login_error', get_phrase('login no valido'));
@@ -94,12 +110,12 @@ class Login extends CI_Controller {
         $new_password           =   substr( md5( rand(100000000,20000000000) ) , 0,7);
 
         // Checking credential for admin
-        $query = $this->db->get_where('admin' , array('email' => $email));
+        $query = $this->db->get_where('usuarios' , array('email' => $email));
         if ($query->num_rows() > 0)
         {
-            $reset_account_type     =   'admin';
+            $reset_account_type     =   'usuario';
             $this->db->where('email' , $email);
-            $this->db->update('admin' , array('password' => sha1($new_password)));
+            $this->db->update('usuarios' , array('password' => sha1($new_password)));
             // send new password to user email
             $this->email_model->password_reset_email($new_password , $reset_account_type , $email);
             $this->session->set_flashdata('reset_success', 'Porfavor revise su correo y su nueva contraseña');
@@ -128,41 +144,38 @@ class Login extends CI_Controller {
         $this->load->view('backend/register_account');
     }
 
-
     function register($param1 = '', $param2 = '', $param3 = '')
     {
 
             if ($param1 == 'create') {
 
-                $data['name']             = $this->input->post('name');
-                $data['apellido']         = $this->input->post('apellido');
+                $data['nombres']          = $this->input->post('nombres');
+                $data['apellidos']        = $this->input->post('apellidos');
+                $data['tipo_documento']   = $this->input->post('tipo_documento');
                 $data['identificacion']   = $this->input->post('identificacion');
+                $data['ID_PAIS']          = $this->input->post('ID_PAIS');
 
-                $data['num_documento']    =   str_replace('.','',$this->input->post('num_documento'));
+                $data['ANO_NACIMIENTO'] = $this->input->post('ANO_NACIMIENTO');
 
-                $data['pais']             = $this->input->post('pais');
-                $data['fecha_nacimiento'] = $this->input->post('fecha_nacimiento');
-
-                $data['phone']            = $this->input->post('phone');
-
+                $data['telefono']         = $this->input->post('telefono');
                 $data['email']            = $this->input->post('email');
-                $data['password']         = sha1($this->input->post('password'));
-                $data['aceptar']             = $this->input->post('aceptar');
+                $data['aceptar']          = $this->input->post('aceptar');
+                $data['fecha']            = date("Y-m-d");
 
+                $identificacion = $data['identificacion'];
 
-                $query = $this->db->get_where('asesor', array('num_documento' => $data['num_documento']));
+                $query = $this->db->get_where('participantes', array('identificacion' => $identificacion));
 
                if ($query->num_rows() > 0) {
 
 
-                //$this->form_validation->set_rules('num_documento', 'num_documento', 'Ya existe un registro con ese numero de identificacion');
-                $this->session->set_flashdata('flash_message' ,'Ya existe un registro con ese numero de identificacion');
-                redirect(site_url('login'), 'refresh');
+                 $this->session->set_flashdata('login_error', get_phrase('Ya existe un registro con ese numero de identificacion'));
+                 redirect(site_url('login/register_account'), 'refresh');
         }
 
         else {
 
-                $this->db->insert('asesor', $data);
+                $this->db->insert('participantes', $data);
                 $asesor_id = $this->db->insert_id();
 
                 $this->session->set_flashdata('flash_message' , 'Datos almacenados correctamente');

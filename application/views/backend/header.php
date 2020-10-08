@@ -1,73 +1,77 @@
 
-
 	<header class="navbar"><!-- set fixed position by adding class "navbar-fixed-top" -->
 
 		<div class="navbar-inner">
-
-			<!-- logo -->
-
-
-
-			<div class="navbar-brand">
-				<a href="<?php echo site_url('login'); ?>">
-					<img src="<?php echo base_url('uploads/logo.png');?>"  width="88" alt=""/>
-				</a>
-			</div>
-
-
 			<!-- main menu -->
-			<ul class="navbar-nav">
+			<div class="navbar-brand">
+			</div>
+			<?php
 
-				<li class="has-sub <?php if ($page_name == 'dashboard') echo 'active'; ?>" >
-					<a href="<?php echo site_url('asesor/dashboard'); ?>">
+				$count=1;
+				$ID_PARTICIPANTE = $this->session->userdata('login_user_id');
+
+				$query = "SELECT  id_pais  from participantes where ID_PARTICIPANTE = $ID_PARTICIPANTE ";
+				$query = $this->db->query($query);
+				$data = $query->result_array();
+
+				$loc = '';
+				$loc2 = '';
+
+				foreach($data as $row):
+
+				if($row['id_pais'] == 'CO') {$loc = "co"; $loc2 = "";}
+				if($row['id_pais'] == 'EC') {$loc = "ec"; $loc2 = "-ec";}
+				if($row['id_pais'] == 'PE') {$loc = "pe"; $loc2 = "-pe";}
+			?>
+			<ul class="navbar-nav pull-sm-left">
+				<li class="has-sub" >
+					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/inicio'.$loc2.'/">'; ?>
 						<span class="title">Home</span>
 					</a>
 				</li>
-
-
 				<li class="has-sub" >
-					<a href="https://elrecreoesdetodos.com/co/como-participar/">
+					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/como-participar'.$loc2.'/">'; ?>
 						<span class="title">Cómo participar</span>
 					</a>
 				</li>
 
+				<li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
+				<a id="message"> 	<span><?php echo 'Juego'; ?></span> </a>
+				</li>
+
+			<!--
+				<li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
+						<a href="<?php echo site_url('participante/juego'); ?>">
+								<span><?php echo 'Juego'; ?></span>
+						</a>
+				</li> -->
 
 				<li class="has-sub" >
-					<a href="https://elrecreoesdetodos.com/co/premios/">
+					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/premios'.$loc2.'/">'; ?>
 						<span class="title">Premios</span>
 					</a>
 				</li>
-
-
-				<li class="has-sub" >
-					<a href="https://elrecreoesdetodos.com/dashboard/">
-						<span class="title">Iniciar Sesión</span>
+				<li class="<?php if ($page_name == 'Whatsapp') echo 'active'; ?> ">
+						<a href="<?php echo site_url('participante/whatsapp'); ?>">
+								<span><?php echo 'Registrar Compras'; ?></span>
+						</a>
+				</li>
+				<li class="has-sub <?php if ($page_name == 'dashboard') echo 'active'; ?>" >
+					<a href="<?php echo site_url('asesor/dashboard'); ?>">
+						<span class="title">Mi cuenta</span>
 					</a>
 				</li>
-
-
 			</ul>
 
-
+			<?php endforeach;?>
 			<!-- notifications and other links -->
 			<ul class="nav navbar-right pull-right">
 
-				<!-- raw links -->
-				<li class="dropdown">
-										<li>
-						<a href="#">Sitio Web</a>
-					</li>
-									</li>
-
-				<li class="sep"></li>
-
-				<li>
-					<a href="extra-login.html">
-						cerrar session <i class="entypo-logout right"></i>
+				<li class="has-sub">
+					<a href="<?php echo site_url('login/logout');?>">
+					<span class="title" style="font-size:16px !important;">Cerrar Sesión</span><i class="entypo-logout right"></i>
 					</a>
 				</li>
-
-
 				<!-- mobile only -->
 				<li class="visible-xs">
 

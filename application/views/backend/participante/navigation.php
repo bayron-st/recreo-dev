@@ -24,44 +24,41 @@
 				if($row['id_pais'] == 'PE') {$loc = "pe"; $loc2 = "-pe";}
 			?>
 			<ul class="navbar-nav pull-sm-left">
-				<li class="has-sub" >
+				<li class="has-sub">
 					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/inicio'.$loc2.'/">'; ?>
-						<span class="title">Home</span>
+						<span class="title">Inicio <i class="fa fa-home"></i></span>
 					</a>
 				</li>
-				<li class="has-sub" >
+				<li class="has-sub">
 					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/como-participar'.$loc2.'/">'; ?>
-						<span class="title">Cómo participar</span>
+						<span class="title">Cómo participar <i class="fa fa-question"></i></span>
 					</a>
 				</li>
-
-
-				<!--href="<?php echo site_url('participante/juego'); ?>" -->
-				<li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
-						<a  id="message" >
-								<span><?php echo 'Juego'; ?></span>
-						</a>
+				<li class="<?php if ($page_name == 'juego') echo 'active';?>">
+					<a id="message">
+						<span>Juego <i class="fa fa-gamepad"></i></span>
+					</a>
 				</li>
-				<li c lass="has-sub" >
+				<li c lass="has-sub">
 					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/premios'.$loc2.'/">'; ?>
-						<span class="title">Premios</span>
+						<span class="title">Premios <i class="fa fa-gift"></i></span>
 					</a>
 				</li>
 				<li class="<?php if ($page_name == 'whatsapp') echo 'active'; ?> ">
-						<a href="<?php echo site_url('participante/whatsapp'); ?>">
-								<span><?php echo 'Registrar Compras'; ?></span>
-						</a>
+					<a href="<?php echo site_url('participante/whatsapp'); ?>">
+						<span>Registrar Compras <i class="fa fa-file"></i></span>
+					</a>
 				</li>
 
 				<li class="<?php if ($page_name == 'redimir') echo 'active'; ?> ">
-						<a href="<?php echo site_url('participante/redimir'); ?>">
-								<span><?php echo 'Redimir'; ?></span>
-						</a>
+					<a href="<?php echo site_url('participante/redimir'); ?>">
+						<span>Redimir <i class="fa fa-tags"></i></span>
+					</a>
 				</li> 
 
 				<li class="has-sub <?php if ($page_name == 'dashboard') echo 'active'; ?>" >
 					<a href="<?php echo site_url('participante/dashboard'); ?>">
-						<span class="title">Mi cuenta</span>
+						<span class="title">Mi cuenta <i class="fa fa-user"></i></span>
 					</a>
 				</li>
 			</ul>
@@ -69,33 +66,20 @@
 			<?php endforeach;?>
 			<!-- notifications and other links -->
 			<ul class="nav navbar-right pull-right">
-
 				<li class="has-sub">
-
 					<?php
-
-													$ID_PARTICIPANTE = $this->session->userdata('login_user_id');
-
-													$query = "SELECT NOMBRES  from 	participantes where ID_PARTICIPANTE = $ID_PARTICIPANTE ";
-													$query = $this->db->query($query);
-													$data = $query->result_array();
-
-													foreach($data as $row):
-										 ?>
-
-
-										 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">
-
-
-	<span class="title">
-
-											<?php echo $row['NOMBRES'];	 endforeach;?>
-									</span>
-                    </a>
-
-
-						</li>
-
+						$ID_PARTICIPANTE = $this->session->userdata('login_user_id');
+						$query = "SELECT NOMBRES  from 	participantes where ID_PARTICIPANTE = $ID_PARTICIPANTE ";
+						$query = $this->db->query($query);
+						$data = $query->result_array();
+						foreach($data as $row):
+					?>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">
+						<span class="title">
+							<?php echo $row['NOMBRES'];endforeach;?>
+						</span>
+                	</a>
+				</li>
 
 				<li class="has-sub">
 					<a href="<?php echo site_url('login/logout');?>">

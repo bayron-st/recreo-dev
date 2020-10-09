@@ -38,12 +38,18 @@
 					<p>* Para registrarte debes ser mayor de edad.</p>
 				</div>
 
-
 				<div class="login-content">
-					<?php echo form_open(site_url('login/register/create') , array('enctype' => 'multipart/form-data'));?>
+					<?php 
+						if (isset($_GET['reg'])) {
+							if ($_GET['reg']=='error') {
+								echo '<div class="alert alert-danger">Ya se encuentra registrado!</div>';
+							}
+						}
+						echo form_open(site_url('login/register/create') , array('enctype' => 'multipart/form-data'));
+					?>
 					<div class="form-group">
-						<select name="ID_PAIS" class="form-control selectboxit">
-							<option value=""><?php echo 'SELECIONAR PAIS';?></option>
+						<select name="ID_PAIS" class="form-control selectboxit" require>
+							<option value="<?php echo strtoupper($_GET['loc']);?>">SELECIONAR PAIS</option>
 							<option value="CO"><?php echo 'COLOMBIA';?></option>
 							<option value="EC"><?php echo 'ECUADOR';?></option>
 							<option value="PE"><?php echo 'PERU';?></option>
@@ -51,62 +57,62 @@
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control" name="nombres" 
+						<input type="text" class="form-control bloquear" name="nombres" 
 						onkeyup="javascript:this.value=this.value.toUpperCase();" 
 						onkeypress="return check2(event)" placeholder="<?php echo 'NOMBRES'?>" 
 						required autocomplete="off">
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control" name="apellidos" 
+						<input type="text" class="form-control bloquear" name="apellidos" 
 						onkeyup="javascript:this.value=this.value.toUpperCase();" 
 						onkeypress="return check2(event)" placeholder="<?php echo 'APELLIDOS'?>"
 						required autocomplete="off">
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control" name="identificacion"
+						<input type="text" class="form-control bloquear" name="identificacion"
 						onkeyup="javascript:this.value=this.value.toUpperCase();" 
 						onkeypress="return check3(event)" placeholder="NUMERO DE DOCUMENTO"
 						required autocomplete="off">
 					</div>
 
 					<div class="form-group">
-						<input type="text" id="dpk" class="form-control" name="ANO_NACIMIENTO" 
+						<input type="text" id="dpk" class="form-control bloquear" name="ANO_NACIMIENTO" 
 						placeholder="AÑO DE NACIMIENTO">
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control" name="telefono"  
+						<input type="text" class="form-control bloquear" name="telefono"  
 						onkeypress="return check1(event)" placeholder="TELEFONO CELULAR" 
 						required autocomplete="off">
 					</div>
 
 					<div class="form-group">
-						<input type="email" class="form-control" name="email" 
+						<input type="email" class="form-control bloquear" name="email" 
 						placeholder="CORREO ELECTRONICO" required autocomplete="off">
 					</div>
 
 					<div class="form-group">
-						<?php
-							$loc = "w";
-							$loc = $_GET['loc'];
-							if ($loc != 'w' && $loc == 'co') {
-								echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Colombia-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
-							}
-							if ($loc != 'w' && $loc == 'ec') {
-								echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Ecuador-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
-							}
-							if ($loc != 'w' && $loc == 'pe') {
-								echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Peru-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
-							}
-						?>
+					<?php
+						$loc = "w";
+						$loc = strtolower($_GET['loc']);
+						if ($loc != 'w' && $loc == 'co') {
+							echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Colombia-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
+						}
+						if ($loc != 'w' && $loc == 'ec') {
+							echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Ecuador-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
+						}
+						if ($loc != 'w' && $loc == 'pe') {
+							echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Peru-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
+						}
+					?>
 					</div>
             		
 					<button type="submit" class="btn btn-primary">REGISTRARSE<i class="fa fa-unlock"></i></button>
 					<?php
 						$loc = 'w';
-						$loc = $_GET['loc'];
+						$loc = strtolower($_GET['loc']);
 						if ($loc != 'w' && $loc == 'co') {
 							echo '<p>¿Ya tienes una cuenta? <a style="color:#ffffff; text-decoration: underline;" href="'.base_url('/?loc=co').'">Inicia sesión</a></p>';
 						}
@@ -115,9 +121,6 @@
 						}
 						if ($loc != 'w' && $loc == 'pe') {
 							echo '<p>¿Ya tienes una cuenta? <a style="color:#ffffff; text-decoration: underline;" href="'.base_url('/?loc=pe').'">Inicia sesión</a></p>';
-						}
-						if ($loc == 'w' || !isset($_GET['loc'])) {
-							echo '<p>¿Ya tienes una cuenta? <a style="color:#ffffff; text-decoration: underline;" href="'.base_url('/?loc=co').'">Inicia sesión</a></p>';
 						}
 					?>
 				</div>
@@ -172,16 +175,28 @@
 				tecla_final = String.fromCharCode(tecla);
 				return patron.test(tecla_final);
 			};
+
+			$(document).ready(function(){
+				$(".bloquear").on('paste', function(e){
+					e.preventDefault();
+					// alert('Esta acción está prohibida');
+				})
+				$(".bloquear").on('copy', function(e){
+					e.preventDefault();
+					// alert('Esta acción está prohibida');
+				})
+			});
+
+
 			var maxBirthdayDate = new Date();
 			maxBirthdayDate.setFullYear( maxBirthdayDate.getFullYear() - 18 );
-			
 			$('#dpk').datepicker({
 				language: "es",
 				autoclose: true,
 				toggleActive: true,
-				clearBtn: true,
+				clearBtn: false,
 				orientation: "auto right",
-				endDate: "31/10/2002"
+				endDate: maxBirthdayDate
 			});
 		</script>
     </body>

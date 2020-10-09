@@ -56,7 +56,7 @@ class Login extends CI_Controller {
           $this->session->set_userdata('name', $row->name);
           $this->session->set_userdata('last_name', $row->last_name);
           $this->session->set_userdata('login_type', 'usuario');
-          redirect(site_url('usuario/dashboard'), 'refresh');
+          redirect(site_url('usuario/dashboard/'), 'refresh');
       }
 
 
@@ -126,36 +126,35 @@ class Login extends CI_Controller {
 
                 $data['nombres']          = $this->input->post('nombres');
                 $data['apellidos']        = $this->input->post('apellidos');
-                $data['tipo_documento']   = $this->input->post('tipo_documento');
-                $data['identificacion']   = $this->input->post('identificacion');
                 $data['ID_PAIS']          = $this->input->post('ID_PAIS');
-
-                $data['ANO_NACIMIENTO'] = $this->input->post('ANO_NACIMIENTO');
-
+                $data['identificacion']   = $this->input->post('identificacion');
+                $data['ANO_NACIMIENTO']   = $this->input->post('ANO_NACIMIENTO');
                 $data['telefono']         = $this->input->post('telefono');
                 $data['email']            = $this->input->post('email');
                 $data['aceptar']          = $this->input->post('aceptar');
                 $data['fecha']            = date("Y-m-d");
-
+                
                 $identificacion = $data['identificacion'];
+                $id_pais = $data['ID_PAIS'];
+                
+                if ($id_pais == 'CO') {$data['TIPO_DOCUMENTO'] = 'CC';}
+                if ($id_pais == 'EC') {$data['TIPO_DOCUMENTO'] = 'DNI';}
+                if ($id_pais == 'PE') {$data['TIPO_DOCUMENTO'] = 'DNI';}
 
-                $query = $this->db->get_where('participantes', array('identificacion' => $identificacion));
+                $array = array('identificacion' => $identificacion, 'id_pais' => $id_pais);
+                $query = $this->db->get_where('participantes',$array);
 
-               if ($query->num_rows() > 0) {
+                if ($query->num_rows() > 0) {
+                    $this->session->set_flashdata('login_error', get_phrase('Ya existe un registro con ese numero de identificacion'));
+                    redirect(site_url('login/register_account/?loc='.$id_pais.'&reg=error'), 'refresh');
+                }
 
-
-                 $this->session->set_flashdata('login_error', get_phrase('Ya existe un registro con ese numero de identificacion'));
-                 redirect(site_url('login/register_account'), 'refresh');
-        }
-
-        else {
+                else {
 
                 $this->db->insert('participantes', $data);
                 $asesor_id = $this->db->insert_id();
-
                 $this->session->set_flashdata('flash_message' , 'Datos almacenados correctamente');
-
-                 redirect(site_url('login'), 'refresh');
+                redirect(site_url('login/?loc='.$id_pais), 'refresh');
             }
           }
     }

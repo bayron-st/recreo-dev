@@ -100,14 +100,14 @@ class Participante extends CI_Controller
                     $sql2 = "INSERT INTO `canjes` (`ID_PARTICIPANTE`, `ID_CODIGO`, `CANTIDAD`, `FECHA`, `USUARIO`) VALUES ($id_participante, '$new_idlcode', '6', '$date_reg', 'SYSTEM');";
                     $query2 = $this->db->query($sql2);
                     
-                    $this->session->set_flashdata('flash_message' ,'Codigo redimido exitosamente.');
-                    redirect(site_url('participante/redimir'), 'refresh');
-                    // if ($query2->num_rows() > 0) {
-                    // } else {
-                    //     $this->session->set_flashdata('error_message' , 'No pudimos redimir tu codigo :( ... Error C002');
-                    // }
+                    if ($query2) {
+                        $this->session->set_flashdata('flash_message' ,'PIN Android redimido exitosamente.');
+                        redirect(site_url('participante/redimir'), 'refresh');
+                    } else {
+                        $this->session->set_flashdata('error_message' , 'No pudimos redimir tu PIN Android :( ... Error C002');
+                    }
                 } else {
-                    $this->session->set_flashdata('error_message' , 'No pudimos redimir tu codigo :( ... Error C001');
+                    $this->session->set_flashdata('error_message' , 'No pudimos redimir tu PIN Android :( ... Error C001');
                 }
 
             }

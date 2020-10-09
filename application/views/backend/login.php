@@ -1,38 +1,39 @@
 <!doctype html>
 <?php
-//$system_title = $this->db->get_where('settings', array('type' => 'system_title'))->row()->description;
-$system_name  = $this->db->get_where('settings', array('type' => 'system_name'))->row()->description;
+	//$system_title = $this->db->get_where('settings', array('type' => 'system_title'))->row()->description;
+	$system_name  = $this->db->get_where('settings', array('type' => 'system_name'))->row()->description;
+	if (!$_GET['loc']) {
+		echo"<script language='javascript'>window.location='https://elrecreoesdetodos.com/'</script>;";
+	}
 ?>
 
 <html class="no-js" lang="">
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <title>
-        <?php echo get_phrase('login'); ?> | <?php echo $system_name; ?>
-      </title>
-      <meta name="description" content="">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	    <link rel="shortcut icon" href="<?php echo base_url('assets/login_page/img/favicon.png');?>">
-      <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css');?>">
-      <link rel="stylesheet" href="<?php echo base_url('assets/login_page/css/font-awesome.min.css');?>">
-      <link rel="stylesheet" href="<?php echo base_url('assets/login_page/css/normalize.css');?>">
-      <link rel="stylesheet" href="<?php echo base_url('assets/login_page/css/main.css');?>">
-      <link rel="stylesheet" href="<?php echo base_url('assets/login_page/css/style.css');?>">
-      <script src="<?php echo base_url('assets/login_page/js/vendor/modernizr-2.8.3.min.js');?>"></script>
-		  <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
-      <style>
-        input[type=number]::-webkit-outer-spin-button,
-        input[type=number]::-webkit-inner-spin-button {
-            -webkit-appearance: none !important;
-            margin: 0 !important;
-        }
-
-        input[type=number] {
-            -moz-appearance: textfield !important;
-        }
-      </style>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>
+		<?php echo get_phrase('login'); ?> | <?php echo $system_name; ?>
+		</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" href="<?php echo base_url('assets/login_page/img/favicon.png');?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css');?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/login_page/css/font-awesome.min.css');?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/login_page/css/normalize.css');?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/login_page/css/main.css');?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/login_page/css/style.css');?>">
+		<script src="<?php echo base_url('assets/login_page/js/vendor/modernizr-2.8.3.min.js');?>"></script>
+		<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+      	<style>
+			input[type=number]::-webkit-outer-spin-button,
+			input[type=number]::-webkit-inner-spin-button {
+				-webkit-appearance: none !important;
+				margin: 0 !important;
+			}
+			input[type=number] {
+				-moz-appearance: textfield !important;
+			}
+      	</style>
     </head>
     <body>
 		<div class="main-content-wrapper">
@@ -41,7 +42,7 @@ $system_name  = $this->db->get_where('settings', array('type' => 'system_name'))
 					<a href="<?php echo site_url('login');?>" class="logo">
 						<img src="<?php echo base_url('assets/login_page/img/logo.png');?>"  alt="">
 					</a>
-					<h2 class="title">Tetra Pak&reg;</h2>
+					<h2 class="title"><?php echo $system_name; ?></h2>
 				</div>
 
         <h3 style= "color: #ffffff">¿No tienes una cuenta?</h3>

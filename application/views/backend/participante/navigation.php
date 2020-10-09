@@ -53,11 +53,11 @@
 						</a>
 				</li>
 
-				<li class="<?php if ($page_name == 'redimir') echo 'active'; ?> ">
+			<!--	<li class="<?php if ($page_name == 'redimir') echo 'active'; ?> ">
 						<a href="<?php echo site_url('participante/redimir'); ?>">
 								<span><?php echo 'Redimir'; ?></span>
 						</a>
-				</li>
+				</li> -->
 
 				<li class="has-sub <?php if ($page_name == 'dashboard') echo 'active'; ?>" >
 					<a href="<?php echo site_url('participante/dashboard'); ?>">
@@ -69,6 +69,33 @@
 			<?php endforeach;?>
 			<!-- notifications and other links -->
 			<ul class="nav navbar-right pull-right">
+
+				<li class="has-sub">
+
+					<?php
+
+													$ID_PARTICIPANTE = $this->session->userdata('login_user_id');
+
+													$query = "SELECT NOMBRES  from 	participantes where ID_PARTICIPANTE = $ID_PARTICIPANTE ";
+													$query = $this->db->query($query);
+													$data = $query->result_array();
+
+													foreach($data as $row):
+										 ?>
+
+
+										 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">
+
+
+	<span class="title">
+
+											<?php echo $row['NOMBRES'];	 endforeach;?>
+									</span>
+                    </a>
+
+
+						</li>
+
 
 				<li class="has-sub">
 					<a href="<?php echo site_url('login/logout');?>">

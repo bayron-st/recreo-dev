@@ -25,12 +25,6 @@ function dificultad() {
 		case "facil":
 			generarCartas(4, 8, frutas);
 			break;
-		case "medio":
-			generarCartas(6, 18, pokemon);
-			break;
-		case "dificil":
-			generarCartas(8, 32, coches);
-			break;
 	}
 	document.getElementById("modal").setAttribute("class", "hide");
 }

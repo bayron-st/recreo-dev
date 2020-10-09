@@ -1,6 +1,6 @@
 var centesimas = 0;
-var segundos = 0;
-var minutos = 0;
+var segundos = 60;
+var minutos = 1;
 var control;
 
 
@@ -18,31 +18,38 @@ function reinicio() {
     this.segundos = 0;
     this.minutos = 0;
 
-    Segundos.innerHTML = ":00";
-    Minutos.innerHTML = "00";
+    Segundos.innerHTML = ":60";
+    Minutos.innerHTML = "01";
 }
 
-function cronometro() {
-    if (this.centesimas < 99) {
-        this.centesimas++;
-    }
-    if (this.centesimas == 99) {
-        this.centesimas = -1;
-    }
-    if (this.centesimas == 0) {
-        this.segundos++;
-        if (this.segundos < 10) { this.segundos = "0" + this.segundos }
-        Segundos.innerHTML = ":" + this.segundos;
-    }
-    if (this.segundos == 59) {
-        this.segundos = -1;
-    }
-    if ((this.centesimas == 0) && (this.segundos == 0)) {
-        this.minutos++;
-        if (this.minutos < 10) { this.minutos = "0" + this.minutos }
-        Minutos.innerHTML = this.minutos;
-    }
-    if (this.minutos == 59) {
-        this.minutos = -1;
-    }
+function cronometro () {
+if((segundos == 60)&&(minutos == -1)){
+reinicio();
+}
+if(centesimas == 0){
+centesimas = 100;
+}
+if(centesimas > 0){
+centesimas--;
+if(centesimas < 10){
+centesimas = "0"+centesimas;
+}
+centesimas.innerHTML = ":"+centesimas;
+}
+
+if(centesimas == 99){
+segundos--;
+if(segundos < 10){
+segundos = "0"+segundos;
+}
+Segundos.innerHTML = ":"+segundos;
+}
+
+if(segundos == 0){
+segundos = 60;
+}
+if((segundos == 60) && (centesimas == 99)){
+minutos--;
+Minutos.innerHTML = minutos;
+}
 }

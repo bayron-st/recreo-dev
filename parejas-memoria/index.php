@@ -96,8 +96,8 @@
             Puntos: <span id="puntosValue">0</span>
         </div>
         <div id="cronometro" class="cronometro">
-            <div class="reloj" id="Minutos">00</div>
-            <div class="reloj" id="Segundos">:00</div>
+            <div class="reloj" id="Minutos">01</div>
+            <div class="reloj" id="Segundos">:60</div>
         </div>
         <div id="wrapper" class="wrapper"></div>
     </div>

@@ -47,7 +47,7 @@
 						<span class="title">Premios</span>
 					</a>
 				</li>
-				<li class="<?php if ($page_name == 'Whatsapp') echo 'active'; ?> ">
+				<li class="<?php if ($page_name == 'whatsapp') echo 'active'; ?> ">
 						<a href="<?php echo site_url('participante/whatsapp'); ?>">
 								<span><?php echo 'Registrar Compras'; ?></span>
 						</a>

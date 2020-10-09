@@ -64,7 +64,59 @@ class Participante extends CI_Controller
                 $this->load->view('backend/index', $page_data);
               }
 
+    /***participante DASHBOARD***/
+    function redimir_game($param1 = '', $id_participante)
+    {
+        if ($this->session->userdata('participante_login') != 1)
+            redirect(site_url('login'), 'refresh');
 
+            if ($param1 == 'game') {
+
+                $lCodeGame = $this->input->post('lcode_game');
+                $data['LAST'] = 0;
+                
+                $this->db->where('ID_PARTICIPANTE' , $id_participante);
+                $this->db->where('CODIGO' , $lCodeGame);
+                $this->db->update('codigos' , $data);
+                
+                $sql = "SELECT * FROM `codigos` WHERE TIPO_CODIGO = 'JUEGO' AND ESTADO = 'INACTIVO' ORDER by ID_CODIGO LIMIT 1";
+                $query = $this->db->query($sql);
+
+                if ($query->num_rows() > 0) {
+                    
+                    $result_sql = $query->result_array();
+                    foreach ($result_sql as $row_sql) {$new_lcode = $row_sql['CODIGO']; $new_idlcode = $row_sql['ID_CODIGO'];}
+    
+                    $data2['ID_PARTICIPANTE'] = $id_participante;
+                    $data2['ESTADO'] = 'ACTIVO';
+                    $data2['LAST'] = 1;
+    
+                    $this->db->where('TIPO_CODIGO' , 'JUEGO');
+                    $this->db->where('ESTADO' , 'INACTIVO');
+                    $this->db->where('CODIGO' , $new_lcode);
+                    $this->db->update('codigos' , $data2);
+
+                    $date_reg = date('Y-m-d');
+                    $sql2 = "INSERT INTO `canjes` (`ID_PARTICIPANTE`, `ID_CODIGO`, `CANTIDAD`, `FECHA`, `USUARIO`) VALUES ($id_participante, '$new_idlcode', '6', '$date_reg', 'SYSTEM');";
+                    $query2 = $this->db->query($sql2);
+                    
+                    $this->session->set_flashdata('flash_message' ,'Codigo redimido exitosamente.');
+                    redirect(site_url('participante/redimir'), 'refresh');
+                    // if ($query2->num_rows() > 0) {
+                    // } else {
+                    //     $this->session->set_flashdata('error_message' , 'No pudimos redimir tu codigo :( ... Error C002');
+                    // }
+                } else {
+                    $this->session->set_flashdata('error_message' , 'No pudimos redimir tu codigo :( ... Error C001');
+                }
+
+            }
+
+        $page_data['page_name']  = 'redimir';
+        // $page_data['page_title'] = get_phrase('Juego');
+        $this->load->view('backend/index', $page_data);
+
+    }
 
     /***participante DASHBOARD***/
     function juego($param1 = '', $param2 = '', $param3 = '')

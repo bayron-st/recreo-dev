@@ -52,15 +52,6 @@ class Participante extends CI_Controller
         $this->load->view('backend/index', $page_data);
     }
 
-    function juego2()
-    {
-        if ($this->session->userdata('participante_login') != 1)
-            redirect(site_url('login'), 'refresh');
-        $page_data['page_name']  = 'JUEGO';
-        $page_data['page_title'] = get_phrase('Registra tus compras');
-        $this->load->view('parejas-memoria/index', $page_data);
-    }
-
 
 
     function redimir()

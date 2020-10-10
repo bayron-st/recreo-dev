@@ -5,23 +5,12 @@
             <div class="jumbotron">
 
 
-                  <?php
+            <?php
+                 $id_participante = $this->session->userdata('login_user_id');
+            ?>
 
-                 $ID_PARTICIPANTE = $this->session->userdata('login_user_id');
-                 echo $ID_PARTICIPANTE
+    <a href=" <?php echo 'http://localhost/recreo-dev/parejas-memoria/index.php?player='.$id_participante; ?>">JUGAR</a>
 
-                
-
-              ?>
-
-               <a href="http://localhost/recreo-dev/parejas-memoria/juego2.php?variable1=valor1&variable2=valor2">Mi enlace</a>
-
-            <a href="http://localhost/recreo-dev/parejas-memoria/juego2.php?.$idparticipantes">Mi enlace</a>
-
-                 <a href="<?php echo site_url('hola'); ?>">
-                            <span>JUGAR</span>
-                </a>
-           
             </div>
         </div>
     </div>

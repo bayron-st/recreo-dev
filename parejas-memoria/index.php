@@ -1,6 +1,69 @@
 <!DOCTYPE html>
+ 
+  <?php
 
-   
+
+// Datos de conexion a la base de datos
+$servidor='localhost';
+$usuario='root';
+$pass='';
+$bd='elrecqcg_dashboard';
+
+// Nos conectamos a la base de datos
+$conexion = new mysqli($servidor, $usuario, $pass, $bd);
+
+// Definimos que nuestros datos vengan en utf8
+$conexion->set_charset('utf8');
+
+// verificamos si hubo algun error y lo mostramos
+if ($conexion->connect_errno) {
+    echo "Error al conectar la base de datos {$conexion->connect_errno}";
+}
+
+        if (!$_GET['player']) {
+            echo"<script language='javascript'>window.location='https://elrecreoesdetodos.com/dashboard/index.php/participante/juego'</script>;";   
+        }
+
+
+        if (isset($_POST['new_game'])) {
+            # code...
+            $id_player = $_GET['player'];
+
+            $query="SELECT * FROM `participantes` where id_participante = $id_player";
+            $query2="SELECT * FROM `game` where id_participante = $id_player";
+
+            $consulta = mysqli_query($conexion , $query2);
+
+             if ($consulta) {
+
+                $datos = mysqli_num_rows($consulta);
+
+                if ($datos = 0) {
+                    # code...
+
+                    $date_start = date("Y-m-d");
+                    $date_end = date("Y-m-d",strtotime($date_start ."+ 1 week"));
+
+                    $new_player ="INSERT INTO `game` 
+                    (`id_participante`, `game_level`, `date_start`, `date_end`, `last_shot`, 
+                    `game_count`, `game_shot`) VALUES ($id_player , '1', '$date_start', '$date_end', 
+                    '$date_start', '1', '1');";
+
+                    $reg_player = mysqli_query($conexion , $id_player) or die (mysqli_error());
+
+                    if ($reg_player) {
+                        echo "registro exitoso";
+                    }
+                }
+
+            }
+        }
+
+
+
+
+               
+?>
 <html lang="es">
 
 <head>
@@ -9,6 +72,8 @@
     <link rel="shortcut icon" href="css/icon/favicon.gif" type="image.gif">
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
+
     <link rel="stylesheet" media="(min-width: 1280px) and (max-width: 1400px) and (orientation: landscape)" href="css/mediumWindows.css" />
     <link rel="stylesheet" media="(min-width: 1024px) and (max-width: 1280px) and (orientation: landscape)" href="css/smallWindows.css" />
     <link rel="stylesheet" media="(max-width: 1024px) or (orientation: portrait)" href="css/verticalWindows.css" />
@@ -23,23 +88,30 @@
     <!-- MODAL INICIAL ELEGIR DIFICULTAD -->
     <div id="modal" class="modalDialog">
         <div class="modal-content">
-            <div class="modal-header"> Bienvenido al reto de memoria de Tetra Pak </div>
-            <div id="modal-body" class="modal-body">
-
-                 <h2> Recuerda que tienes 3 oportunidades por semana para ganar creditos con nuestro reto de memoria.</h2>
-                <div id="dificultadBtn" class="modal-body">
-
-
-                    <button id="facil" class="btn"> Iniciar </button>
-                  
-                </div>
+            <div class="modal-header">
                 
-                <div id="otherBtn" class="modal-body">
-                    <button id="tablaPuntuaciones" class="btn neutral"> Ver tabla de puntuaciones </button>
+                <img src="img/logo.png"> 
+
+            </div>
+            <div id="modal-body" class="modal-body">
+                
+
+                <h2> Reta tu memoria <br> Tetra Pak&reg; </h2>
+                <p style="font-size: 18px;">Tienes  hasta 3 intentos por semana para ganar hasta 9 creditos.</p>
+
+                <div id="dificultadBtn">
+                    <form name="new_game" action="index.php" method="POST">
+                        
+                        <input type="hidden" name="id_player" value="<?php echo $id_player;?>" >
+                   
+                     <button type="submit" id="start" class="btn btn-info btn-lg" style="font-size: 18px; "> Iniciar Juego </button>
+                 </form>
                 </div>
+         
             </div>
         </div>
     </div>
+
 
 
 
@@ -97,7 +169,7 @@
         </div>
         <div id="cronometro" class="cronometro">
             <div class="reloj" id="Minutos">01</div>
-            <div class="reloj" id="Segundos">:60</div>
+            <div class="reloj" id="Segundos">:59</div>
         </div>
         <div id="wrapper" class="wrapper"></div>
     </div>

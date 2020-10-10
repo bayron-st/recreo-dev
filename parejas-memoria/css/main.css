@@ -175,7 +175,7 @@ input[type='image'] {
 }
 
 .modal-body {
-    display: grid;
+    /*display: grid;*/
     grid-auto-flow: column;
     gap: 10px;
     padding: 3%;    
@@ -217,7 +217,7 @@ input[type='image'] {
 }
 
 /*BOTONES*/
-.btn {
+/*.btn {
   background-color: #4CAF50;
   border: none;
   color: white;
@@ -253,4 +253,4 @@ input[type='image'] {
     background-color: gray;
     border: 3px solid darkslategray;
     padding: 4px 12px;
-}
+} */

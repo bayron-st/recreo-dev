@@ -22,8 +22,8 @@ function grid() {
 
 function dificultad() {
 	switch (this.id) {
-		case "facil":
-			generarCartas(4, 8, frutas);
+		case "start":
+			generarCartas(2, 2, frutas);
 			break;
 	}
 	document.getElementById("modal").setAttribute("class", "hide");

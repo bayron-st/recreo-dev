@@ -1,4 +1,5 @@
 /*VARIABLES*/
+
 :root {
     --rowNum: 4;
     --colNum: 4;
@@ -6,49 +7,57 @@
     --gridWidht: 128px;
 }
 
+
 /*FUENTES*/
+
 @font-face {
     font-family: 'good-times';
     src: url('fonts/good_times/good_times_rg-webfont.eot');
-    src: url('fonts/good_times/good_times_rg-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/good_times/good_times_rg-webfont.woff2') format('woff2'),
-         url('fonts/good_times/good_times_rg-webfont.woff') format('woff'), 
-         url('fonts/good_times/good_times_rg.ttf') format('truetype'),      
-         url('fonts/good_times/good_times_rg-webfont.svg#goodtimes') format('svg');
+    src: url('fonts/good_times/good_times_rg-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/good_times/good_times_rg-webfont.woff2') format('woff2'), url('fonts/good_times/good_times_rg-webfont.woff') format('woff'), url('fonts/good_times/good_times_rg.ttf') format('truetype'), url('fonts/good_times/good_times_rg-webfont.svg#goodtimes') format('svg');
 }
 
 html {
     height: 100%;
 }
 
+
 /*CUERPO*/
+
 body {
     background: #023f88 !important;
     background: -webkit-linear-gradient(to bottom, #FDB99B, #CF8BF3, #A770EF);
-    background: linear-gradient(to bottom, #FDB99B, #CF8BF3, #A770EF); 
-    background-repeat: no-repeat;   
+    background: linear-gradient(to bottom, #FDB99B, #CF8BF3, #A770EF);
+    background-repeat: no-repeat;
 }
 
+
 /*CONTAINER ELEMENTS*/
+
 .container {
-    display: grid;
+    /* display: grid; */
     text-align: center;
     gap: 10px;
-    grid-template-areas: "numPartidas maxPuntos puntos cronometro"
-                         "baraja baraja baraja baraja";
+    grid-template-areas: "numPartidas maxPuntos puntos cronometro" "baraja baraja baraja baraja";
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.numPartidas, .maxPuntos, .puntos, .reloj {    
+.numPartidas,
+.maxPuntos,
+.puntos,
+.reloj {
     font-family: 'good-times';
 }
 
+
 /*PARTIDAS*/
+
 .numPartidas {
-    grid-area: numPartidas;   
+    grid-area: numPartidas;
 }
 
+
 /*PUNTOS*/
+
 .maxPuntos {
     grid-area: maxPuntos;
 }
@@ -57,7 +66,9 @@ body {
     grid-area: puntos;
 }
 
+
 /*CRONOMETRO*/
+
 .cronometro {
     grid-area: cronometro;
 }
@@ -67,11 +78,12 @@ body {
     font-weight: bold;
 }
 
+
 /* TABLERO */
+
 .wrapper {
     grid-area: baraja;
     padding: 2%;
-
     display: grid;
     justify-content: center;
     grid-template-rows: repeat(var(--rowNum), var(--gridHeight));
@@ -79,11 +91,12 @@ body {
     gap: 20px;
 }
 
+
 /* CARTAS */
+
 .carta {
     grid-column-start: auto;
-    grid-row-start: auto; 
-    
+    grid-row-start: auto;
     position: relative;
     transform-style: preserve-3d;
     transition: 1s;
@@ -91,10 +104,12 @@ body {
     height: var(--gridHeight);
 }
 
+
 /* IMAGEN FRONT CARTA */
+
 input[type='image'] {
-    background: white;    
-    border-radius: 12px;     
+    background: white;
+    border-radius: 12px;
 }
 
 .face {
@@ -108,29 +123,41 @@ input[type='image'] {
     backface-visibility: hidden;
 }
 
+
 /* ANIMACIONES CARTA GIRAR Y CRECER */
+
 .mostrar {
     transform: rotateY(180deg) scale(1.12);
-    -ms-transform: rotateY(180deg) scale(1.12); /* IE 9  */
-    -moz-transform: rotateY(180deg) scale(1.12); /* Firefox */
-    -webkit-transform: rotateY(180deg) scale(1.12); /* Safari and Chrome */
-    -o-transform: rotateY(180deg) scale(1.12); /* Opera */
+    -ms-transform: rotateY(180deg) scale(1.12);
+    /* IE 9  */
+    -moz-transform: rotateY(180deg) scale(1.12);
+    /* Firefox */
+    -webkit-transform: rotateY(180deg) scale(1.12);
+    /* Safari and Chrome */
+    -o-transform: rotateY(180deg) scale(1.12);
+    /* Opera */
 }
 
 .ocultar {
     transform: rotateY(0deg) scale(1);
-    -ms-transform: rotateY(0deg) scale(1); /* IE 9  */
-    -moz-transform: rotateY(0deg) scale(1); /* Firefox */
-    -webkit-transform: rotateY(0deg) scale(1); /* Safari and Chrome */
-    -o-transform: rotateY(0deg) scale(1); /* Opera */
+    -ms-transform: rotateY(0deg) scale(1);
+    /* IE 9  */
+    -moz-transform: rotateY(0deg) scale(1);
+    /* Firefox */
+    -webkit-transform: rotateY(0deg) scale(1);
+    /* Safari and Chrome */
+    -o-transform: rotateY(0deg) scale(1);
+    /* Opera */
 }
 
 .back input[type='image']:hover {
-    border: 2px solid darkviolet;    
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border: 2px solid darkviolet;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
+
 /* BLOQUEO TABLERO */
+
 .wrapper.bloquear {
     opacity: 0.8;
 }
@@ -140,7 +167,9 @@ input[type='image'] {
     box-shadow: none;
 }
 
+
 /* MODAL */
+
 .modalDialog {
     display: block;
     position: fixed;
@@ -163,7 +192,6 @@ input[type='image'] {
     border-radius: 5px;
     background: #fff;
     text-align: center;
-
     display: grid;
     gap: 5px;
 }
@@ -178,10 +206,12 @@ input[type='image'] {
     /*display: grid;*/
     grid-auto-flow: column;
     gap: 10px;
-    padding: 3%;    
+    padding: 3%;
 }
 
+
 /*MODAL PUNTOS*/
+
 .modal-score-body {
     display: grid;
     justify-content: space-around;
@@ -189,7 +219,7 @@ input[type='image'] {
 }
 
 .tabla {
-    grid-auto-flow: column;    
+    grid-auto-flow: column;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -204,19 +234,24 @@ input[type='image'] {
     font-size: small;
 }
 
+
 /*MODAL PARTIDAS*/
+
 .modal-tscore-body {
     display: grid;
     padding: 2%;
 }
 
 .tPartidas {
-    grid-auto-flow: column;    
+    grid-auto-flow: column;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
 }
 
+
 /*BOTONES*/
+
+
 /*.btn {
   background-color: #4CAF50;
   border: none;

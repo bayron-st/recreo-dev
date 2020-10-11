@@ -38,7 +38,7 @@
             }
 
             if (!isset($_GET['player'])) {
-                // echo"<script language='javascript'>window.location='https://elrecreoesdetodos.com/dashboard/index.php/participante/juego'</script>;";   
+                //echo"<script language='javascript'>window.location='https://elrecreoesdetodos.com/dashboard/index.php/participante/juego'</script>;";   
             } elseif (isset($_GET['player'])) {
                 
                 $id_player = $_GET['player'];
@@ -206,7 +206,6 @@
         </div>
 
 
-  
         <!-- MODAL PERDER PARTIDA -->
         <div id="modalLoose" class="hide">
             <div class="modal-content">

@@ -151,10 +151,11 @@
                     <img src="img/logo.png"> 
                 </div>
                 <div id="modal-body" class="modal-body">
-                    <h2> Reta tu memoria <br> Tetra Pak&reg; </h2>
-                    <p style="font-size: 18px;">Tienes  hasta 3 intentos por semana para ganar hasta 9 creditos.</p>
+                    <h2 style="font-size:30px;">Tetra Pak&reg;</h2>
+                    <h3>Reta tu memoria</h3>
+                    <p style="font-size:18px;">Tienes hasta 3 intentos por semana para ganar hasta 9 creditos.</p>
                     <div id="dificultadBtn">
-                        <button type="submit" id="start" class="btn btn-info btn-lg" style="font-size: 18px; "> Iniciar Juego </button>
+                        <button type="submit" id="start" class="btn btn-primary btn-lg" style="font-size: 18px; "> Iniciar Juego </button>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,7 @@
 				$count=1;
 				$ID_PARTICIPANTE = $this->session->userdata('login_user_id');
 
-				$query = "SELECT  id_pais  from participantes where ID_PARTICIPANTE = $ID_PARTICIPANTE ";
+				$query = "SELECT id_pais from participantes where ID_PARTICIPANTE = $ID_PARTICIPANTE ";
 				$query = $this->db->query($query);
 				$data = $query->result_array();
 

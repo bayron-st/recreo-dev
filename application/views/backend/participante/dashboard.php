@@ -28,7 +28,7 @@
 			foreach ($data4 as $row4) {$nCreditos4 = $row4['CANTIDAD4'];}
 			foreach ($data5 as $row5) {
 				$nameParticipante = $row5['NOMBRES'];
-				$docParticipante = $row5['identificacion'];
+				$docParticipante =  $row5['IDENTIFICACION'];
 			}
 		?>
 

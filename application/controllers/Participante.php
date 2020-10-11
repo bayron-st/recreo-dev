@@ -64,6 +64,7 @@ class Participante extends CI_Controller
                 $this->load->view('backend/index', $page_data);
               }
 
+
     /***participante DASHBOARD***/
     function redimir_game($param1 = '', $id_participante)
     {
@@ -148,6 +149,8 @@ class Participante extends CI_Controller
         $this->load->view('backend/index', $page_data);
 
     }
+
+
 
 
     /******MANAGE OWN PROFILE AND CHANGE PASSWORD***/

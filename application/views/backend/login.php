@@ -2,8 +2,13 @@
 <?php
 	//$system_title = $this->db->get_where('settings', array('type' => 'system_title'))->row()->description;
 	$system_name  = $this->db->get_where('settings', array('type' => 'system_name'))->row()->description;
+	$host= $_SERVER["HTTP_HOST"];
+	$url= $_SERVER["REQUEST_URI"];
+
 	if (!$_GET['loc']) {
-		echo"<script language='javascript'>window.location='https://elrecreoesdetodos.com/'</script>;";
+		if ($host == 'elrecreoesdetodos.com') {
+			echo "<script language='javascript'>window.location='https://elrecreoesdetodos.com/'</script>;";
+		}
 	}
 ?>
 

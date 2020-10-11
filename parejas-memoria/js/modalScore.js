@@ -51,12 +51,12 @@ function guardarPuntuacion() {
     let lblTiempo = document.getElementById("tiempoPartida");
     lblTiempo.innerHTML = document.getElementById("Minutos").innerHTML + "" + document.getElementById("Segundos").innerHTML;
 
-    document.getElementById("guardarJugador").onclick = function () {
+    document.getElementById("guardarJugador").onclick = function() {
         let nombreJugador = document.getElementById("nombreJugador").value;
         let fechaActual = new Date();
         fechaActual = fechaActual.getDate() + "/" + (fechaActual.getMonth() + 1) + "/" + fechaActual.getFullYear();
 
-        if(nombreJugador == "") {
+        if (nombreJugador == "") {
             nombreJugador = "Sin nombre";
         }
         console.log(nombreJugador);
@@ -65,7 +65,7 @@ function guardarPuntuacion() {
         historialPartidas();
     };
 
-    document.getElementById("cancelar").onclick = function () {
+    document.getElementById("cancelar").onclick = function() {
         document.getElementById("modalScore").setAttribute("class", "hide");
         historialPartidas();
     };
@@ -82,12 +82,12 @@ function historialPartidas() {
         });
     }
 
-    document.getElementById("limpiar").onclick = function () {
+    document.getElementById("limpiar").onclick = function() {
         localStorage.clear();
         location.reload();
     };
 
-    document.getElementById("cerrar").onclick = function () {
+    document.getElementById("cerrar").onclick = function() {
         location.reload();
     };
 }
@@ -149,4 +149,37 @@ function ordenar(historial) {
         }
     }
     return historial;
+}
+
+
+function partidaPerdida() {
+    document.getElementById("modalLoose").setAttribute("class", "modalDialog");
+    let nuevaPartida = document.getElementById("nombreJugador");
+    nuevaPartida.value = "";
+    nuevaPartida.focus();
+
+    let lblPuntos = document.getElementById("puntosPartida");
+    lblPuntos.innerHTML = document.getElementById("puntosValue").innerHTML;
+
+    let lblTiempo = document.getElementById("tiempoPartida");
+    lblTiempo.innerHTML = document.getElementById("Minutos").innerHTML + "" + document.getElementById("Segundos").innerHTML;
+
+    document.getElementById("guardarJugador").onclick = function() {
+        let nombreJugador = document.getElementById("nombreJugador").value;
+        let fechaActual = new Date();
+        fechaActual = fechaActual.getDate() + "/" + (fechaActual.getMonth() + 1) + "/" + fechaActual.getFullYear();
+
+        if (nombreJugador == "") {
+            nombreJugador = "Sin nombre";
+        }
+        console.log(nombreJugador);
+        webStorage(new Partida(nombreJugador, lblPuntos.innerHTML, lblTiempo.innerHTML, fechaActual));
+        document.getElementById("modalScore").setAttribute("class", "hide");
+        historialPartidas();
+    };
+
+    document.getElementById("cancelar").onclick = function() {
+        document.getElementById("modalScore").setAttribute("class", "hide");
+        historialPartidas();
+    };
 }

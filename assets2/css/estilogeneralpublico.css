@@ -1,0 +1,289 @@
+
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	background: #FFFFFF;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+/* ~~ Selectores de elemento/etiqueta ~~ */
+ul, ol, dl { /* Debido a las diferencias existentes entre los navegadores, es recomendable no añadir relleno ni márgenes en las listas. Para lograr coherencia, puede especificar las cantidades deseadas aquí o en los elementos de lista (LI, DT, DD) que contienen. Recuerde que lo que haga aquí se aplicará en cascada en la lista .nav, a no ser que escriba un selector más específico. */
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	 /* la eliminación del margen superior resuelve un problema que origina que los márgenes escapen de la etiqueta div contenedora. El margen inferior restante lo mantendrá separado de los elementos de que le sigan. */
+	padding-right: 15px;
+	padding-left: 15px; /* la adición de relleno a los lados del elemento dentro de las divs, en lugar de en las divs propiamente dichas, elimina todas las matemáticas de modelo de cuadro. Una div anidada con relleno lateral también puede usarse como método alternativo. */
+}
+a img { /* este selector elimina el borde azul predeterminado que se muestra en algunos navegadores alrededor de una imagen cuando está rodeada por un vínculo */
+	border: none;
+}
+/* ~~ La aplicación de estilo a los vínculos del sitio debe permanecer en este orden (incluido el grupo de selectores que crea el efecto hover -paso por encima-). ~~ */
+a:link {
+	color: #42413C;
+	text-decoration: underline; /* a no ser que aplique estilos a los vínculos para que tengan un aspecto muy exclusivo, es recomendable proporcionar subrayados para facilitar una identificación visual rápida */
+}
+a:visited {
+	color: #6E6C64;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus { /* este grupo de selectores proporcionará a un usuario que navegue mediante el teclado la misma experiencia de hover (paso por encima) que experimenta un usuario que emplea un ratón. */
+	text-decoration: none;
+}
+
+/* ~~ este contenedor de anchura fija rodea a las demás divs ~~ */
+.container {
+	width: 95%;
+	background: #FFF;
+	margin: 0 auto; /* el valor automático de los lados, unido a la anchura, centra el diseño */
+}
+
+/* ~~ no se asigna una anchura al encabezado. Se extenderá por toda la anchura del diseño. Contiene un marcador de posición de imagen que debe sustituirse por su propio logotipo vinculado ~~ */
+.header {
+	
+  	align-items: center;
+  	display: flex;
+  	justify-content: center;
+	background: #75BEE9;
+}
+
+.headerIzqueirda {
+  	align-items: center;
+  	display: flex;
+  	justify-content: center;
+	width: 35%;
+	background: #75BEE9;
+}
+
+.headerCentro {
+	width: 30%;
+	background: #75BEE9;
+}
+
+.headerDerecha {
+  	align-items: center;
+  	display: flex;
+  	justify-content: center;
+	width: 35%;
+	background: #75BEE9;
+}
+
+
+.opcionMenu {
+	background: #75BEE9;
+}
+
+/* ~~ Esta es la información de diseño. ~~ 
+
+1) El relleno sólo se sitúa en la parte superior y/o inferior de la div. Los elementos situados dentro de esta div tienen relleno a los lados. Esto le ahorra las "matemáticas de modelo de cuadro". Recuerde que si añade relleno o borde lateral a la div propiamente dicha, éste se añadirá a la anchura que defina para crear la anchura *total*. También puede optar por eliminar el relleno del elemento en la div y colocar una segunda div dentro de ésta sin anchura y el relleno necesario para el diseño deseado.
+
+*/
+
+.contentido {
+    width: 100%;
+  	align-items: center;
+  	display: flex;
+  	justify-content: center;	
+	background: #033F88;
+}
+
+
+
+.contentidoIzquierda {
+	
+  	align-items: right;
+  	justify-content: right;
+	width: 50%;
+	height:auto;
+	background: #033F88;
+}
+
+
+.contentidoIzquierdaDos {
+	width: 50%;
+	height:auto;
+	background: #033F88;
+}
+
+
+.contentidoIzquierdaSeccion {
+	width: 75%;
+	height:auto;
+}
+
+
+.contentidoDerecha {
+  	align-items: center;
+  	justify-content: center;
+	width: 50%;
+	height:auto;
+	background: #FFFFFF;
+}
+
+
+.recuadroBlanco {	
+  	align-items: center;
+  	display: flex;
+  	justify-content: center;
+	width: 100%;
+	background: #FFFFFF;
+	top:0px;
+}
+
+
+.recuadroBlancoDos {	
+	width: 100%;
+	background: #FFFFFF;
+	top:0px;
+}
+
+
+
+
+.recuadroBlancoTres {	
+  	align-items: center;
+  	display: flex;
+  	justify-content: center;
+	width: 75%;
+	background: #FFFFFF;
+	top:0px;
+}
+
+
+
+.recuadroAzul {	
+  	align-items: center;
+  	display: flex;
+  	justify-content: center;
+	width: 100%;
+	background: #033F88;
+	top:0px;
+	padding:25px 25px 25px 25px;
+}
+
+.recuadroAzulDos {
+	width:100%;
+	background: #033F88;
+}
+
+
+
+.video-responsive {
+position: relative;
+padding-bottom: 56.25%; /* 16/9 ratio */
+padding-top: 30px; /* IE6 workaround*/
+height: 0;
+overflow: hidden;
+}
+
+.video-responsive iframe,
+.video-responsive object,
+.video-responsive embed {
+position: absolute;
+top: 0;
+left: 0;
+width: 80%;
+height: 80%;
+}
+
+/* ~~ El pie de página ~~ */
+.recuadroAzulClaro {
+	width:100%;
+	background: #75BEE9;
+	position:absolute; /*El div será ubicado con relación a la pantalla*/
+	top:0px;
+}
+.recuadroAzulClaroDos {
+	width:100%;
+	height:15px;
+	background: #75BEE9;
+}
+
+.recuadroGrisDos {
+  	align-items: center;
+  	display: flex;
+  	justify-content: center;
+	width:100%;	
+	background: #CCCCCC;
+}
+.recuadroGris {
+	width:100%;	
+  	align-items: center;
+  	display: flex;
+  	justify-content: center;
+	background: #CCCCCC;
+	bottom:0px;
+}
+
+
+.recuadroGrisIzquierda {
+	
+  	align-items: center;
+  	display: flex;
+  	justify-content: center;
+	width: 50%;
+	background: #CCCCCC;
+}
+
+.recuadroGrisDerecha {
+	
+  	align-items: center;
+  	display: flex;
+  	justify-content: center;
+	width: 50%;
+	background: #CCCCCC;
+}
+
+.footer {
+	width: 100%;
+	background: #CCCCCC;
+	/*position:absolute;*/ /*El div será ubicado con relación a la pantalla*/
+	bottom:0px;
+}
+
+/* ~~ clases float/clear varias ~~ */
+.fltrt {  /* esta clase puede utilizarse para que un elemento flote en la parte derecha de la página. El elemento flotante debe preceder al elemento junto al que debe aparecer en la página. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* esta clase puede utilizarse para que un elemento flote en la parte izquierda de la página. El elemento flotante debe preceder al elemento junto al que debe aparecer en la página. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* esta clase puede situarse en una <br /> o div vacía como elemento final tras la última div flotante (dentro de #container) si #footer se elimina o se saca fuera de #container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+
+
+.contentidoTercioUno {	
+  	align-items: right;
+  	justify-content: right;
+	width: 25%;
+	height:auto;
+	background: #CCCCCC;
+	padding:25px 25px 25px 25px;
+}
+
+.contentidoTercioDos {
+  	align-items: center;
+  	justify-content: center;
+	width: 25%;
+	height:auto;
+	background: #FFFFFF;
+	padding:25px 25px 25px 25px;
+}
+
+.contentidoTercioTres {
+  	align-items: center;
+  	justify-content: center;
+	width: 25%;
+	height:auto;
+	background: #CCCCCC;
+	padding:25px 25px 25px 25px;
+}

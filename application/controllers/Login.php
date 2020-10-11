@@ -31,10 +31,8 @@ class Login extends CI_Controller {
         if ($this->session->userdata('usuario_login') == 1)
             redirect(site_url('usuario/dashboard'), 'refresh');
 
-
         if ($this->session->userdata('participante_login') == 1)
         redirect(site_url('participante/dashboard'), 'refresh');
-
 
         $this->load->view('backend/login');
     }
@@ -46,6 +44,7 @@ class Login extends CI_Controller {
       $password = $this->input->post('telefono');
 
       $credential = array('identificacion' => $identificacion, 'telefono' => $password);
+      
       // Checking login credential for usuario
       $query = $this->db->get_where('usuarios', $credential);
       if ($query->num_rows() > 0) {
@@ -61,14 +60,13 @@ class Login extends CI_Controller {
 
 
       $query = $this->db->get_where('participantes', $credential);
-
       if ($query->num_rows() > 0) {
           $row = $query->row();
           $this->session->set_userdata('participante_login', '1');
-          $this->session->set_userdata('id_participante', $row->id_participante);
-          $this->session->set_userdata('login_user_id', $row->id_participante);
-          $this->session->set_userdata('name', $row->name);
-          $this->session->set_userdata('last_name', $row->last_name);
+          $this->session->set_userdata('id_participante', $row->ID_PARTICIPANTE);
+          $this->session->set_userdata('login_user_id', $row->ID_PARTICIPANTE);
+          $this->session->set_userdata('name', $row->NAME);
+          $this->session->set_userdata('last_name', $row->LAST_NAME);
           $this->session->set_userdata('login_type', 'participante');
           redirect(site_url('participante/dashboard'), 'refresh');
       }

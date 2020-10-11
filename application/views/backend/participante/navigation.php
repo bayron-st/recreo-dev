@@ -34,8 +34,13 @@
 						<span class="title">Cómo participar <i class="fa fa-question"></i></span>
 					</a>
 				</li>
-				<li class="<?php if ($page_name == 'juego') echo 'active';?>">
+				<!-- <li class="<?php if ($page_name == 'juego') echo 'active';?>">
 					<a id="message">
+						<span>Juego <i class="fa fa-gamepad"></i></span>
+					</a>
+				</li> -->
+				<li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
+					<a href="<?php echo site_url('participante/juego'); ?>">
 						<span>Juego <i class="fa fa-gamepad"></i></span>
 					</a>
 				</li>
@@ -49,7 +54,6 @@
 						<span>Registrar Compras <i class="fa fa-file"></i></span>
 					</a>
 				</li>
-
 				<li class="<?php if ($page_name == 'redimir') echo 'active'; ?> ">
 					<a href="<?php echo site_url('participante/redimir'); ?>">
 						<span>Redimir <i class="fa fa-tags"></i></span>

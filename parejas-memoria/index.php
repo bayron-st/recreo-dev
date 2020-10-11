@@ -221,7 +221,12 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <!-- MODAL PERDER PARTIDA -->
+=======
+  
+
+>>>>>>> parent of 210c14d... Nuevos ajustes flujo winner
 =======
   
 

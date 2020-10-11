@@ -201,26 +201,7 @@
             </div>
         </div>
 
-        <div id="modalLoose" class="hide">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <img src="img/logo.png"> 
-                </div>
-                <div id="modal-body" class="modal-body">
-                    <h2> Reta tu memoria <br> Tetra Pak&reg; </h2>
-                    <p style="font-size: 18px;">Alcanzaste el tiempo limite</p>
-
-                     <img src="img/triste.png"> 
-                     <br>
-
-                    <div id="dificultadBtn">
-                        <button type="submit" id="start" class="btn btn-info btn-lg" style="font-size: 18px; "> CONTINUAR </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+     
         <!-- MODAL PERDER PARTIDA -->
         <div id="modalLoose" class="hide">
             <div class="modal-content">
@@ -234,22 +215,14 @@
                     <div class="well well-sm hidden-xs">Intentos realizados: <?php echo $game_count;?></div>
 
                     <div >
-                     <img src="img/png/085-sad.png" width="100" height="100"> 
+                     <img src="img/emogis/085-sad.png" width="100" height="100"> 
                         <br>
                     </div>
 
-
-                 <form action="index.php?player=<?php echo $id_player?>" name="loose_game" method="POST">
-                                          
-
-                        <div >
-
-     <button  id="start" class="btn btn-info btn-lg" style="font-size: 18px; "> Siguiente intento </button>
-
-    <a class="btn btn-info btn-lg" style="font-size: 18px;  href="participante/dashboard">Mi cuenta</a>
-                        </div>
-
-                 </form>
+                     <form action="index.php?player=<?php echo $id_player?>" name="loose_game" method="POST">                              
+                             <button  id="start" class="btn btn-info btn-lg" style="font-size: 18px; "> Siguiente intento </button>
+                             <a class="btn btn-info btn-lg" style="font-size: 18px;"  href="participante/dashboard">Mi cuenta</a>
+                     </form>
                 </div>
             </div>
         </div>

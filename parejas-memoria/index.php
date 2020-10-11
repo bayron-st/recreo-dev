@@ -19,9 +19,11 @@
             $new_game_count = intval($_POST['new_game_count']) + 1;
             $new_game_shot = intval($_POST['new_game_shot']) + 1;
             $new_game_shot_count = intval($_POST['new_game_shot_count']) - 1;
+            $new_game_shot_count2 = intval($_POST['new_game_shot_count2']) - 1;
+
             $date_last_game = date('Y-m-d');
 
-            $query4="UPDATE `game` SET `last_shot` = '$date_last_game', `game_count` = $new_game_count, `game_shot` = $new_game_shot, `game_shot_count` = $new_game_shot_count WHERE id_participante = $id_player_losser and id_game = $id_game_losser";
+            $query4="UPDATE `game` SET `last_shot` = '$date_last_game', `game_count` = $new_game_count, `game_shot` = $new_game_shot, `game_shot_count` = $new_game_shot_count , `game_shot_count2` = $new_game_shot_count2 WHERE id_participante = $id_player_losser and id_game = $id_game_losser";
             $consulta4 = mysqli_query($conexion , $query4);
 
             if ($consulta4) {
@@ -58,7 +60,7 @@
             if ($exist_player == 0) {
                 $date_start = date("Y-m-d");
                 $date_end = date("Y-m-d",strtotime($date_start ."+ 1 week"));
-                $new_player ="INSERT INTO `game` (`id_participante`, `game_level`, `date_start`, `date_end`, `last_shot`, `game_count`, `game_shot`, `game_shot_count`) VALUES ($id_player , '1', '$date_start', '$date_end', '$date_start', '1', '1', '3');";
+                $new_player ="INSERT INTO `game` (`id_participante`, `game_level`, `date_start`, `date_end`, `last_shot`, `game_count`, `game_shot`, `game_shot_count`, `game_shot_count2`) VALUES ($id_player , '1', '$date_start', '$date_end', '$date_start', '0', '0', '2', '3');";
                 $reg_player = mysqli_query($conexion , $new_player) or die (mysqli_error());
                 if ($reg_player) {
                     $text_msj = "Nuevo jugador registrado con exito";
@@ -79,6 +81,8 @@
             $game_count = $datos2['game_count'];
             $game_shot = $datos2['game_shot'];
             $game_shot_count = $datos2['game_shot_count'];
+            $game_shot_count2 = $datos2['game_shot_count2'];
+
         } elseif (!$consulta2) {
             $id_game = '';
             $game_level = '';
@@ -88,6 +92,8 @@
             $game_count = '';
             $game_shot = '';
             $game_shot_count = '';
+            $game_shot_count2 = '';
+
         }
 
         // Consulta la informacion de créditos por juego asociada al jugador
@@ -182,19 +188,20 @@
                     <h2 style="font-size:30px;">Tetra Pak&reg;</h2>
                     <h3>Reta tu memoria</h3>
                     <?php
-                        if ($game_shot_count == 0) {$color_texto = '#ac1818'; $btn_color = 'btn-danger'; $btn_txt_color = '#ffffff';}
-                        if ($game_shot_count == 1) {$color_texto = '#ec971f'; $btn_color = 'btn-warning'; $btn_txt_color = '#303030';}
-                        if ($game_shot_count == 2) {$color_texto = '#2c7ea1'; $btn_color = 'btn-info'; $btn_txt_color = '#ffffff';}
-                        if ($game_shot_count == 3) {$color_texto = '#5cb85c'; $btn_color = 'btn-success'; $btn_txt_color = '#ffffff';}
+                        if ($game_shot_count2 == 0) {$color_texto = '#ac1818'; $btn_color = 'btn-danger'; $btn_txt_color = '#ffffff';}
+                        if ($game_shot_count2 == 1) {$color_texto = '#ec971f'; $btn_color = 'btn-warning'; $btn_txt_color = '#303030';}
+                        if ($game_shot_count2 == 2) {$color_texto = '#2c7ea1'; $btn_color = 'btn-info'; $btn_txt_color = '#ffffff';}
+                        if ($game_shot_count2 == 3) {$color_texto = '#5cb85c'; $btn_color = 'btn-success'; $btn_txt_color = '#ffffff';}
                     ?>
-                    <p style="font-size:18px;">Te quedan <?php echo '<strong style="color:'.$color_texto.'">'.$game_shot_count.'</strong>';?> intentos.</p>
+                    <p style="font-size:18px;">Te quedan <?php echo '<strong style="color:'.$color_texto.'">'.$game_shot_count2.'</strong>';?> intentos.</p>
                     <?php
-                        if ($game_shot_count == 0) {
+                        if ($game_shot_count2 == 0) {
                             echo '
                                 <p class="text-danger" style="font-size:20px"><strong>Has alcanzado el límite de intentos por semana</strong></p>
-                                <p style="font-size:18px">Regresa de nuevo la próxima semana para tener<br>más intentos y nuevas oportunidades de ganar créditos.</p>
+                                <a href="https://elrecreoesdetodos.com/dashboard/index.php/participante/dashboard" class="btn btn-info btn-lg" style="font-size: 18px;">Regresar a mi cuenta <i class="fa fa-user"></i></a>
+                                <p style="font-size:18px; margin-top: 15px;">Regresa de nuevo la próxima semana para tener<br>más intentos y nuevas oportunidades de ganar créditos.</p>
                             ';
-                        } elseif ($game_shot_count > 0) {
+                        } elseif ($game_shot_count2 > 0) {
                             echo '
                                 <div id="dificultadBtn">
                                     <button type="submit" id="start" class="btn '.$btn_color.' btn-lg" style="font-size: 18px; color:'.$btn_txt_color.'">Iniciar Juego <i class="fa fa-gamepad"></i> </button>
@@ -223,6 +230,7 @@
                         <input type="hidden" name="new_game_count" value="<?php echo $new_game_count; ?>">
                         <input type="hidden" name="new_game_shot" value="<?php echo $game_shot; ?>">
                         <input type="hidden" name="new_game_shot_count" value="<?php echo $game_shot_count; ?>">
+
                         <button type="submit" id="start" class="btn btn-success btn-lg" style="font-size: 18px;">Siguiente nivel <i class="fa fa-gamepad"></i></button>
                     </form>
                     <p class="text-secondary" style="margin-top:15px">Al iniciar el juego se descontará un intento por semana</p>
@@ -247,8 +255,10 @@
                         <input type="hidden" name="new_game_count" value="<?php echo $new_game_count; ?>">
                         <input type="hidden" name="new_game_shot" value="<?php echo $game_shot; ?>">
                         <input type="hidden" name="new_game_shot_count" value="<?php echo $game_shot_count; ?>">
+                        <input type="hidden" name="new_game_shot_count2" value="<?php echo $game_shot_count2; ?>">
+
                         <button type="submit" id="start" class="btn btn-info btn-lg" style="font-size: 18px;">Volver a jugar <i class="fa fa-gamepad"></i></button>
-                        <a href="participante/dashboard" class="btn btn-info btn-lg" style="font-size: 18px;">Mi cuenta</a>
+                        <a href="https://elrecreoesdetodos.com/dashboard/index.php/participante/dashboard" class="btn btn-info btn-lg" style="font-size: 18px; margin-top: 15px;">Regresar a mi cuenta <i class="fa fa-user"></i></a>
                     </form>
                     <p class="text-secondary" style="margin-top:15px">Al iniciar el juego se descontará un intento.</p>
                 </div>

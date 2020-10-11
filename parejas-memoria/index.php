@@ -155,11 +155,38 @@
                     <img src="img/logo.png"> 
                 </div>
                 <div id="modal-body" class="modal-body">
+<<<<<<< HEAD
                     <h2> Reta tu memoria <br> Tetra Pak&reg; </h2>
                     <p style="font-size: 18px;">Tienes  hasta 3 intentos por semana para ganar hasta 9 creditos.</p>
                     <div id="dificultadBtn">
                         <button type="submit" id="start" class="btn btn-info btn-lg" style="font-size: 18px; "> Iniciar Juego </button>
                     </div>
+=======
+                    <h2 style="font-size:30px;">Tetra Pak&reg;</h2>
+                    <h3>Reta tu memoria</h3>
+                    <?php
+                        if ($game_shot_count == 0) {$color_texto = 'text-danger';}
+                        if ($game_shot_count == 1) {$color_texto = 'text-warning';}
+                        if ($game_shot_count == 2) {$color_texto = 'text-info';}
+                        if ($game_shot_count == 3) {$color_texto = 'text-success';}
+                    ?>
+                    <p style="font-size:18px;">Te quedan <?php echo '<strong class="'.$color_texto.'">'.$game_shot_count.'</strong>';?> intentos.</p>
+                    <?php
+                        if ($game_shot_count == 0) {
+                            echo '
+                                <p class="text-danger" style="font-size:20px"><strong>Has alcanzado el límite de intentos por semana</strong></p>
+                                <p style="font-size:18px">Regresa de nuevo la próxima semana para tener<br>más intentos y nuevas oportunidades de ganar créditos.</p>
+                            ';
+                        } elseif ($game_shot_count > 0) {
+                            echo '
+                                <div id="dificultadBtn">
+                                    <button type="submit" id="start" class="btn btn-info btn-lg" style="font-size: 18px; ">Iniciar Juego <i class="fa fa-gamepad"></i> </button>
+                                </div>
+                                <p class="text-secondary" style="margin-top:15px">Al iniciar el juego se descontará un intento por semana</p>
+                            ';
+                        }
+                    ?>
+>>>>>>> parent of 210c14d... Nuevos ajustes flujo winner
                 </div>
             </div>
         </div>
@@ -192,7 +219,12 @@
         </div>
 
 
+<<<<<<< HEAD
         <!-- MODAL PERDER PARTIDA -->
+=======
+  
+
+>>>>>>> parent of 210c14d... Nuevos ajustes flujo winner
         <div id="modalLoose" class="hide">
             <div class="modal-content">
                 <div class="modal-header">

@@ -42,7 +42,7 @@
             } elseif (isset($_GET['player'])) {
                 
                 $id_player = $_GET['player'];
-                $query1="SELECT COUNT(*) as exist_player FROM `game` where id_participante = $id_player";                
+                $query1="SELECT COUNT(*) as exist_player FROM `game` where id_participante = $id_player";
                 $query2="SELECT * FROM `game` where id_participante = $id_player";
                 $query3="SELECT SUM(CANTIDAD) as nCreditos FROM `creditos` WHERE TIPO = 'JUEGO' and id_participante = $id_player";
 
@@ -57,7 +57,7 @@
                     if ($exist_player == 0) {
                         $date_start = date("Y-m-d");
                         $date_end = date("Y-m-d",strtotime($date_start ."+ 1 week"));
-                        $new_player ="INSERT INTO `game` (`id_participante`, `game_level`, `date_start`, `date_end`, `last_shot`, `game_count`, `game_shot`) VALUES ($id_player , '1', '$date_start', '$date_end', '$date_start', '1', '1');";
+                        $new_player ="INSERT INTO `game` (`id_participante`, `game_level`, `date_start`, `date_end`, `last_shot`, `game_count`, `game_shot`, `game_shot_count`) VALUES ($id_player , '1', '$date_start', '$date_end', '$date_start', '1', '1', '3');";
                         $reg_player = mysqli_query($conexion , $new_player) or die (mysqli_error());
                         if ($reg_player) {
                             $text_msj = "Nuevo jugador registrado con exito";
@@ -76,6 +76,7 @@
                     $last_shot = $datos2['last_shot'];
                     $game_count = $datos2['game_count'];
                     $game_shot = $datos2['game_shot'];
+                    $game_shot_count = $datos2['game_shot_count'];
                 } elseif (!$consulta2) {
                     $game_level = '';
                     $game_start = '';
@@ -83,6 +84,7 @@
                     $last_shot = '';
                     $game_count = '';
                     $game_shot = '';
+                    $game_shot_count = '';
                 }
 
                 // Consulta la informacion de créditos por juego asociada al jugador
@@ -138,11 +140,7 @@
                     <div class="well well-sm">Intentos realizados: <?php echo $game_count;?></div>
                 </div>
             </div>
-
-
-
         </div>
-
 
         <!-- MODAL INICIAL ELEGIR DIFICULTAD -->
         <div id="modal" class="modalDialog">
@@ -153,10 +151,28 @@
                 <div id="modal-body" class="modal-body">
                     <h2 style="font-size:30px;">Tetra Pak&reg;</h2>
                     <h3>Reta tu memoria</h3>
-                    <p style="font-size:18px;">Tienes hasta 3 intentos por semana para ganar hasta 9 creditos.</p>
-                    <div id="dificultadBtn">
-                        <button type="submit" id="start" class="btn btn-primary btn-lg" style="font-size: 18px; "> Iniciar Juego </button>
-                    </div>
+                    <?php
+                        if ($game_shot_count == 0) {$color_texto = 'text-danger';}
+                        if ($game_shot_count == 1) {$color_texto = 'text-warning';}
+                        if ($game_shot_count == 2) {$color_texto = 'text-info';}
+                        if ($game_shot_count == 3) {$color_texto = 'text-success';}
+                    ?>
+                    <p style="font-size:18px;">Te quedan <?php echo '<strong class="'.$color_texto.'">'.$game_shot_count.'</strong>';?> intentos.</p>
+                    <?php
+                        if ($game_shot_count == 0) {
+                            echo '
+                                <p class="text-danger" style="font-size:20px"><strong>Has alcanzado el límite de intentos por semana</strong></p>
+                                <p style="font-size:18px">Regresa de nuevo la próxima semana para tener<br>más intentos y nuevas oportunidades de ganar créditos.</p>
+                            ';
+                        } elseif ($game_shot_count > 0) {
+                            echo '
+                                <div id="dificultadBtn">
+                                    <button type="submit" id="start" class="btn btn-info btn-lg" style="font-size: 18px; ">Iniciar Juego <i class="fa fa-gamepad"></i> </button>
+                                </div>
+                                <p class="text-secondary" style="margin-top:15px">Al iniciar el juego se descontará un intento por semana</p>
+                            ';
+                        }
+                    ?>
                 </div>
             </div>
         </div>

@@ -1,4 +1,106 @@
 <!DOCTYPE html>
+
+<?php
+
+    $servidor='localhost';
+    $usuario='root';
+    $pass='';
+    $bd='elrecqcg_dashboard';
+    $conexion = new mysqli($servidor, $usuario, $pass, $bd);
+    $conexion->set_charset('utf8');
+    if ($conexion->connect_errno) {
+        echo "Error al conectar la base de datos {$conexion->connect_errno}";
+    }
+
+    if (isset($_POST)) {
+        if (isset($_POST['id_player_losser'])) {
+            $id_player_losser = $_POST['id_player_losser'];
+            $id_game_losser = $_POST['id_game_losser'];
+            $new_game_count = intval($_POST['new_game_count']) + 1;
+            $new_game_shot = intval($_POST['new_game_shot']) + 1;
+            $new_game_shot_count = intval($_POST['new_game_shot_count']) - 1;
+            $date_last_game = date('Y-m-d');
+
+            $query4="UPDATE `game` SET `last_shot` = '$date_last_game', `game_count` = $new_game_count, `game_shot` = $new_game_shot, `game_shot_count` = $new_game_shot_count WHERE id_participante = $id_player_losser and id_game = $id_game_losser";
+            $consulta4 = mysqli_query($conexion , $query4);
+
+            if ($consulta4) {
+                echo 'Bien';
+            } else {
+                echo $query4;
+            }
+
+        } elseif (!isset($_POST['id_player_losser'])) {
+            echo 'Nada2';
+        }
+    } elseif (!isset($_POST)) {
+        echo 'Nada1';
+    }
+
+
+    if (!isset($_GET['player'])) {
+        // echo"<script language='javascript'>window.location='https://elrecreoesdetodos.com/dashboard/index.php/participante/juego'</script>;";   
+    } elseif (isset($_GET['player'])) {
+        
+        $id_player = $_GET['player'];
+        $query1="SELECT COUNT(*) as exist_player FROM `game` where id_participante = $id_player";
+        $query2="SELECT * FROM `game` where id_participante = $id_player";
+        $query3="SELECT SUM(CANTIDAD) as nCreditos FROM `creditos` WHERE TIPO = 'JUEGO' and id_participante = $id_player";
+
+        $consulta1 = mysqli_query($conexion , $query1);
+        $consulta2 = mysqli_query($conexion , $query2);
+        $consulta3 = mysqli_query($conexion , $query3);
+
+        // Inserta registro de nuevo jugador
+        if ($consulta1) {
+            $datos1 = mysqli_fetch_assoc($consulta1);
+            $exist_player = $datos1['exist_player'];
+            if ($exist_player == 0) {
+                $date_start = date("Y-m-d");
+                $date_end = date("Y-m-d",strtotime($date_start ."+ 1 week"));
+                $new_player ="INSERT INTO `game` (`id_participante`, `game_level`, `date_start`, `date_end`, `last_shot`, `game_count`, `game_shot`, `game_shot_count`) VALUES ($id_player , '1', '$date_start', '$date_end', '$date_start', '1', '1', '3');";
+                $reg_player = mysqli_query($conexion , $new_player) or die (mysqli_error());
+                if ($reg_player) {
+                    $text_msj = "Nuevo jugador registrado con exito";
+                }
+            } elseif ($exist_player == 1) {
+                $text_msj = 'Jugador registrado';
+            }
+        }
+
+        // Consulta la informacion del juego asociada al jugador
+        if ($consulta2) {
+            $datos2 = mysqli_fetch_assoc($consulta2);
+            $id_game = $datos2['id_game'];
+            $game_level = $datos2['game_level'];
+            $game_start = $datos2['date_start'];
+            $game_end = $datos2['date_end'];
+            $last_shot = $datos2['last_shot'];
+            $game_count = $datos2['game_count'];
+            $game_shot = $datos2['game_shot'];
+            $game_shot_count = $datos2['game_shot_count'];
+        } elseif (!$consulta2) {
+            $id_game = '';
+            $game_level = '';
+            $game_start = '';
+            $game_end = '';
+            $last_shot = '';
+            $game_count = '';
+            $game_shot = '';
+            $game_shot_count = '';
+        }
+
+        // Consulta la informacion de créditos por juego asociada al jugador
+        if ($consulta3) {
+            $datos3 = mysqli_fetch_assoc($consulta3);
+            $nCreditos = $datos3['nCreditos'];
+        } elseif (!$consulta3) {
+            $nCreditos = '';
+        }
+    }
+?>
+
+
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -15,7 +117,6 @@
         <link rel="stylesheet" href="plugin/introJS/introjs.css">
         <!-- ICONOS -->
         <link rel="stylesheet" href="css/icon/font-awesome-4.7.0/css/font-awesome.min.css">
-
         <!-- Bootstrap -->
         <link rel="stylesheet" href="../assets/css/bootstrap.css" />
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -26,81 +127,6 @@
         <![endif]-->
     </head>
     <body>
-        <?php
-            $servidor='localhost';
-            $usuario='root';
-            $pass='';
-            $bd='elrecqcg_dashboard';
-            $conexion = new mysqli($servidor, $usuario, $pass, $bd);
-            $conexion->set_charset('utf8');
-            if ($conexion->connect_errno) {
-                echo "Error al conectar la base de datos {$conexion->connect_errno}";
-            }
-
-            if (!isset($_GET['player'])) {
-                // echo"<script language='javascript'>window.location='https://elrecreoesdetodos.com/dashboard/index.php/participante/juego'</script>;";   
-            } elseif (isset($_GET['player'])) {
-                
-                $id_player = $_GET['player'];
-                $query1="SELECT COUNT(*) as exist_player FROM `game` where id_participante = $id_player";
-                $query2="SELECT * FROM `game` where id_participante = $id_player";
-                $query3="SELECT SUM(CANTIDAD) as nCreditos FROM `creditos` WHERE TIPO = 'JUEGO' and id_participante = $id_player";
-                $query4="UPDATE `game` SET `last_shot` = 'date('Y-m-d')', `game_count` = 'game_count + 1', `game_shot` = 'game_shot + 1', `game_shot_count` = ' game_shot_count - 1' WHERE id_participante = $id_player";
-
-                $consulta1 = mysqli_query($conexion , $query1);
-                $consulta2 = mysqli_query($conexion , $query2);
-                $consulta3 = mysqli_query($conexion , $query3);
-                $consulta4 = mysqli_query($conexion , $query4);
-
-                // Inserta registro de nuevo jugador
-                if ($consulta1) {
-                    $datos1 = mysqli_fetch_assoc($consulta1);
-                    $exist_player = $datos1['exist_player'];
-                    if ($exist_player == 0) {
-                        $date_start = date("Y-m-d");
-                        $date_end = date("Y-m-d",strtotime($date_start ."+ 1 week"));
-                        $new_player ="INSERT INTO `game` (`id_participante`, `game_level`, `date_start`, `date_end`, `last_shot`, `game_count`, `game_shot`, `game_shot_count`) VALUES ($id_player , '1', '$date_start', '$date_end', '$date_start', '1', '1', '3');";
-                        $reg_player = mysqli_query($conexion , $new_player) or die (mysqli_error());
-                        if ($reg_player) {
-                            $text_msj = "Nuevo jugador registrado con exito";
-                        }
-                    } elseif ($exist_player == 1) {
-                        $text_msj = 'Jugador registrado';
-                    }
-                }
-
-                // Consulta la informacion del juego asociada al jugador
-                if ($consulta2) {
-                    $datos2 = mysqli_fetch_assoc($consulta2);
-                    $id_game = $datos2['id_game'];
-                    $game_level = $datos2['game_level'];
-                    $game_start = $datos2['date_start'];
-                    $game_end = $datos2['date_end'];
-                    $last_shot = $datos2['last_shot'];
-                    $game_count = $datos2['game_count'];
-                    $game_shot = $datos2['game_shot'];
-                    $game_shot_count = $datos2['game_shot_count'];
-                } elseif (!$consulta2) {
-                    $id_game = '';
-                    $game_level = '';
-                    $game_start = '';
-                    $game_end = '';
-                    $last_shot = '';
-                    $game_count = '';
-                    $game_shot = '';
-                    $game_shot_count = '';
-                }
-
-                // Consulta la informacion de créditos por juego asociada al jugador
-                if ($consulta3) {
-                    $datos3 = mysqli_fetch_assoc($consulta3);
-                    $nCreditos = $datos3['nCreditos'];
-                } elseif (!$consulta3) {
-                    $nCreditos = '';
-                }
-            }
-        ?>
-
         <div class="container">
 
             <div class="container" style="display:none">
@@ -191,9 +217,12 @@
                     <h2 style="font-size:30px;">¡Felicidades!</h2>
                     <h3>Has superado el nivel <?php echo $game_level ?></h3>
                     <h3>Ganaste <span style="font-size:20px; color:#5CB85C;"><strong>3</strong></span> nuevos créditos</h3>
-                    <form action="index.php?player=<?php echo $id_player ?>" name="save_game" method="POST">
+                    <form action="index.php?player=<?php echo $id_player ?>" name="save_score_game" method="POST">
                         <input type="hidden" name="id_player_winner" value="<?php echo $id_player; ?>">
                         <input type="hidden" name="id_game_winner" value="<?php echo $id_game; ?>">
+                        <input type="hidden" name="new_game_count" value="<?php echo $new_game_count; ?>">
+                        <input type="hidden" name="new_game_shot" value="<?php echo $game_shot; ?>">
+                        <input type="hidden" name="new_game_shot_count" value="<?php echo $game_shot_count; ?>">
                         <button type="submit" id="start" class="btn btn-success btn-lg" style="font-size: 18px;">Siguiente nivel <i class="fa fa-gamepad"></i></button>
                     </form>
                     <p class="text-secondary" style="margin-top:15px">Al iniciar el juego se descontará un intento por semana</p>
@@ -201,44 +230,27 @@
             </div>
         </div>
 
-     
         <!-- MODAL PERDER PARTIDA -->
         <div id="modalLoose" class="hide">
             <div class="modal-content">
                 <div class="modal-header">
-                    <img src="img/logo.png"> 
+                    <img src="img/logo.png">
                 </div>
-                <div id="modal-body" class="modal-body">
-                    <h2> Reta tu memoria <br> Tetra Pak&reg; </h2>
-                    <p style="font-size: 18px;">Alcanzaste el tiempo limite</p>
-
-                    <div class="well well-sm hidden-xs">Intentos realizados: <?php echo $game_count;?></div>
-
-                    <div >
-                     <img src="img/emogis/085-sad.png" width="100" height="100"> 
-                        <br>
-                    </div>
-
-                     <form action="index.php?player=<?php echo $id_player?>" name="loose_game" method="POST">                              
-                             <button  id="start" class="btn btn-info btn-lg" style="font-size: 18px; "> Siguiente intento </button>
-                             <a class="btn btn-info btn-lg" style="font-size: 18px;"  href="participante/dashboard">Mi cuenta</a>
-                     </form>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- MODAL TABLA DE PUNTUACIONES -->
-        <div id="modalTableScore" class="hide">
-            <div class="modal-content">
-                <div class="modal-header"> Tabla de puntuaciones </div>
-                <div id="modalTableScoreBody" class="modal-tscore-body">
-                    <div id="tPartidas" class="modal-tscore-body"></div>
-                    <div class='footer'>
-                        
-                        <button id='limpiar' class='btn cancel'>Cerrar</button>
-                        
-                    </div>
+                <div class="modal-body">
+                    <h2 style="font-size:30px;">¡Lo sentimos!</h2>
+                    <h3 class="text-danger">Alcanzaste el tiempo límite.</h3>
+                    <h3>Te quedan <span style="font-size:20px; color:#AC1818;"><strong><?php echo $game_shot_count;?></strong></span> intentos esta semana.</h3>
+                    <img src="img/emogis/085-sad.png" style="margin: 20px" width="70" height="70">
+                    <form action="index.php?player=<?php echo $id_player ?>" name="update_game" method="POST">
+                        <input type="hidden" name="id_player_losser" value="<?php echo $id_player; ?>">
+                        <input type="hidden" name="id_game_losser" value="<?php echo $id_game; ?>">
+                        <input type="hidden" name="new_game_count" value="<?php echo $new_game_count; ?>">
+                        <input type="hidden" name="new_game_shot" value="<?php echo $game_shot; ?>">
+                        <input type="hidden" name="new_game_shot_count" value="<?php echo $game_shot_count; ?>">
+                        <button type="submit" id="start" class="btn btn-info btn-lg" style="font-size: 18px;">Volver a jugar <i class="fa fa-gamepad"></i></button>
+                        <a href="participante/dashboard" class="btn btn-info btn-lg" style="font-size: 18px;">Mi cuenta</a>
+                    </form>
+                    <p class="text-secondary" style="margin-top:15px">Al iniciar el juego se descontará un intento.</p>
                 </div>
             </div>
         </div>

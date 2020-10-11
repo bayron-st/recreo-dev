@@ -70,6 +70,7 @@
                 // Consulta la informacion del juego asociada al jugador
                 if ($consulta2) {
                     $datos2 = mysqli_fetch_assoc($consulta2);
+                    $id_game = $datos2['id_game'];
                     $game_level = $datos2['game_level'];
                     $game_start = $datos2['date_start'];
                     $game_end = $datos2['date_end'];
@@ -78,6 +79,7 @@
                     $game_shot = $datos2['game_shot'];
                     $game_shot_count = $datos2['game_shot_count'];
                 } elseif (!$consulta2) {
+                    $id_game = '';
                     $game_level = '';
                     $game_start = '';
                     $game_end = '';
@@ -152,12 +154,12 @@
                     <h2 style="font-size:30px;">Tetra Pak&reg;</h2>
                     <h3>Reta tu memoria</h3>
                     <?php
-                        if ($game_shot_count == 0) {$color_texto = 'text-danger';}
-                        if ($game_shot_count == 1) {$color_texto = 'text-warning';}
-                        if ($game_shot_count == 2) {$color_texto = 'text-info';}
-                        if ($game_shot_count == 3) {$color_texto = 'text-success';}
+                        if ($game_shot_count == 0) {$color_texto = '#ac1818'; $btn_color = 'btn-danger'; $btn_txt_color = '#ffffff';}
+                        if ($game_shot_count == 1) {$color_texto = '#ec971f'; $btn_color = 'btn-warning'; $btn_txt_color = '#303030';}
+                        if ($game_shot_count == 2) {$color_texto = '#2c7ea1'; $btn_color = 'btn-info'; $btn_txt_color = '#ffffff';}
+                        if ($game_shot_count == 3) {$color_texto = '#5cb85c'; $btn_color = 'btn-success'; $btn_txt_color = '#ffffff';}
                     ?>
-                    <p style="font-size:18px;">Te quedan <?php echo '<strong class="'.$color_texto.'">'.$game_shot_count.'</strong>';?> intentos.</p>
+                    <p style="font-size:18px;">Te quedan <?php echo '<strong style="color:'.$color_texto.'">'.$game_shot_count.'</strong>';?> intentos.</p>
                     <?php
                         if ($game_shot_count == 0) {
                             echo '
@@ -167,7 +169,7 @@
                         } elseif ($game_shot_count > 0) {
                             echo '
                                 <div id="dificultadBtn">
-                                    <button type="submit" id="start" class="btn btn-info btn-lg" style="font-size: 18px; ">Iniciar Juego <i class="fa fa-gamepad"></i> </button>
+                                    <button type="submit" id="start" class="btn '.$btn_color.' btn-lg" style="font-size: 18px; color:'.$btn_txt_color.'">Iniciar Juego <i class="fa fa-gamepad"></i> </button>
                                 </div>
                                 <p class="text-secondary" style="margin-top:15px">Al iniciar el juego se descontará un intento por semana</p>
                             ';
@@ -180,32 +182,22 @@
         <!-- MODAL GUARDAR PARTIDA -->
         <div id="modalScore" class="hide">
             <div class="modal-content">
-                <div class="modal-header"> Guardar puntuación </div>
-                <div id="modal-score-body" class="modal-score-body">
-
-                    <div class='tabla'>
-                        <label class='titlePtos'>Nombre</label>
-                        <label class='titlePtos'>Creditos</label>
-                        <label class='titlePtos'>Vivtorias</label>
-                    </div>
-
-                    <div class="tabla">
-                        <input id="nombreJugador" type="text">
-                        <label id="puntosPartida"></label>
-                        <label id="tiempoPartida"></label>
-                    </div>
-
-                    <div class="tabla footer">
-                        <div></div>
-                        <button id="guardarJugador" class="btn">Guardar</button>
-                        <button id="cancelar" class="btn cancel">Cancelar</button>
-                    </div>
+                <div class="modal-header">
+                    <img src="img/logo.png">
+                </div>
+                <div class="modal-body">
+                    <h2 style="font-size:30px;">¡Felicidades!</h2>
+                    <h3>Has superado el nivel <?php echo $game_level ?></h3>
+                    <h3>Ganaste <span style="font-size:20px; color:#5CB85C;"><strong>3</strong></span> nuevos créditos</h3>
+                    <form action="index.php?player=<?php echo $id_player ?>" name="save_game" method="POST">
+                        <input type="hidden" name="id_player_winner" value="<?php echo $id_player; ?>">
+                        <input type="hidden" name="id_game_winner" value="<?php echo $id_game; ?>">
+                        <button type="submit" id="start" class="btn btn-success btn-lg" style="font-size: 18px;">Siguiente nivel <i class="fa fa-gamepad"></i></button>
+                    </form>
+                    <p class="text-secondary" style="margin-top:15px">Al iniciar el juego se descontará un intento por semana</p>
                 </div>
             </div>
         </div>
-
-
-  
 
         <div id="modalLoose" class="hide">
             <div class="modal-content">
@@ -225,8 +217,6 @@
                 </div>
             </div>
         </div>
-
-        
 
         <!-- MODAL TABLA DE PUNTUACIONES -->
         <div id="modalTableScore" class="hide">

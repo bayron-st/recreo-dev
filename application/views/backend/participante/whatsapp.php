@@ -51,7 +51,7 @@
 
 		<div class="col-md-4">
 
-      <img src="<?php echo base_url('uploads/whatsapp/premios-tipo-c.jpg');?>"/>
+      <img src="<?php echo base_url('uploads/whatsapp/premios-android.jpg');?>"/>
 
 		</div>
 	</div>

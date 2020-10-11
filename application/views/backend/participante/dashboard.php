@@ -99,7 +99,7 @@
 					<H3 class="text-info text-center">CREDITOS REDIMIDOS</H3>
 					<div class="tile-stats tile-aqua" style="padding: 10px;">
 						<div class="num text-center">
-							<?php if($nCreditos4>0){echo $nCreditos4;} else echo '0';?>
+							<?php if($nCreditos4>0){echo $nCreditos4;} else { echo '0';}?>
 							<img src="<?php echo site_url('../uploads/imagen_creditos_gris.png');?>">
 						</div>
 					</div>
@@ -109,7 +109,7 @@
 					<H3 class="text-info text-center">CREDITOS DISPONIBLES</H3>
 					<div class="tile-stats tile-aqua" style="padding: 10px;">
 						<div class="num text-center">
-							<?php if($nCreditos4>0){echo ($nCreditos - $nCreditos4);} else echo '0';?>
+							<?php if($nCreditos>0){echo ($nCreditos - $nCreditos4);} else echo '0';?>
 							<img src="<?php echo site_url('../uploads/imagen_creditos_gris.png');?>">
 						</div>
 					</div>

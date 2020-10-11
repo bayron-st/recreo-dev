@@ -187,6 +187,30 @@
             </div>
         </div>
 
+
+  
+
+        <div id="modalLoose" class="hide">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="img/logo.png"> 
+                </div>
+                <div id="modal-body" class="modal-body">
+                    <h2> Reta tu memoria <br> Tetra Pak&reg; </h2>
+                    <p style="font-size: 18px;">Alcanzaste el tiempo limite</p>
+
+                     <img src="img/triste.png"> 
+                     <br>
+
+                    <div id="dificultadBtn">
+                        <button type="submit" id="start" class="btn btn-info btn-lg" style="font-size: 18px; "> CONTINUAR </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
         <!-- MODAL TABLA DE PUNTUACIONES -->
         <div id="modalTableScore" class="hide">
             <div class="modal-content">

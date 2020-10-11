@@ -41,7 +41,7 @@
 
                 <h3 class="text-center">¿Preparado?... ¡Vamos, muéstranos de que estas hecho!<i class="text-primary"></i></h3>
 
-             <a href="<?php echo 'http://localhost/recreo-dev/parejas-memoria/index.php?player='.$id_participante; ?>" class="btn btn-success btn-lg btn-icon text-center" style="margin-bottom:10px;" >JUGAR<i class="fa fa-gamepad"></i></a>
+             <a href="<?php echo base_url('parejas-memoria/index.php?player='.$id_participante);?>" class="btn btn-success btn-lg btn-icon text-center" style="margin-bottom:10px;" >JUGAR<i class="fa fa-gamepad"></i></a>
 
             </div>
 

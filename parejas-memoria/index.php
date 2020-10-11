@@ -45,10 +45,12 @@
                 $query1="SELECT COUNT(*) as exist_player FROM `game` where id_participante = $id_player";
                 $query2="SELECT * FROM `game` where id_participante = $id_player";
                 $query3="SELECT SUM(CANTIDAD) as nCreditos FROM `creditos` WHERE TIPO = 'JUEGO' and id_participante = $id_player";
+                $query4="UPDATE `game` SET `last_shot` = 'date('Y-m-d')', `game_count` = 'game_count + 1', `game_shot` = 'game_shot + 1', `game_shot_count` = ' game_shot_count - 1' WHERE id_participante = $id_player";
 
                 $consulta1 = mysqli_query($conexion , $query1);
                 $consulta2 = mysqli_query($conexion , $query2);
                 $consulta3 = mysqli_query($conexion , $query3);
+                $consulta4 = mysqli_query($conexion , $query4);
 
                 // Inserta registro de nuevo jugador
                 if ($consulta1) {
@@ -217,6 +219,41 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- MODAL PERDER PARTIDA -->
+        <div id="modalLoose" class="hide">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="img/logo.png"> 
+                </div>
+                <div id="modal-body" class="modal-body">
+                    <h2> Reta tu memoria <br> Tetra Pak&reg; </h2>
+                    <p style="font-size: 18px;">Alcanzaste el tiempo limite</p>
+
+                    <div class="well well-sm hidden-xs">Intentos realizados: <?php echo $game_count;?></div>
+
+                    <div >
+                     <img src="img/png/085-sad.png" width="100" height="100"> 
+                        <br>
+                    </div>
+
+
+                 <form action="index.php?player=<?php echo $id_player?>" name="loose_game" method="POST">
+                                          
+
+                        <div >
+
+     <button  id="start" class="btn btn-info btn-lg" style="font-size: 18px; "> Siguiente intento </button>
+
+    <a class="btn btn-info btn-lg" style="font-size: 18px;  href="participante/dashboard">Mi cuenta</a>
+                        </div>
+
+                 </form>
+                </div>
+            </div>
+        </div>
+
 
         <!-- MODAL TABLA DE PUNTUACIONES -->
         <div id="modalTableScore" class="hide">

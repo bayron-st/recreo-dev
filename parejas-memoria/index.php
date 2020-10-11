@@ -3,8 +3,8 @@
 <?php
 
     $servidor='localhost';
-    $usuario='root';
-    $pass='';
+    $usuario='elrecqcg_admin';
+    $pass='7?0U4O7$9%^FvKzV';
     $bd='elrecqcg_dashboard';
     $conexion = new mysqli($servidor, $usuario, $pass, $bd);
     $conexion->set_charset('utf8');

@@ -1,6 +1,6 @@
 var centesimas = 0;
-var segundos = 59;
-var minutos = 1;
+var segundos = 10;
+var minutos = 0;
 var control;
 
 
@@ -23,17 +23,16 @@ function reinicio() {
     this.segundos = 0;
     this.minutos = 0;
 
-    Segundos.innerHTML = ":59";
-    Minutos.innerHTML = "01";
+    Segundos.innerHTML = ":10";
+    Minutos.innerHTML = "00";
 }
 
-            //bloquearPanel(false);
-            //alert("una tortuga es mas rapida"); 
-           // guardarPuntuacion();
-           
              function cronometro () {
+
                     if((segundos == 60)&&(minutos == -1)){
+
                     reinicio();
+                    partidaPerdida();
                 }
 
                 if(centesimas == 0){
@@ -48,7 +47,7 @@ function reinicio() {
                 }
 
                 centesimas.innerHTML = ":"+centesimas;
-            }
+                 }
 
                 if(centesimas == 99){
 

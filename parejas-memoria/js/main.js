@@ -23,7 +23,7 @@ function grid() {
 function dificultad() {
     switch (this.id) {
         case "start":
-            generarCartas(2, 2, frutas);
+            generarCartas(4, 8, frutas);
             break;
     }
     document.getElementById("modal").setAttribute("class", "hide");

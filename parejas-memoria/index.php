@@ -12,6 +12,8 @@
         echo "Error al conectar la base de datos {$conexion->connect_errno}";
     }
 
+	$host= $_SERVER["HTTP_HOST"];
+
     if (isset($_POST)) {
         if (isset($_POST['go_update_pl'])) {
             $id_player_losser = $_POST['id_player_losser'];
@@ -45,11 +47,12 @@
         // echo 'Nada1';
     }
 
-
     if (!isset($_GET['player'])) {
-        // echo"<script language='javascript'>window.location='https://elrecreoesdetodos.com/dashboard/index.php/participante/juego'</script>;";   
+		if ($host == 'elrecreoesdetodos.com') {
+			echo "<script language='javascript'>window.location='https://elrecreoesdetodos.com/'</script>;";
+		}
     } elseif (isset($_GET['player'])) {
-        
+
         $id_player = $_GET['player'];
         $query1="SELECT COUNT(*) as exist_player FROM `game` where id_participante = $id_player";
         $query2="SELECT * FROM `game` where id_participante = $id_player";

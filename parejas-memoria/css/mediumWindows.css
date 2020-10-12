@@ -1,16 +1,22 @@
 /*VARIABLES*/
+
 :root {
     --gridHeight: 110px;
     --gridWidht: 110px;
 }
 
+
 /* GRID */
+
 .wrapper {
     padding: 2%;
     gap: 22px;
+    grid-auto-rows: 50px;
 }
 
-input[type='image'] {
-    height: var(--gridHeight);
-    width: var(--gridWidht);
+@media only screen and (max-width: 600px) {
+    input[type='image'] {
+        height: var(--gridHeight);
+        width: var(--gridWidht);
+    }
 }

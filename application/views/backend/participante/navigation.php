@@ -23,45 +23,49 @@
 				if($row['id_pais'] == 'EC') {$loc = "ec"; $loc2 = "-ec";}
 				if($row['id_pais'] == 'PE') {$loc = "pe"; $loc2 = "-pe";}
 			?>
+
 			<ul class="navbar-nav pull-sm-left">
-				<li class="has-sub">
-					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/inicio'.$loc2.'/">'; ?>
-						<span class="title">Inicio <i class="fa fa-home"></i></span>
+				
+
+				<li class="<?php if ($page_name == 'dashboard') echo 'active'; ?> ">
+					<a href="<?php echo site_url('participante/dashboard'); ?>">
+						<span>inicio <i class="fa fa-file"></i></span>
 					</a>
-				</li>
-				<li class="has-sub">
-					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/como-participar'.$loc2.'/">'; ?>
-						<span class="title">Cómo participar <i class="fa fa-question"></i></span>
+				</li> 
+
+				<li class="<?php if ($page_name == 'participa') echo 'active'; ?> ">
+					<a href="<?php echo site_url('participante/participa'); ?>">
+						<span>Cómo participar <i class="fa fa-file"></i></span>
 					</a>
-				</li>
-				<!-- <li class="<?php if ($page_name == 'juego') echo 'active';?>">
-					<a id="message">
-						<span>Juego <i class="fa fa-gamepad"></i></span>
-					</a>
-				</li> -->
+				</li> 
+
 				<li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
 					<a href="<?php echo site_url('participante/juego'); ?>">
 						<span>Juego <i class="fa fa-gamepad"></i></span>
 					</a>
 				</li>
-				<li c lass="has-sub">
-					<?php echo '<a href="https://elrecreoesdetodos.com/'.$loc.'/premios'.$loc2.'/">'; ?>
-						<span class="title">Premios <i class="fa fa-gift"></i></span>
+
+				<li class="<?php if ($page_name == 'premios') echo 'active'; ?> ">
+					<a href="<?php echo site_url('participante/premios'); ?>">
+						<span>Premios <i class="fa fa-gamepad"></i></span>
 					</a>
 				</li>
+					
+		
 				<li class="<?php if ($page_name == 'whatsapp') echo 'active'; ?> ">
 					<a href="<?php echo site_url('participante/whatsapp'); ?>">
 						<span>Registrar Compras <i class="fa fa-file"></i></span>
 					</a>
 				</li>
+
 				<li class="<?php if ($page_name == 'redimir') echo 'active'; ?> ">
 					<a href="<?php echo site_url('participante/redimir'); ?>">
 						<span>Redimir <i class="fa fa-tags"></i></span>
 					</a>
 				</li> 
 
-				<li class="has-sub <?php if ($page_name == 'dashboard') echo 'active'; ?>" >
-					<a href="<?php echo site_url('participante/dashboard'); ?>">
+				<li class="has-sub <?php if ($page_name == 'cuenta') echo 'active'; ?>" >
+					<a href="<?php echo site_url('participante/cuenta'); ?>">
 						<span class="title">Mi cuenta <i class="fa fa-user"></i></span>
 					</a>
 				</li>
@@ -70,6 +74,7 @@
 			<?php endforeach;?>
 			<!-- notifications and other links -->
 			<ul class="nav navbar-right pull-right">
+
 				<li class="has-sub">
 					<?php
 						$ID_PARTICIPANTE = $this->session->userdata('login_user_id');

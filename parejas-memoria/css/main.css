@@ -170,6 +170,7 @@ input[type='image'] {
 
 /* MODAL */
 
+
 .modalDialog {
     display: block;
     position: fixed;
@@ -182,9 +183,6 @@ input[type='image'] {
     background-color: rgba(0, 0, 0, .6);
 }
 
-.hide {
-    display: none;
-}
 
 .modal-content {
     width: 60%;
@@ -195,6 +193,20 @@ input[type='image'] {
     display: grid;
     gap: 5px;
 }
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+
+.hide {
+    display: none;
+}
+
+
 
 .modal-header {
     padding-top: 3%;

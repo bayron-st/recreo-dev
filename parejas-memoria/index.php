@@ -3,8 +3,8 @@
 <?php
 
     $servidor='localhost';
-    $usuario='elrecqcg_admin';
-    $pass='7?0U4O7$9%^FvKzV';
+    $usuario='root';
+    $pass='';
     $bd='elrecqcg_dashboard';
     $conexion = new mysqli($servidor, $usuario, $pass, $bd);
     $conexion->set_charset('utf8');
@@ -186,7 +186,7 @@
 
         <!-- MODAL INICIAL ELEGIR DIFICULTAD -->
         <div id="modal" class="modalDialog">
-            <div class="modal-content">
+            <div class="modal-content ">
                 <div class="modal-header">
                     <img src="img/logo.png"> 
                 </div>

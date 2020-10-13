@@ -4280,7 +4280,7 @@ tbody.collapse.in {
     clear: both;
     font-weight: normal;
     line-height: 1.42857143;
-    color: #7d8086;
+    color: #0050b0;
     white-space: nowrap;
 }
 
@@ -5369,8 +5369,8 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 }
 
 .navbar-default {
-    background-color: #fff;
-    border-color: #ebebeb;
+    background-color: #0050b0;
+    border-color: #0050b0;
 }
 
 .navbar-default .navbar-brand {
@@ -5388,19 +5388,19 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 }
 
 .navbar-default .navbar-nav>li>a {
-    color: #777;
+    color: #ffffff;
 }
 
 .navbar-default .navbar-nav>li>a:hover,
 .navbar-default .navbar-nav>li>a:focus {
-    color: #333;
+    color: rgb(219, 211, 211);
     background-color: transparent;
 }
 
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.active>a:focus {
-    color: #555;
+    color: #033f88;
     background-color: #eeeeee;
 }
 
@@ -5438,7 +5438,7 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 
 @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu>li>a {
-        color: #777;
+        color: #ffffff;
     }
     .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {

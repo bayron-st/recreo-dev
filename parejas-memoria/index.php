@@ -3,8 +3,8 @@
 <?php
 
     $servidor='localhost';
-    $usuario='elrecqcg_admin';
-    $pass='7?0U4O7$9%^FvKzV';
+    $usuario='root';
+    $pass='';
     $bd='elrecqcg_dashboard';
     $conexion = new mysqli($servidor, $usuario, $pass, $bd);
     $conexion->set_charset('utf8');
@@ -70,7 +70,7 @@
                 $date_start = date("Y-m-d");
                 $date_end = date("Y-m-d",strtotime($date_start ."+ 1 week"));
                 $new_player ="INSERT INTO `game` (`id_participante`, `game_level`, `date_start`, `date_end`, `last_shot`, `game_count`, `game_shot`, `game_shot_count`, `game_shot_count2`) VALUES ($id_player , '1', '$date_start', '$date_end', '$date_start', '0', '0', '2', '3');";
-                $reg_player = mysqli_query($conexion , $new_player) or die (mysqli_error());
+                $reg_player = mysqli_query($conexion , $new_player) or die (mysqli_error($new_player));
                 if ($reg_player) {
                     $text_msj = "Nuevo jugador registrado con exito";
                 }
@@ -122,9 +122,9 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Reta tu memoria</title>
         <link rel="stylesheet" href="css/main.css" />
-        <link rel="stylesheet" media="(min-width: 1280px) and (max-width: 1400px) and (orientation: landscape)" href="css/mediumWindows.css" />
-        <link rel="stylesheet" media="(min-width: 1024px) and (max-width: 1280px) and (orientation: landscape)" href="css/smallWindows.css" />
         <link rel="stylesheet" media="(max-width: 1024px) or (orientation: portrait)" href="css/verticalWindows.css" />
+        <!-- <link rel="stylesheet" media="(min-width: 1280px) and (max-width: 1400px) and (orientation: landscape)" href="css/mediumWindows.css" /> -->
+        <!-- <link rel="stylesheet" media="(min-width: 1024px) and (max-width: 1280px) and (orientation: landscape)" href="css/smallWindows.css" /> -->
         <!-- CSS PLUGIN INTROJS -->
         <link rel="stylesheet" href="plugin/introJS/introjs.css">
         <!-- ICONOS -->
@@ -169,7 +169,7 @@
                     <div class="well well-sm hidden-xs" style="font-size:20px; color:#333333">Nivel del juego: <?php echo $game_level;?></div>
                     <div class="well well-sm hidden-xs" style="font-size:20px; color:#333333">Intentos realizados: <?php echo $game_count;?></div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 col-xs-12">
                     <div id="wrapper" class="wrapper"></div>
                     <input type="hidden" id="user_level_game" value="<?php echo $game_level; ?>">
                 </div>
@@ -188,7 +188,7 @@
         <div id="modal" class="modalDialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <img src="img/logo.png"> 
+                    <img class="modal-img-header" src="img/logo.png">
                 </div>
                 <div id="modal-body" class="modal-body">
                     <h2 style="font-size:30px;">Tetra Pak&reg;</h2>
@@ -224,7 +224,7 @@
         <div id="modalScore" class="hide">
             <div class="modal-content">
                 <div class="modal-header">
-                    <img src="img/logo.png">
+                    <img class="modal-img-header" src="img/logo.png">
                 </div>
                 <div class="modal-body">
                     <h2 style="font-size:30px;">¡Felicidades!</h2>
@@ -251,7 +251,7 @@
         <div id="modalLoose" class="hide">
             <div class="modal-content">
                 <div class="modal-header">
-                    <img src="img/logo.png">
+                    <img class="modal-img-header" src="img/logo.png">
                 </div>
                 <div class="modal-body">
                     <h2 style="font-size:30px;">¡Lo sentimos!</h2>

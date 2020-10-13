@@ -1,6 +1,21 @@
+<link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css" rel="stylesheet" />
+<link href="//cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.css" rel="stylesheet" />
+
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+
+
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.45/js/bootstrap-datetimepicker.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.45/css/bootstrap-datetimepicker.min.css" />
+
+<link rel="stylesheet" href="<?php echo base_url('assets/js/daterangepicker/daterangepicker-bs3.css');?>">
+
+<script src="<?php echo base_url('assets/js/bootstrap-timepicker.min.js');?>"></script>
 
 
 <link rel="stylesheet" href="<?php echo base_url('assets/js/datatables/responsive/css/datatables.responsive.css');?>">
@@ -8,6 +23,13 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/js/select2/select2.css');?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/js/selectboxit/jquery.selectBoxIt.css');?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/colores.css');?>">
+<!-- fecha rangos -->
+
+<script src="<?php echo base_url('assets/js/daterangepicker/moment.min.js');?>"></script>
+<script src="<?php echo base_url('assets/js/daterangepicker/daterangepicker.js');?>"></script>
+
+
+
 
 	<!-- Bottom Scripts -->
 <script src="<?php echo base_url('assets/js/gsap/main-gsap.js');?>"></script>
@@ -43,15 +65,6 @@
 <script src="<?php echo base_url('assets/js/wysihtml5/bootstrap-wysihtml5.js');?>"></script>
 
 
-<script src="<?php echo base_url('assets/js/sweetalert2.all.min.js');?>"></script>
-<link rel="stylesheet" href="<?php echo base_url('assets/js/sweetalert2.min.css');?>">
-
-<!--Juego-->
-
-<script src="<?php echo base_url('assets/js/scripts.js');?>" type="text/javascript"></script>
-
-
-
 
 
 
@@ -67,10 +80,12 @@
 <?php if ($this->session->flashdata('error_message') != ""):?>
 
 	<script>
-															 swal({
+															 swal.fire({
 																   type: 'error',
 																	 title: 'Oops...',
 																	 text: "<?php echo $this->session->flashdata('error_message'); ?>",
+																	 timer: 10000,
+																	 position: 'center',
 																	 showConfirmButton: false,
 																	 type: 'error'
 															 });
@@ -78,6 +93,8 @@
 													 </script>
 
 <?php endif;?>
+
+
 
 
 <!---  DATA TABLE EXPORT CONFIGURATIONS -->
@@ -94,17 +111,19 @@
 
 </script>
 
+
 <script type="text/javascript">
+		function format(input)
+		{
+		var num = input.value.replace(/\./g,'');
+		if(!isNaN(num)){
+		num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+		num = num.split('').reverse().join('').replace(/^[\.]/,'');
+		input.value = num;
+		}
 
-document.getElementById('message').onclick = function() {
-  swal({
-   title: 'Proximamente',
-   text: "Estamos trabajando para que disfrutes muy pronto esta caracteristica",
-   type: 'warning',
-
-   showCancelButton: true,
-
- })
-};
-
+		else{ alert('Solo se permiten numeros');
+		input.value = input.value.replace(/[^\d\.]*/g,'');
+		}
+		}
 </script>

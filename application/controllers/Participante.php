@@ -35,13 +35,72 @@ class Participante extends CI_Controller
 
     /***asesor DASHBOARD***/
     function dashboard()
+            {
+                if ($this->session->userdata('participante_login') != 1)
+                    redirect(site_url('login'), 'refresh');
+                $page_data['page_name']  = 'dashboard';
+               // $page_data['page_title'] = get_phrase('Inicio Participante');
+                $this->load->view('backend/index', $page_data);
+            }
+
+    function participa()
+          {
+            if ($this->session->userdata('participante_login') != 1)
+                    redirect(base_url(), 'refresh');
+
+            $page_data['page_name']  = 'participa';
+            //$page_data['page_title'] = 'Cómo participar';
+            $this->load->view('backend/index', $page_data);
+          }
+
+    function juego($param1 = '', $param2 = '', $param3 = '')
     {
         if ($this->session->userdata('participante_login') != 1)
             redirect(site_url('login'), 'refresh');
-        $page_data['page_name']  = 'dashboard';
-        $page_data['page_title'] = get_phrase('Inicio Participante');
+
+            if ($param1 == 'create') {
+
+              $data['ID_CREDITO']                  = $this->input->post('ID_CREDITO');
+              $data['ID_USUARIO']              = $this->session->userdata('id_participante');
+              $data['ID_TIENDA']                     = $this->input->post('ID_TIENDA');
+
+              $data['TIPO']                          = $this->input->post('TIPO');
+              $data['CANTIDAD']                      = $this->input->post('CANTIDAD');
+              $data['ARCHIVO']                     = $this->input->post('ARCHIVO');
+
+              $data['FECHA']                   = date("Y-m-d H:i");
+              $data['USUARIO']                     = $this->session->userdata('name');
+
+              $this->db->insert('codigos', $data);
+
+              $this->session->set_flashdata('flash_message' , 'Datos almacenados correctamente');
+
+            }
+
+        $page_data['page_name']  = 'juego';
+        // $page_data['page_title'] = get_phrase('Juego');
         $this->load->view('backend/index', $page_data);
+
     }
+
+    function premios()
+        {
+            if ($this->session->userdata('participante_login') != 1)
+                redirect(site_url('login'), 'refresh');
+            $page_data['page_name']  = 'premios';
+            // $page_data['page_title'] = get_phrase('Premios');
+            $this->load->view('backend/index', $page_data);
+        }
+
+
+    function cuenta()
+        {
+            if ($this->session->userdata('participante_login') != 1)
+                redirect(site_url('login'), 'refresh');
+            $page_data['page_name']  = 'cuenta';
+            // $page_data['page_title'] = get_phrase('Inicio Participante');
+            $this->load->view('backend/index', $page_data);
+        }
 
     function whatsapp()
     {
@@ -51,8 +110,6 @@ class Participante extends CI_Controller
         $page_data['page_title'] = get_phrase('Registra tus compras');
         $this->load->view('backend/index', $page_data);
     }
-
-
 
     function redimir()
               {
@@ -65,7 +122,6 @@ class Participante extends CI_Controller
               }
 
 
-    /***participante DASHBOARD***/
     function redimir_game($param1 = '', $id_participante)
     {
         if ($this->session->userdata('participante_login') != 1)
@@ -118,39 +174,6 @@ class Participante extends CI_Controller
         $this->load->view('backend/index', $page_data);
 
     }
-
-    /***participante DASHBOARD***/
-    function juego($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('participante_login') != 1)
-            redirect(site_url('login'), 'refresh');
-
-            if ($param1 == 'create') {
-
-              $data['ID_CREDITO']     			   = $this->input->post('ID_CREDITO');
-              $data['ID_USUARIO']              = $this->session->userdata('id_participante');
-              $data['ID_TIENDA']     			     = $this->input->post('ID_TIENDA');
-
-              $data['TIPO']     			         = $this->input->post('TIPO');
-              $data['CANTIDAD']     			     = $this->input->post('CANTIDAD');
-              $data['ARCHIVO']     			       = $this->input->post('ARCHIVO');
-
-              $data['FECHA']                   = date("Y-m-d H:i");
-              $data['USUARIO']     			       = $this->session->userdata('name');
-
-              $this->db->insert('codigos', $data);
-
-              $this->session->set_flashdata('flash_message' , 'Datos almacenados correctamente');
-
-            }
-
-        $page_data['page_name']  = 'juego';
-        $page_data['page_title'] = get_phrase('Juego');
-        $this->load->view('backend/index', $page_data);
-
-    }
-
-
 
 
     /******MANAGE OWN PROFILE AND CHANGE PASSWORD***/

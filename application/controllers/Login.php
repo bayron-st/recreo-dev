@@ -50,8 +50,8 @@ class Login extends CI_Controller {
       if ($query->num_rows() > 0) {
           $row = $query->row();
           $this->session->set_userdata('usuario_login', '1');
-          $this->session->set_userdata('id_usuario', $row->id_usuario);
-          $this->session->set_userdata('login_user_id', $row->id_usuario);
+          $this->session->set_userdata('ID_USUARIO', $row->ID_USUARIO);
+          $this->session->set_userdata('login_user_id', $row->ID_USUARIO);
           $this->session->set_userdata('name', $row->name);
           $this->session->set_userdata('last_name', $row->last_name);
           $this->session->set_userdata('login_type', 'usuario');

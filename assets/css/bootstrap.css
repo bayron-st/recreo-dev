@@ -4287,7 +4287,7 @@ tbody.collapse.in {
 .dropdown-menu>li>a:hover,
 .dropdown-menu>li>a:focus {
     text-decoration: none;
-    color: #717379;
+    color: #0050b0;
     background-color: #f5f5f5;
 }
 
@@ -4297,7 +4297,7 @@ tbody.collapse.in {
     color: #fff;
     text-decoration: none;
     outline: 0;
-    background-color: #949494;
+    background-color: #0050b0;
 }
 
 .dropdown-menu>.disabled>a,
@@ -5369,8 +5369,8 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 }
 
 .navbar-default {
-    background-color: #fff;
-    border-color: #ebebeb;
+    background-color: #0050b0;
+    border-color: #0050b0;
 }
 
 .navbar-default .navbar-brand {
@@ -5388,19 +5388,19 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 }
 
 .navbar-default .navbar-nav>li>a {
-    color: #777;
+    color: #ffffff;
 }
 
 .navbar-default .navbar-nav>li>a:hover,
 .navbar-default .navbar-nav>li>a:focus {
-    color: #333;
+    color: rgb(219, 211, 211);
     background-color: transparent;
 }
 
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.active>a:focus {
-    color: #555;
+    color: #033f88;
     background-color: #eeeeee;
 }
 
@@ -5433,12 +5433,12 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 .navbar-default .navbar-nav>.open>a:hover,
 .navbar-default .navbar-nav>.open>a:focus {
     background-color: #eeeeee;
-    color: #555;
+    color: #0050b0;
 }
 
 @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu>li>a {
-        color: #777;
+        color: rgb(255, 255, 255);
     }
     .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
@@ -5448,7 +5448,7 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
     .navbar-default .navbar-nav .open .dropdown-menu>.active>a,
     .navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus {
-        color: #555;
+        color: #0050b0;
         background-color: #eeeeee;
     }
     .navbar-default .navbar-nav .open .dropdown-menu>.disabled>a,

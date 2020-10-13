@@ -23,35 +23,19 @@
 
 </head>
 
-<body class="page-body" >
-
-
-	<center>	<img src="<?php echo base_url('uploads/logo_header.png');?>"/> </center>
-
-	<div class="page-container horizontal-menu sidebar-collapsed">
-
-
+<body class="page-body" style="background-color: #ffffff;">
+	<div class="page-container horizontal-menu sidebar-collapsed" style="padding-top: 5px; background-color:#75bee9">
+		<center><img class="img-responsive" src="<?php echo base_url('uploads/logo_header.png');?>"/></center>
 		<?php include $account_type.'/navigation.php';?>
-
-		<div class="main-content">
-
-
-
-           <h3 style="">
-           	<!-- <i class="entypo-right-circled"></i> -->
-				<?php echo $page_title;?>
-           </h3>
-
-			<?php include $account_type.'/'.$page_name.'.php';?>
-
-			<?php include 'footer.php';?>
-
-		</div>
-		<?php //include 'chat.php';?>
-
-
-    <?php include 'modal.php';?>
-    <?php include 'includes_bottom.php';?>
 	</div>
+	<div class="main-content">
+		<h3>
+			<?php echo $page_title;?>
+		</h3>
+		<?php include $account_type.'/'.$page_name.'.php';?>
+		<?php include 'footer.php';?>
+	</div>
+	<?php //include 'modal.php';?>
+	<?php include 'includes_bottom.php';?>
 </body>
 </html>

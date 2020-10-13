@@ -19,8 +19,6 @@
 	<meta name="description" content="Ekattor School Manager Pro - Creativeitem" />
 	<meta name="author" content="Creativeitem" />
 
-
-
 	<?php include 'includes_top.php';?>
 
 </head>
@@ -40,7 +38,7 @@
 
 
            <h3 style="">
-           	<i class="entypo-right-circled"></i>
+           	<!-- <i class="entypo-right-circled"></i> -->
 				<?php echo $page_title;?>
            </h3>
 

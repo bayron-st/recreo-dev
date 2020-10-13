@@ -78,7 +78,7 @@ class Participante extends CI_Controller
             }
 
         $page_data['page_name']  = 'juego';
-        $page_data['page_title'] = get_phrase('Juego');
+        // $page_data['page_title'] = get_phrase('Juego');
         $this->load->view('backend/index', $page_data);
 
     }
@@ -88,7 +88,7 @@ class Participante extends CI_Controller
             if ($this->session->userdata('participante_login') != 1)
                 redirect(site_url('login'), 'refresh');
             $page_data['page_name']  = 'premios';
-            $page_data['page_title'] = get_phrase('Premios');
+            // $page_data['page_title'] = get_phrase('Premios');
             $this->load->view('backend/index', $page_data);
         }
 

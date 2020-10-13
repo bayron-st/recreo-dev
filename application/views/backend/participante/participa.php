@@ -1,65 +1,43 @@
+<?php
+     $participante	= $this->db->select('*');
+     $participante	= $this->db->from('participantes');
+     $participante	= $this->db->where("ID_PARTICIPANTE",$this->session->userdata('login_user_id'));
+     $participante	= $this->db->get()->result_array();
+     foreach ($participante as $row) {
+          if ($row['ID_PAIS'] == 'CO') {
+               $video_loc = '<iframe width="100%" height="350" src="https://www.youtube.com/embed/0zrb-0BhrWU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+               $img_1 = '<img class="img-responsive center-block" src="'.base_url('uploads/participa/texto_3.png').'">';
+               $img_2 = '<img class="img-responsive center-block" src="'.base_url('uploads/participa/texto_4.png').'">';
+
+          } elseif ($row['ID_PAIS'] == 'EC') {
+               $video_loc = '<iframe width="100%" height="350" src="https://www.youtube.com/embed/zL1awpJ4pg0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+               $img_1 = '<img class="img-responsive center-block" src="'.base_url('uploads/participa/texto_3_ecuador.png').'">';
+               $img_2 = '<img class="img-responsive center-block" src="'.base_url('uploads/participa/texto_4_ecuador.png').'">';
+
+          } elseif ($row['ID_PAIS'] == 'PE') {
+               $video_loc = '<iframe width="100%" height="350" src="https://www.youtube.com/embed/sLCUs_8y8iY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+               $img_1 = '<img class="img-responsive center-block" src="'.base_url('uploads/participa/texto_3_peru.png').'">';
+               $img_2 = '<img class="img-responsive center-block" src="'.base_url('uploads/participa/texto_4_peru.png').'">';
+          }
+     }
+?>
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="row">
-                        <br><br>
-
-                                <?php
-                                  
-                                  $participante	= $this->db->select('*');
-                                  $participante	= $this->db->from('participantes');
-                                  $participante	= $this->db->where("ID_PARTICIPANTE",$this->session->userdata('login_user_id'));
-
-                                  $participante	= $this->db->get()->result_array();
-
-                                  foreach($participante as $row):?>
-
-
-                        
-                    <center> <img  src="<?php echo base_url('uploads/participa/texto_1.png');?>" > </center> <br><br>
-                    
-                            <div class="col-md-12">
-
-                    <?php  if ($row['ID_PAIS'] == "CO") { ?>
-                             <iframe width="100%" height="350" src="https://www.youtube.com/embed/0zrb-0BhrWU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <?php }  elseif ($row['ID_PAIS'] == "EC") {?>
-                             <iframe width="100%" height="350" src="https://www.youtube.com/embed/zL1awpJ4pg0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <?php }  elseif ($row['ID_PAIS'] == "PE") {?>       
-                             <iframe width="100%" height="350" src="https://www.youtube.com/embed/sLCUs_8y8iY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <?php }  ?>      
-
-                            </div>
-					</div>
-				</div>
-			</div>
-        </div>
-        
-
-		<div class="col-md-6">
-			<div class="row">
-
-            
-               <center> <img  src="<?php echo base_url('uploads/participa/texto_2.png');?>" > </center> <br><br>
-                    <div align="center" class="col-md-12">
-
-                    <?php  if ($row['ID_PAIS'] == "CO") { ?>
-                        <img src="<?php echo base_url('uploads/participa/texto_3.png');?>" >
-                         <img src="<?php echo base_url('uploads/participa/texto_4.png');?>" >
-                    <?php }  elseif ($row['ID_PAIS'] == "EC") {?>
-                        <img src="<?php echo base_url('uploads/participa/texto_3_ecuador.png');?>" >
-                         <img src="<?php echo base_url('uploads/participa/texto_4_ecuador.png');?>" >
-                    <?php }  elseif ($row['ID_PAIS'] == "PE") { ?>       
-                        <img src="<?php echo base_url('uploads/participa/texto_3_peru.png');?>" >
-                         <img src="<?php echo base_url('uploads/participa/texto_4_peru.png');?>" >
-                    <?php }  ?>   
-            
-                    <?php endforeach;?>
-                         <img src="<?php echo base_url('uploads/participa/texto_5.png');?>" >
-                         <img src="<?php echo base_url('uploads/participa/texto_6.png');?>" >
-                    </div>
-             </div>
-		</div>
-	</div>
+     <div class="row">
+          <div class="col-md-6 col-xs-12" style="text-align: center;">
+               <div style="padding:20px; background-color: #033F88; margin-bottom: 20px;">
+                    <p style="font-size:26px; color: #ffffff;" class="text-uppercase">¿Cómo participar en nuestra plataforma<br>el recreo es de todos?</p>
+               </div>
+               <?php
+                    echo $video_loc;
+               ?>
+          </div>
+          <div class="col-md-6 col-xs-12">
+               <?php
+                    echo $img_1;
+                    echo $img_2;
+                    echo '<img class="img-responsive center-block" src="'.base_url('uploads/participa/texto_5.png').'">';
+                    echo '<img class="img-responsive center-block" src="'.base_url('uploads/participa/texto_6.png').'">';
+               ?>
+          </div>
+     </div>
 </div>      

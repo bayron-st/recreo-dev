@@ -1,6 +1,6 @@
 <?php
-	$ID_PARTICIPANTE = $this->session->userdata('login_user_id');
-	$query = "SELECT NOMBRES  from 	participantes where ID_PARTICIPANTE = $ID_PARTICIPANTE ";
+	$id_participante = $this->session->userdata('login_user_id');
+	$query = "SELECT NOMBRES  from 	participantes where id_participante = $id_participante ";
 	$query = $this->db->query($query);
 	$data = $query->result_array();
 	foreach($data as $row){
@@ -29,7 +29,7 @@
 			</li>
 			<li class="<?php if ($page_name == 'participa') echo 'active'; ?> ">
 				<a href="<?php echo site_url('participante/participa'); ?>">
-					<span>Cómo participar <i class="fa fa-file"></i></span>
+					<span>Cómo participar <i class="fa fa-question"></i></span>
 				</a>
 			</li>
 			<li class="<?php if ($page_name == 'juego') echo 'active'; ?> ">
@@ -47,7 +47,7 @@
 			<li class="dropdown" style="margin-right: 10px;">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $nameUser ?><b class="caret"></b></a>
 				<ul class="dropdown-menu" style="font-size:16px !important;">
-					<li  <?php if ($page_name == 'cuenta') echo 'active'; ?>">
+					<li class="<?php if ($page_name == 'cuenta') echo 'active'; ?>">
 						<a href="<?php echo site_url('participante/cuenta'); ?>">
 							<span class="title"> Mi cuenta <i class="fa fa-user"> </i> </span>
 						</a>

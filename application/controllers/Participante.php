@@ -98,7 +98,7 @@ class Participante extends CI_Controller
             if ($this->session->userdata('participante_login') != 1)
                 redirect(site_url('login'), 'refresh');
             $page_data['page_name']  = 'cuenta';
-            $page_data['page_title'] = get_phrase('Inicio Participante');
+            // $page_data['page_title'] = get_phrase('Inicio Participante');
             $this->load->view('backend/index', $page_data);
         }
 

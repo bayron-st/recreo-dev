@@ -35,5 +35,6 @@ $running_year 		=   $this->db->get_where('settings', array('type' => 'running_ye
 			</div>
 		</div>
 		<?php include 'includes_bottom.php'; ?>
+		<?php include 'modal.php';?>
 	</body>
 </html>

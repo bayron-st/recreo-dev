@@ -1,5 +1,8 @@
 <?php
 $id_participante = $this->session->userdata('login_user_id');
+$query0 = "SELECT * FROM `participantes` WHERE ID_PARTICIPANTE = $id_participante";
+$query0 = $this->db->query($query0);
+$data0 = $query0->result_array();
 
 $query = "SELECT sum(CANTIDAD) as nCreditos FROM `creditos` WHERE id_participante = $id_participante";
 $query = $this->db->query($query);
@@ -24,7 +27,9 @@ $query5 = $this->db->query($query5);
 $data5 = $query5->result_array();
 $data5b = $query5->num_rows();
 
-
+foreach ($data0 as $row0) {
+    $countryUser = $row0['ID_PAIS'];
+}
 foreach ($data as $row) {
     $nCreditos = $row['nCreditos'];
 }
@@ -101,7 +106,7 @@ if (($nCreditos - $nCanjes) < 36) {
         </div>
 
         <div class="well bg-danger">
-            <h3 class="text-center">Pines para Netflix <i class="fa fa-tags"></i></h3>
+            <h3 class="text-center"><?php if($countryUser == 'EC' || $countryUser == 'PE'){ echo 'Cuentas';} else {echo 'Pines';}?> para Netflix <i class="fa fa-tags"></i></h3>
             <p style="font-size:20px; margin-bottom: 30px;" class="text-center">
                 Con tus créditos podrás solicitar pines para Netflix.<br>Estos te serán acreditados en un plazo máximo de hasta 72 horas
             </p>
@@ -125,7 +130,7 @@ if (($nCreditos - $nCanjes) < 36) {
         </div>
 
         <div class="well bg-success">
-            <h3 class="text-center">Pines para Spotify <i class="fa fa-tags"></i></h3>
+            <h3 class="text-center"><?php if($countryUser == 'EC' || $countryUser == 'PE'){ echo 'Cuentas';} else {echo 'Pines';}?> para Spotify <i class="fa fa-tags"></i></h3>
             <p style="font-size:20px; margin-bottom: 30px;" class="text-center">
                 Con tus créditos podrás solicitar pines para Spotify.<br>Estos te serán acreditados en un plazo máximo de hasta 72 horas
             </p>

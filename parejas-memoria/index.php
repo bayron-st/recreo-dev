@@ -277,13 +277,14 @@
                             if ($game_shot_count2 == 0) {
                                 echo '
                                     <p class="text-danger" style="font-size:20px"><strong>Has alcanzado el límite de intentos por semana</strong></p>
-                                    <a href="https://elrecreoesdetodos.com/dashboard/index.php/participante/dashboard" class="btn btn-info btn-lg" style="font-size: 18px;">Regresar a mi cuenta <i class="fa fa-user"></i></a>
+                                    <a href="https://elrecreoesdetodos.com/dashboard/index.php/participante/juego" class="btn btn-info btn-lg" style="font-size: 18px;">Regresar a mi cuenta <i class="fa fa-user"></i></a>
                                 ';
                             }
                             if ($game_shot_count2 > 0) {
                                 echo '
                                     <div id="dificultadBtn">
                                         <button type="submit" id="start" class="btn '.$btn_color.' btn-lg" style="font-size: 18px; color:'.$btn_txt_color.'">Iniciar Juego <i class="fa fa-gamepad"></i> </button>
+                                        <a href="https://elrecreoesdetodos.com/dashboard/index.php/participante/juego" class="btn btn-info btn-lg" style="font-size: 18px;">Regresar a mi cuenta <i class="fa fa-user"></i></a>
                                     </div>
                                     <p class="text-secondary" style="margin-top:15px">Al iniciar el juego se descontará un intento.</p>
                                 ';
@@ -302,13 +303,14 @@
                             if ($game_shot_count2 == 0) {
                                 echo '
                                     <p class="text-danger" style="font-size:20px"><strong>Has alcanzado el límite de intentos por semana</strong></p>
-                                    <a href="https://elrecreoesdetodos.com/dashboard/index.php/participante/dashboard" class="btn btn-info btn-lg" style="font-size: 18px;">Regresar a mi cuenta <i class="fa fa-user"></i></a>
+                                    <a href="https://elrecreoesdetodos.com/dashboard/index.php/participante/juego" class="btn btn-info btn-lg" style="font-size: 18px;">Regresar a mi cuenta <i class="fa fa-user"></i></a>
                                     <p style="font-size:18px; margin-top: 15px;">Regresa de nuevo la próxima semana para tener<br>más intentos y nuevas oportunidades de ganar créditos.</p>
                                 ';
                             } elseif ($game_shot_count2 > 0) {
                                 echo '
                                     <div id="dificultadBtn">
                                         <button type="submit" id="start" class="btn '.$btn_color.' btn-lg" style="font-size: 18px; color:'.$btn_txt_color.'">Iniciar siguiente Juego <i class="fa fa-gamepad"></i> </button>
+                                        <a href="https://elrecreoesdetodos.com/dashboard/index.php/participante/juego" class="btn btn-info btn-lg" style="font-size: 18px;">Regresar a mi cuenta <i class="fa fa-user"></i></a>
                                     </div>
                                     <p class="text-secondary" style="margin-top:15px">Al iniciar el juego se descontará un intento.</p>
                                 ';
@@ -328,12 +330,13 @@
                             if ($game_shot_count2 == 0) {
                                 echo '
                                     <p class="text-danger" style="font-size:20px"><strong>Has alcanzado el límite de intentos por semana</strong></p>
-                                    <a href="https://elrecreoesdetodos.com/dashboard/index.php/participante/dashboard" class="btn btn-info btn-lg" style="font-size: 18px;">Regresar a mi cuenta <i class="fa fa-user"></i></a>
+                                    <a href="https://elrecreoesdetodos.com/dashboard/index.php/participante/juego" class="btn btn-info btn-lg" style="font-size: 18px;">Regresar a mi cuenta <i class="fa fa-user"></i></a>
                                 ';
                             } elseif ($game_shot_count2 > 0) {
                                 echo '
                                     <div id="dificultadBtn">
                                         <button type="submit" id="start" class="btn '.$btn_color.' btn-lg" style="font-size: 18px; color:'.$btn_txt_color.'">Nuevo intento <i class="fa fa-gamepad"></i> </button>
+                                        <a href="https://elrecreoesdetodos.com/dashboard/index.php/participante/juego" class="btn btn-info btn-lg" style="font-size: 18px;">Regresar a mi cuenta <i class="fa fa-user"></i></a>
                                     </div>
                                     <p class="text-secondary" style="margin-top:15px">Al iniciar el juego se descontará un intento.</p>
                                 ';

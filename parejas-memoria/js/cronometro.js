@@ -57,12 +57,19 @@ function reinicio() {
     Minutos.innerHTML = min_level;
 }
 
+function save_game_over() {
+    // alert("Formulario enviado desde Java Script");
+    document.getElementById('save_game_over').submit();
+}
+
+
 function cronometro() {
 
     if ((segundos == 60) && (minutos == -1)) {
 
         reinicio();
-        partidaPerdida();
+        save_game_over();
+        // partidaPerdida();
     }
 
     if (centesimas == 0) {

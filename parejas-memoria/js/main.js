@@ -50,6 +50,12 @@ function generarCartas(valorDificultad, numImg, tematica) {
     parentElement.style.setProperty('--colNum', valorDificultad);
 }
 
+
+function save_game_won() {
+    // alert("Formulario enviado desde Java Script");
+    document.getElementById('save_game_won').submit();
+}
+
 function carta(contenedor, img, numImg) {
     let carta = document.createElement('DIV');
     carta.setAttribute("class", "carta");
@@ -80,7 +86,8 @@ function carta(contenedor, img, numImg) {
 
             if (parejasAcertadas.length == numImg) {
                 cronometrar();
-                guardarPuntuacion(); //Función del fichero modalScore.js
+                save_game_won(); //Guardar informacion del juego
+                // guardarPuntuacion(); //Función del fichero modalScore.js
             }
         }
     }

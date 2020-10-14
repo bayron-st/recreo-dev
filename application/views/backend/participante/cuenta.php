@@ -62,11 +62,11 @@ foreach ($data5 as $row5) {
 				<div class="col-sm-8">
 					<blockquote class="blockquote-default">
 						<p>Recuerda que cada producto en envase Tetra Pak&reg; que registres equivale a un crédito, entre más compras acumules,
-							mayor opoertunidad tendrás de redimir y ganar nuestros fabulosos premios.</p>
+							mayor oportunidad tendrás de redimir y ganar nuestros fabulosos premios.</p>
 					</blockquote>
 				</div>
 				<div class="col-sm-4">
-					<img src="<?php echo site_url('../uploads/img-tetrapakr.png'); ?>" alt="img-tp" width="100%">
+					<img class="img-responsive center-block" src="<?php echo site_url('../uploads/img-tetrapakr.png'); ?>" alt="img-tp">
 				</div>
 			</div>
 		</div>

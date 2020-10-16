@@ -122,7 +122,7 @@ class Participante extends CI_Controller
               }
 
 
-    function redimir_game($param1 = '', $id_participante)
+    function redimir_pin($param1 = '', $id_participante)
     {
         if ($this->session->userdata('participante_login') != 1)
             redirect(site_url('login'), 'refresh');
@@ -154,7 +154,7 @@ class Participante extends CI_Controller
                     $this->db->update('codigos' , $data2);
 
                     $date_reg = date('Y-m-d');
-                    $sql2 = "INSERT INTO `canjes` (`ID_PARTICIPANTE`, `ID_CODIGO`, `CANTIDAD`, `FECHA`, `USUARIO`) VALUES ($id_participante, '$new_idlcode', '6', '$date_reg', 'SYSTEM');";
+                    $sql2 = "INSERT INTO `canjes` (`ID_PARTICIPANTE`, `ID_CODIGO`, `CANTIDAD`, `TIPO_CANJE`, `STATUS`, `FECHA`, `USUARIO`) VALUES ($id_participante, '$new_idlcode', '6', 'JUEGO', 'APR-AUTO', '$date_reg', 'SYSTEM');";
                     $query2 = $this->db->query($sql2);
                     
                     if ($query2) {
@@ -168,6 +168,31 @@ class Participante extends CI_Controller
                 }
 
             }
+            
+            if ($param1 == 'netflix') {
+                $date_reg = date('Y-m-d');
+                $sql3 = "INSERT INTO `canjes` (`ID_PARTICIPANTE`, `ID_CODIGO`, `CANTIDAD`, `TIPO_CANJE`, `STATUS`, `FECHA`, `USUARIO`) VALUES ($id_participante, '$new_idlcode', '36', 'NETFLIX', 'PROCESO', '$date_reg', 'SYSTEM');";
+                $query3 = $this->db->query($sql3);
+                if ($query3) {
+                    $this->session->set_flashdata('flash_message' ,'Tu solicitud se ha enviado exitosamente.');
+                    redirect(site_url('participante/redimir'), 'refresh');
+                } else {
+                    $this->session->set_flashdata('error_message' , 'No pudimos enviar tu solicitud :( ... Error C002');
+                }
+            }
+
+            if ($param1 == 'spotify') {
+                $date_reg = date('Y-m-d');
+                $sql3 = "INSERT INTO `canjes` (`ID_PARTICIPANTE`, `ID_CODIGO`, `CANTIDAD`, `TIPO_CANJE`, `STATUS`, `FECHA`, `USUARIO`) VALUES ($id_participante, '$new_idlcode', '36', 'SPOTIFY', 'PROCESO', '$date_reg', 'SYSTEM');";
+                $query3 = $this->db->query($sql3);
+                if ($query3) {
+                    $this->session->set_flashdata('flash_message' ,'Tu solicitud se ha enviado exitosamente.');
+                    redirect(site_url('participante/redimir'), 'refresh');
+                } else {
+                    $this->session->set_flashdata('error_message' , 'No pudimos enviar tu solicitud :( ... Error C002');
+                }
+            }
+
 
         $page_data['page_name']  = 'redimir';
         // $page_data['page_title'] = get_phrase('Juego');

@@ -168,6 +168,7 @@ class Participante extends CI_Controller
                 }
 
             }
+            
             if ($param1 == 'netflix') {
                 $date_reg = date('Y-m-d');
                 $sql3 = "INSERT INTO `canjes` (`ID_PARTICIPANTE`, `ID_CODIGO`, `CANTIDAD`, `TIPO_CANJE`, `STATUS`, `FECHA`, `USUARIO`) VALUES ($id_participante, '$new_idlcode', '36', 'NETFLIX', 'PROCESO', '$date_reg', 'SYSTEM');";

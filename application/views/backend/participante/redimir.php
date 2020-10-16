@@ -71,9 +71,9 @@ if (($nCreditos - $nCanjes) < 6) {
 if (($nCreditos - $nCanjes) < 36) {
     $btn2 = '<button class="btn btn-primary btn-lg btn-icon disabled" style="margin-bottom:10px;" disabled>Solicitar nuevo PIN de Netflix <i class="fa fa-tags"></i></button>';
     $btn3 = '<button class="btn btn-primary btn-lg btn-icon disabled" style="margin-bottom:10px;" disabled>Solicitar nuevo PIN de Spotify <i class="fa fa-tags"></i></button>';
-} elseif (($nCreditos - $nCanjes) >= 6) {
+} elseif (($nCreditos - $nCanjes) >= 36) {
     $btn2 = '<button class="btn btn-danger btn-lg btn-icon" style="margin-bottom:20px;">Solicitar nuevo PIN de Netflix <i class="fa fa-tags"></i></button>';
-    $btn2 = '<button class="btn btn-success btn-lg btn-icon" style="margin-bottom:20px;">Solicitar nuevo PIN de Spotify <i class="fa fa-tags"></i></button>';
+    $btn3 = '<button class="btn btn-success btn-lg btn-icon" style="margin-bottom:20px;">Solicitar nuevo PIN de Spotify <i class="fa fa-tags"></i></button>';
 }
 ?>
 <div class="row">

@@ -125,7 +125,7 @@
 					?>
 				</div>
 			</div>
-    		<div class="image-area"></div>
+    		<div class="image-area img-responsive "></div>
 			<?php echo form_close();?>
 		</div>
 

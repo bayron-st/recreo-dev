@@ -71,3 +71,15 @@
         }
     }
 </script>
+
+
+<script
+  src="<?php echo base_url('assets/js/sdk.min.js');?>" 
+  onload="indigitall.init({
+    appKey: '7d59b282-0882-4e39-9cf7-643d6a42f293',
+    workerPath: '<?php echo base_url('assets/js/worker.min.js');?>',
+  })"
+  async>
+
+  
+</script>

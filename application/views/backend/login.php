@@ -85,7 +85,7 @@
 					</form>
 				</div>
 			</div>
-			<div class="image-area"></div>
+			<div class="image-area img-responsive"></div>
 		</div>
 		<script src="<?php echo base_url('assets/login_page/js/vendor/jquery-1.12.0.min.js');?>"></script>
 		<script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>

@@ -32,8 +32,8 @@
 		<div class="main-content-wrapper">
 			<div class="login-area">
 				
-				<div class="login-header">
-					<img src="<?php echo base_url('assets/login_page/img/logo.png');?>" width="60%" max-width="200px" alt="">
+				<div align="center" class="login-header">
+					<img class="img-responsive" src="<?php echo base_url('assets/login_page/img/logo.png');?>" width="60%" max-width="200px" alt="">
 					<h2 class="title"><?php echo $system_name; ?></h2>
 					<p>* Para registrarte debes ser mayor de edad.</p>
 				</div>
@@ -125,7 +125,13 @@
 					?>
 				</div>
 			</div>
-    		<div class="image-area img-responsive "></div>
+    		<div  style="display: table; height: 100%; background: #003d8b;" class="image-area">
+
+					<div style="display: table-cell; height: 100%; vertical-align: middle;"> 
+						<img  class="img-responsive center-block" src="<?php echo base_url('assets/login_page/img/bg.png');?>" alt="">
+					</div>
+				</div> 
+				
 			<?php echo form_close();?>
 		</div>
 

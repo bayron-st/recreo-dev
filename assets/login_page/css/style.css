@@ -61,11 +61,13 @@ a {
     overflow-y: scroll;
 }
 
-.image-area {
+
+/*.image-area {
+    width: 100%;
     background-image: url(../img/bg.png);
     background-size: cover;
     background-position: center;
-}
+}*/
 
 .image-area.forgot-pass {
     background-image: url(../img/bg.png);

@@ -43,9 +43,9 @@
     <body>
 		<div class="main-content-wrapper">
 			<div class="login-area">
-				<div class="login-header">
+				<div align="center" class="login-header">
 					<a href="<?php echo site_url('login');?>" class="logo">
-						<img src="<?php echo base_url('assets/login_page/img/logo.png');?>"  alt="">
+						<img class="img-responsive" src="<?php echo base_url('assets/login_page/img/logo.png');?>"  alt="">
 					</a>
 					<h2 class="title"><?php echo $system_name; ?></h2>
 				</div>
@@ -62,6 +62,9 @@
 					}
 					if ($loc != 'w' && $loc == 'pe') {
 						echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=pe') .'" class="link" >Registrate</a>';
+					}
+					if (!isset($_GET['loc'])) {
+						echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=co') .'" class="link" >Registrate</a>';
 					}
 				?>
 
@@ -85,7 +88,12 @@
 					</form>
 				</div>
 			</div>
-			<div class="image-area img-responsive"></div>
+				<div  style="display: table; height: 100%; background: #003d8b;" class="image-area">
+
+					<div style="display: table-cell; height: 100%; vertical-align: middle;"> 
+						<img  class="img-responsive center-block" src="<?php echo base_url('assets/login_page/img/bg.png');?>" alt="">
+					</div>
+				</div> 
 		</div>
 		<script src="<?php echo base_url('assets/login_page/js/vendor/jquery-1.12.0.min.js');?>"></script>
 		<script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>

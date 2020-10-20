@@ -124,7 +124,7 @@ class Login extends CI_Controller {
 
                 $data['nombres']          = $this->input->post('nombres');
                 $data['apellidos']        = $this->input->post('apellidos');
-                $data['ID_PAIS']          = $this->input->post('ID_PAIS');
+                // $data['ID_PAIS']          = $this->input->post('ID_PAIS');
                 $data['identificacion']   = $this->input->post('identificacion');
                 $data['ANO_NACIMIENTO']   = $this->input->post('ANO_NACIMIENTO');
                 $data['telefono']         = $this->input->post('telefono');
@@ -133,11 +133,21 @@ class Login extends CI_Controller {
                 $data['fecha']            = date("Y-m-d");
                 
                 $identificacion = $data['identificacion'];
-                $id_pais = $data['ID_PAIS'];
+                $id_pais = $this->input->post('ID_PAIS');
+                $id_pais_get = $this->input->post('ID_PAIS_GET');
                 
-                if ($id_pais == 'CO') {$data['TIPO_DOCUMENTO'] = 'CC';}
-                if ($id_pais == 'EC') {$data['TIPO_DOCUMENTO'] = 'DNI';}
-                if ($id_pais == 'PE') {$data['TIPO_DOCUMENTO'] = 'DNI';}
+                if ($id_pais != '' || isset($id_pais)) {
+                    if ($id_pais == 'CO') {$data['TIPO_DOCUMENTO'] = 'CC'; $data['ID_PAIS'] = 'CC';}
+                    if ($id_pais == 'EC') {$data['TIPO_DOCUMENTO'] = 'DNI'; $data['ID_PAIS'] = 'DNI';}
+                    if ($id_pais == 'PE') {$data['TIPO_DOCUMENTO'] = 'DNI'; $data['ID_PAIS'] = 'DNI';}
+                } elseif ($id_pais == '' || !isset($id_pais)) {
+                    if ($id_pais_get == 'CO') {$data['TIPO_DOCUMENTO'] = 'CC'; $data['ID_PAIS'] = 'CC';}
+                    if ($id_pais_get == 'EC') {$data['TIPO_DOCUMENTO'] = 'DNI'; $data['ID_PAIS'] = 'DNI';}
+                    if ($id_pais_get == 'PE') {$data['TIPO_DOCUMENTO'] = 'DNI'; $data['ID_PAIS'] = 'DNI';}
+                } else {
+                    $data['TIPO_DOCUMENTO'] = 'CC';
+                    $data['ID_PAIS'] = 'CC';
+                }
 
                 $array = array('identificacion' => $identificacion, 'id_pais' => $id_pais);
                 $query = $this->db->get_where('participantes',$array);

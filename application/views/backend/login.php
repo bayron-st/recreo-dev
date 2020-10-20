@@ -63,10 +63,11 @@
 					if ($loc != 'w' && $loc == 'pe') {
 						echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=pe') .'" class="link" >Registrate</a>';
 					}
-					if (!isset($_GET['loc'])) {
+					if (!isset($_GET['loc']) || $_GET['loc'] == '') {
 						echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=co') .'" class="link" >Registrate</a>';
 					}
-				?><center>
+				?>
+				<center>
 					<div style="height:20px; width:230px; margin-bottom: 40px;; background-color: transparent;box-shadow:0px 10px 11px -7px rgba(0,0,0,0.7);;"></div>
 				</center>
 				<!-- <hr style="margin-left:30px; margin-right: 30px; border-top: 1px solid transparent; "> -->

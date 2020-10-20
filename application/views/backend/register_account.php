@@ -46,12 +46,13 @@
 						echo form_open(site_url('login/register/create') , array('enctype' => 'multipart/form-data'));
 					?>
 					<div class="form-group">
-						<select name="ID_PAIS" class="form-control selectboxit" require>
-							<option value="<?php echo strtoupper($_GET['loc']);?>">SELECIONAR PAIS</option>
+						<select name="ID_PAIS" class="form-control selectboxit" required>
+							<option value="">SELECIONAR PAIS</option>
 							<option value="CO"><?php echo 'COLOMBIA';?></option>
 							<option value="EC"><?php echo 'ECUADOR';?></option>
 							<option value="PE"><?php echo 'PERU';?></option>
 						</select>
+						<input type="hidden" name="ID_PAIS_GET" value="<?php echo strtoupper($_GET['loc']);?>">
 					</div>
 
 					<div class="form-group">

@@ -12,6 +12,21 @@
 	}
 ?>
 
+
+<?php 
+	 $loc2 = $_GET['loc'];
+    if ($loc2 == 'co') {
+		$video_promo = '<iframe width="560" height="315" src="https://www.youtube.com/embed/0zrb-0BhrWU?autoplay=1&amp;mute=1"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    } elseif ($loc2 == 'ec') {
+        $video_promo = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zL1awpJ4pg0?autoplay=1&amp;mute=1"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';     
+    } elseif ($loc2 == 'pe') {
+        $video_promo = '<iframe width="560" height="315" src="https://www.youtube.com/embed/sLCUs_8y8iY?autoplay=1&amp;mute=1"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';      
+	}
+	elseif($loc2 == "" || !isset($_GET['loc'])){
+		$video_promo = '<iframe width="560" height="315" src="https://www.youtube.com/embed/0zrb-0BhrWU?autoplay=1&amp;mute=1"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+	}
+?>
+
 <html class="no-js" lang="">
 	<head>
 		<meta charset="utf-8">
@@ -21,6 +36,8 @@
 		</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link rel="shortcut icon" href="<?php echo base_url('assets/login_page/img/favicon.png');?>">
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css');?>">
 		<link rel="stylesheet" href="<?php echo base_url('assets/login_page/css/font-awesome.min.css');?>">
@@ -40,7 +57,7 @@
 			}
       	</style>
     </head>
-    <body style="background-color: #033f88;">
+	<body style="background-color: #033f88;">
 		<div class="main-content-wrapper" style="display:table;">
 			<div class="login-area" style="display: table-cell; vertical-align:middle;">
 				<div align="center" class="login-header">
@@ -170,3 +187,30 @@
 
     </body>
 </html>
+			
+			<div id="myModal" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">   
+						<div class="modal-body">
+							<div  class="modal-body">
+								<div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+									<?php
+										echo $video_promo;
+									?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+			<script>
+				
+				jQuery.noConflict();
+				$(window).on('load',function(){
+					var delayMs = 500;
+					setTimeout(function(){
+						$('#myModal').modal('show');
+					}, delayMs);
+				})(jQuery);    
+			</script>

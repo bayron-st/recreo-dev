@@ -1,4 +1,3 @@
-
 <?php 
     $participante	= $this->db->select('*');
     $participante	= $this->db->from('participantes');
@@ -8,13 +7,13 @@
         $userCountry = $row['ID_PAIS'];
     }
     if ($userCountry == 'CO') {
-        $video_promo = '<iframe width="560" height="315" src="https://www.youtube.com/embed/0zrb-0BhrWU?autoplay=1&amp;mute=1"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        //$video_promo = '<iframe width="560" height="315" src="https://www.youtube.com/embed/0zrb-0BhrWU?autoplay=1&amp;mute=1"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
         $img3 = '<img class="img-responsive center-block" src="'.base_url('uploads/inicio/texto_1.png').'">';
     } elseif ($userCountry == 'EC') {
-        $video_promo = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zL1awpJ4pg0?autoplay=1&amp;mute=1"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        //$video_promo = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zL1awpJ4pg0?autoplay=1&amp;mute=1"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
         $img3 = '<img class="img-responsive center-block" src="'.base_url('uploads/inicio/texto_1_ecuador.png').'">';
     } elseif ($userCountry == 'PE') {
-        $video_promo = '<iframe width="560" height="315" src="https://www.youtube.com/embed/sLCUs_8y8iY?autoplay=1&amp;mute=1"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        //$video_promo = '<iframe width="560" height="315" src="https://www.youtube.com/embed/sLCUs_8y8iY?autoplay=1&amp;mute=1"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
         $img3 = '<img class="img-responsive center-block" src="'.base_url('uploads/inicio/texto_1_peru.png').'">';
     }
 ?>
@@ -33,27 +32,4 @@
     </div>
 </div>
 
-<div id="myModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">   
-            <div class="modal-body">
-                <div  class="modal-body">
-                    <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
-                        <?php
-                            echo $video_promo;
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<script>
-    $(window).on('load',function(){
-        var delayMs = 500;
-        setTimeout(function(){
-            $('#myModal').modal('show');
-        }, delayMs);
-    });    
-</script>

@@ -127,7 +127,14 @@
                     $game_shot_count2 = $datos2['game_shot_count2'];
                     $custom_day = date('Y-m-d');
 
-                    //Si la fecha de juego es mayor a la fecha final del rango semanal, se realiza actualizacion de rangos nivel* y contadores
+                    //Si la fecha se encuentra entre date_start y date_end
+                    if ((strtotime($custom_day) >= strtotime($game_start)) && (strtotime($custom_day) <= strtotime($game_end))) {
+                        $update_last_shot = "UPDATE `game` SET `last_shot` = '$custom_day' WHERE id_participante = $id_player and id_game = $id_game";
+                        mysqli_query($conexion , $update_last_shot);
+                    }
+
+                    //Si la fecha de juego es mayor a la fecha final del rango semanal, 
+                    //se realiza actualizacion de rangos nivel y contadores
                     if (strtotime($custom_day) > strtotime($game_end)) {
 
                         //Se realiza el recalculo del nuevo rango semanal que tendrá permitido el participante para jugar
@@ -139,17 +146,33 @@
                         if (date('D')=='Sun') {
                             $week_end = date('Y-m-d');
                         } else {
-                            $week_end = strtotime('next Sunday', time());
+                            $week_end = date('Y-m-d', strtotime('next Sunday', time()));
                         }
 
-                        /* Si para cuando se realice la recarga de intentos, el participante se encuentra en el nive 1 o 2, 
-                        este sera persistido, si está en 3 se reiniciará al nivel 1 */
-                        if ($game_level == 3) {
-                            $game_level = 1;
-                        }
-                        $reset_shots = "UPDATE `game` SET `game_level` = $game_level, `date_start` = $week_start, `date_end` = $week_end, `last_shot_status` = '0', `game_count` = '0', `game_shot` = '0', `game_shot_count` = '2', `game_shot_count2` = '3' WHERE id_participante = $id_player_winner and id_game = $id_game_winner";
+                        $reset_shots = "UPDATE `game` SET `game_level` = '1', `date_start` = '$week_start', `date_end` = '$week_end',
+                        `last_shot` = '$custom_day', `last_shot_status` = '0', `game_shot` = '0', `game_shot_count` = '2', `game_shot_count2` = '3' 
+                        WHERE id_participante = $id_player and id_game = $id_game";
                         mysqli_query($conexion , $reset_shots);
+                        // echo $reset_shots;
 
+                        $query2b="SELECT * FROM `game` where id_participante = $id_player";
+                        $consulta2b = mysqli_query($conexion , $query2b);
+
+                        if ($consulta2b) {
+                            //Load user data into vars
+                            $datos2b = mysqli_fetch_assoc($consulta2b);
+                            $id_game = $datos2b['id_game'];
+                            $game_level = $datos2b['game_level'];
+                            $game_start = $datos2b['date_start'];
+                            $game_end = $datos2b['date_end'];
+                            $last_shot = $datos2b['last_shot'];
+                            $last_shot_status = $datos2b['last_shot_status'];
+                            $game_count = $datos2b['game_count'];
+                            $game_shot = $datos2b['game_shot'];
+                            $game_shot_count = $datos2b['game_shot_count'];
+                            $game_shot_count2 = $datos2b['game_shot_count2'];
+                            $custom_day = date('Y-m-d');
+                        }
                     }
                 }
             }

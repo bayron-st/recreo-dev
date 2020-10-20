@@ -31,13 +31,11 @@
     <body>
 		<div class="main-content-wrapper">
 			<div class="login-area">
-				
 				<div align="center" class="login-header">
 					<img class="img-responsive" src="<?php echo base_url('assets/login_page/img/logo.png');?>" width="60%" max-width="200px" alt="">
 					<h2 class="title"><?php echo $system_name; ?></h2>
 					<p>* Para registrarte debes ser mayor de edad.</p>
 				</div>
-
 				<div class="login-content">
 					<?php 
 						if (isset($_GET['reg'])) {
@@ -94,22 +92,23 @@
 					</div>
 
 					<div class="form-group">
-					<?php
-						$loc = "w";
-						$loc = strtolower($_GET['loc']);
-						if ($loc != 'w' && $loc == 'co') {
-							echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Colombia-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
-						}
-						if ($loc != 'w' && $loc == 'ec') {
-							echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Ecuador-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
-						}
-						if ($loc != 'w' && $loc == 'pe') {
-							echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Peru-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
-						}
-					?>
+						<?php
+							$loc = "w";
+							$loc = strtolower($_GET['loc']);
+							if ($loc != 'w' && $loc == 'co') {
+								echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Colombia-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
+							}
+							if ($loc != 'w' && $loc == 'ec') {
+								echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Ecuador-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
+							}
+							if ($loc != 'w' && $loc == 'pe') {
+								echo '<input type="checkbox" name="aceptar" value="ACEPTO" required> Aceptar <a style="text-decoration: underline; color:#ffffff" href="https://elrecreoesdetodos.com/TYC/dashboard/Peru-T&C.pdf" target="_blank" style="color:white">terminos y condiciones.</a>';
+							}
+						?>
 					</div>
             		
 					<button type="submit" class="btn btn-primary">REGISTRARSE<i class="fa fa-unlock"></i></button>
+					<?php echo form_close();?>
 					<?php
 						$loc = 'w';
 						$loc = strtolower($_GET['loc']);
@@ -126,13 +125,10 @@
 				</div>
 			</div>
     		<div  style="display: table; height: 100%; background: #003d8b;" class="image-area">
-
-					<div style="display: table-cell; height: 100%; vertical-align: middle;"> 
-						<img  class="img-responsive center-block" src="<?php echo base_url('assets/login_page/img/bg.png');?>" alt="">
-					</div>
-				</div> 
-				
-			<?php echo form_close();?>
+				<div style="display: table-cell; height: 100%; vertical-align: middle;"> 
+					<img  class="img-responsive center-block" src="<?php echo base_url('assets/login_page/img/bg.png');?>" alt="">
+				</div>
+			</div> 
 		</div>
 
 		<script src="<?php echo base_url('assets/login_page/js/vendor/jquery-1.12.0.min.js');?>"></script>

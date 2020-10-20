@@ -137,16 +137,16 @@ class Login extends CI_Controller {
                 $id_pais_get = $this->input->post('ID_PAIS_GET');
                 
                 if ($id_pais != '' || isset($id_pais)) {
-                    if ($id_pais == 'CO') {$data['TIPO_DOCUMENTO'] = 'CC'; $data['ID_PAIS'] = 'CC';}
-                    if ($id_pais == 'EC') {$data['TIPO_DOCUMENTO'] = 'DNI'; $data['ID_PAIS'] = 'DNI';}
-                    if ($id_pais == 'PE') {$data['TIPO_DOCUMENTO'] = 'DNI'; $data['ID_PAIS'] = 'DNI';}
+                    if ($id_pais == 'CO') {$data['TIPO_DOCUMENTO'] = 'CC'; $data['ID_PAIS'] = 'CO';}
+                    if ($id_pais == 'EC') {$data['TIPO_DOCUMENTO'] = 'DNI'; $data['ID_PAIS'] = 'EC';}
+                    if ($id_pais == 'PE') {$data['TIPO_DOCUMENTO'] = 'DNI'; $data['ID_PAIS'] = 'PE';}
                 } elseif ($id_pais == '' || !isset($id_pais)) {
-                    if ($id_pais_get == 'CO') {$data['TIPO_DOCUMENTO'] = 'CC'; $data['ID_PAIS'] = 'CC';}
-                    if ($id_pais_get == 'EC') {$data['TIPO_DOCUMENTO'] = 'DNI'; $data['ID_PAIS'] = 'DNI';}
-                    if ($id_pais_get == 'PE') {$data['TIPO_DOCUMENTO'] = 'DNI'; $data['ID_PAIS'] = 'DNI';}
+                    if ($id_pais_get == 'CO') {$data['TIPO_DOCUMENTO'] = 'CC'; $data['ID_PAIS'] = 'CO';}
+                    if ($id_pais_get == 'EC') {$data['TIPO_DOCUMENTO'] = 'DNI'; $data['ID_PAIS'] = 'EC';}
+                    if ($id_pais_get == 'PE') {$data['TIPO_DOCUMENTO'] = 'DNI'; $data['ID_PAIS'] = 'PE';}
                 } else {
                     $data['TIPO_DOCUMENTO'] = 'CC';
-                    $data['ID_PAIS'] = 'CC';
+                    $data['ID_PAIS'] = 'CO';
                 }
 
                 $array = array('identificacion' => $identificacion, 'id_pais' => $id_pais);
@@ -162,7 +162,7 @@ class Login extends CI_Controller {
                 $this->db->insert('participantes', $data);
                 $asesor_id = $this->db->insert_id();
                 $this->session->set_flashdata('flash_message' , 'Datos almacenados correctamente');
-                redirect(site_url('login/?loc='.$id_pais), 'refresh');
+                redirect(site_url('login/?loc='.strtolower($id_pais)), 'refresh');
             }
           }
     }

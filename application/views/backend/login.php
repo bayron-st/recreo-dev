@@ -40,57 +40,56 @@
 			}
       	</style>
     </head>
-    <body>
-		<div class="main-content-wrapper" style="background-color: #033f88;">
-			<div class="login-area" style="display: table;">
-				<div style="display: table-cell; vertical-align:middle">
-					<div align="center" class="login-header">
-						<a href="<?php echo site_url('login');?>" class="logo">
-							<img class="img-responsive" src="<?php echo base_url('assets/login_page/img/logo.png');?>"  alt="">
-						</a>
-						<h2 class="title"><?php echo $system_name; ?></h2>
-					</div>
-        			<h3 style= "color: #ffffff">¿No tienes una cuenta?</h3>
-					<?php
-						$loc = 'w';
-						$loc = strtolower($_GET['loc']);
-						if ($loc != 'w' && $loc == 'co') {
-							echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=co') .'" class="link" >Registrate</a>';
-						}
-						if ($loc != 'w' && $loc == 'ec') {
-							echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=ec') .'" class="link" >Registrate</a>';
-						}
-						if ($loc != 'w' && $loc == 'pe') {
-							echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=pe') .'" class="link" >Registrate</a>';
-						}
-						if (!isset($_GET['loc'])) {
-							echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=co') .'" class="link" >Registrate</a>';
-						}
-					?>
-					<hr style="padding: 0px 15px 0px 15px">
-					<div class="login-content">
-						<form method="post" role="form" id="form_login" action="<?php echo site_url('login/validate_login');?>">
-							<div class="form-group">
-								<label>Documento</label>
-								<input type="text" class="form-control text-center bloquear" name="identificacion" 
-								onkeyup="javascript:this.value=this.value.toUpperCase();"
-								onkeypress="return check3(event)" placeholder="N° de Identificacion" 
-								required autocomplete="off">
-							</div>
-							<div class="form-group">
-								<label>Teléfono Celular</label>
-								<input type="password" class="form-control text-center bloquear" name="telefono" 
-								onkeypress="return check1(event)" placeholder="N° Celular" required>
-							</div>
-							<button type="submit" class="btn btn-primary"><?php echo 'Iniciar sesión' ?><i class="fa fa-sign-in"></i></button>
-						</form>
-					</div>
+    <body style="background-color: #033f88;">
+		<div class="main-content-wrapper" style="display:table;">
+			<div class="login-area" style="display: table-cell; vertical-align:middle;">
+				<div align="center" class="login-header">
+					<a href="<?php echo site_url('login');?>" class="logo">
+						<img class="img-responsive" src="<?php echo base_url('assets/login_page/img/logo.png');?>"  alt="">
+					</a>
+					<h2 class="title"><?php echo $system_name; ?></h2>
+				</div>
+
+        		<h3 style= "color: #ffffff">¿No tienes una cuenta?</h3>
+				<?php
+					$loc = 'w';
+					$loc = strtolower($_GET['loc']);
+					if ($loc != 'w' && $loc == 'co') {
+						echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=co') .'" class="link" >Registrate</a>';
+					}
+					if ($loc != 'w' && $loc == 'ec') {
+						echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=ec') .'" class="link" >Registrate</a>';
+					}
+					if ($loc != 'w' && $loc == 'pe') {
+						echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=pe') .'" class="link" >Registrate</a>';
+					}
+					if (!isset($_GET['loc'])) {
+						echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=co') .'" class="link" >Registrate</a>';
+					}
+				?><center>
+					<div style="height:20px; width:230px; margin-bottom: 40px;; background-color: transparent;box-shadow:0px 10px 11px -7px rgba(0,0,0,0.7);;"></div>
+				</center>
+				<!-- <hr style="margin-left:30px; margin-right: 30px; border-top: 1px solid transparent; "> -->
+        		<div class="login-content">
+					<form method="post" role="form" id="form_login" action="<?php echo site_url('login/validate_login');?>">
+						<div class="form-group">
+              				<label>Documento</label>
+						  	<input type="text" class="form-control text-center bloquear" name="identificacion" 
+							onkeyup="javascript:this.value=this.value.toUpperCase();"
+							onkeypress="return check3(event)" placeholder="N° de Identificacion" 
+							required autocomplete="off">
+						</div>
+						<div class="form-group">
+              				<label>Teléfono Celular</label>
+							<input type="password" class="form-control text-center bloquear" name="telefono" 
+							onkeypress="return check1(event)" placeholder="N° Celular" required>
+						</div>
+						<button type="submit" class="btn btn-primary"><?php echo 'Iniciar sesión' ?><i class="fa fa-sign-in"></i></button>
+					</form>
 				</div>
 			</div>
-			<div style="display: table; height: 100%; background: #003d8b;" class="image-area">
-				<div style="display: table-cell; height: 100%; vertical-align: middle;"> 
-					<img  class="img-responsive center-block" src="<?php echo base_url('assets/login_page/img/bg.png');?>" alt="">
-				</div>
+			<div style="display: table-cell; vertical-align:middle;">
+				<img class="img-responsive center-block" src="<?php echo base_url('assets/login_page/img/bg.png');?>" alt="">
 			</div>
 		</div>
 		<script src="<?php echo base_url('assets/login_page/js/vendor/jquery-1.12.0.min.js');?>"></script>

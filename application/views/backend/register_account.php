@@ -28,9 +28,9 @@
 		<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker.css');?>" class="">
     </head>
 
-    <body>
-		<div class="main-content-wrapper">
-			<div class="login-area">
+    <body style="background-color: #033f88;">
+		<div class="main-content-wrapper" style="display: table;">
+			<div class="login-area" style="display: table-cell; vertical-align: middle;">
 				<div align="center" class="login-header">
 					<img class="img-responsive" src="<?php echo base_url('assets/login_page/img/logo.png');?>" width="60%" max-width="200px" alt="">
 					<h2 class="title"><?php echo $system_name; ?></h2>
@@ -124,10 +124,8 @@
 					?>
 				</div>
 			</div>
-    		<div  style="display: table; height: 100%; background: #003d8b;" class="image-area">
-				<div style="display: table-cell; height: 100%; vertical-align: middle;"> 
-					<img  class="img-responsive center-block" src="<?php echo base_url('assets/login_page/img/bg.png');?>" alt="">
-				</div>
+    		<div  style="display: table-cell; vertical-align: middle;" class="image-area">
+				<img class="img-responsive center-block" src="<?php echo base_url('assets/login_page/img/bg.png');?>" alt="">
 			</div> 
 		</div>
 

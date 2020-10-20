@@ -18,19 +18,20 @@
         foreach($participante as $row):?>
 
         <?php  if ($row['ID_PAIS'] == "CO") { ?>     
-                            <a style="font-size:18px !important;" href="https://elrecreoesdetodos.com/TYC/Colombia-T&amp;C.pdf" target="_blank">Terminos y Condiciones</a> <br>
-                            <a style="font-size:18px !important;"href="https://www.tetrapak.com/co/about/legal-information" target="_blank">Políticas de privacidad</a> <br>
-                            <a style="font-size:18px !important;" href="https://elrecreoesdetodos.com/TYC/Usabilidad_de_plataforma_web.pdf" target="_blank">Sobre el uso de la plataforma</a> 
+                            <a style="font-size:14px !important;" href="https://elrecreoesdetodos.com/TYC/Colombia-T&amp;C.pdf" target="_blank">Terminos y Condiciones</a> <br>
+                            <a style="font-size:14px !important;"href="https://www.tetrapak.com/co/about/legal-information" target="_blank">Políticas de privacidad</a> <br>
+                            <a style="font-size:14px !important;" href="https://elrecreoesdetodos.com/TYC/Usabilidad_de_plataforma_web.pdf" target="_blank">Sobre el uso de la plataforma</a> 
        <?php }  elseif ($row['ID_PAIS'] == "EC") {?>
-                            <a style="font-size:18px !important;" href="https://elrecreoesdetodos.com/TYC/Ecuador-T&amp;C.pdf" target="_blank">Terminos y Condiciones</a><br>        
-                            <a style="font-size:18px !important;" href="https://www.tetrapak.com/ec/about/legal-information" target="_blank">Políticas de privacidad</a><br>
-                            <a style="font-size:18px !important;" href="https://elrecreoesdetodos.com/TYC/Usabilidad_de_plataforma_web.pdf" target="_blank">Sobre el uso de la plataforma</a>
-                            <?php }   elseif ($row['ID_PAIS'] == "PE") {?>
-                            <a style="font-size:18px !important;" href="https://elrecreoesdetodos.com/TYC/Peru-T&amp;C.pdf" target="_blank">Terminos y Condiciones</a><br>
-                            <a style="font-size:18px !important;" href="https://www.tetrapak.com/pe/about/legal-information" target="_blank">Políticas de privacidad</a><br>
-                            <a style="font-size:18px !important;"href="https://elrecreoesdetodos.com/TYC/Usabilidad_de_plataforma_web.pdf" target="_blank">Sobre el uso de la plataforma</a>
+                            <a style="font-size:14px !important;" href="https://elrecreoesdetodos.com/TYC/Ecuador-T&amp;C.pdf" target="_blank">Terminos y Condiciones</a><br>        
+                            <a style="font-size:14px !important;" href="https://www.tetrapak.com/ec/about/legal-information" target="_blank">Políticas de privacidad</a><br>
+                            <a style="font-size:14px !important;" href="https://elrecreoesdetodos.com/TYC/Usabilidad_de_plataforma_web.pdf" target="_blank">Sobre el uso de la plataforma</a>
+        <?php }   elseif ($row['ID_PAIS'] == "PE") {?>
+                            <a style="font-size:14px !important;" href="https://elrecreoesdetodos.com/TYC/Peru-T&amp;C.pdf" target="_blank">Terminos y Condiciones</a><br>
+                            <a style="font-size:14px !important;" href="https://www.tetrapak.com/pe/about/legal-information" target="_blank">Políticas de privacidad</a><br>
+                            <a style="font-size:14px !important;"href="https://elrecreoesdetodos.com/TYC/Usabilidad_de_plataforma_web.pdf" target="_blank">Sobre el uso de la plataforma</a>
         <?php }  ?>
-                       
+                    <br><a style="font-size:14px !important;"href="mailto:centrodecontacto@elrecreoesdetodos.com" target="_blank">Preguntas, Quejas y Reclamos</a>
+
                                             
 				</div>
 				<div class="col-md-3 text-center">

@@ -63,6 +63,9 @@
 					if ($loc != 'w' && $loc == 'pe') {
 						echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=pe') .'" class="link" >Registrate</a>';
 					}
+					if (!isset($_GET['loc'])) {
+						echo '<a style= "font-size: 20px; color: #ffffff;text-decoration: underline;" href="' . site_url('login/register_account?loc=co') .'" class="link" >Registrate</a>';
+					}
 				?>
 
 				<hr style="padding: 0px 15px 0px 15px">

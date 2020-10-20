@@ -69,7 +69,8 @@
         $game_shot_count2 = '';
 
         $id_player = $_GET['player'];
-        $query1="SELECT COUNT(*) as exist_player FROM `game` where id_participante = $id_player";
+
+        $query1="SELECT COUNT(id_participante) as exist_player FROM `game` where id_participante = $id_player";
         $query2="SELECT * FROM `game` where id_participante = $id_player";
         $query3="SELECT SUM(CANTIDAD) as nCreditos FROM `creditos` WHERE TIPO = 'JUEGO' and id_participante = $id_player";
 
@@ -79,6 +80,7 @@
 
         // Inserta registro de nuevo jugador
         if ($consulta1) {
+            
             $datos1 = mysqli_fetch_assoc($consulta1);
             $exist_player = $datos1['exist_player'];
 
@@ -93,7 +95,7 @@
                 if (date('D')=='Sun') {
                     $week_end = date('Y-m-d');
                 } else {
-                    $week_end = strtotime('next Sunday', time());
+                    $week_end = date('Y-m-d', strtotime('next Sunday', time()));
                 }
 
                 $player_start = date("Y-m-d");
@@ -101,8 +103,8 @@
                 $new_player ="INSERT INTO `game` (`id_participante`, `game_level`, `date_start`, `date_end`, `last_shot`, 
                 `last_shot_status`, `game_count`, `game_shot`, `game_shot_count`, `game_shot_count2`) 
                 VALUES ($id_player , '1', '$week_start', '$week_end', '$player_start', '0', '0', '0', '2', '3');";
-                $reg_player = mysqli_query($conexion , $new_player) or die (mysqli_error($new_player));
-                if ($reg_player) {
+                
+                if (mysqli_query($conexion , $new_player)) {
                     $text_msj = "Nuevo jugador registrado con exito";
                 }
             } 
@@ -113,8 +115,9 @@
                 // Consulta la informacion del juego asociada al jugador
                 if ($consulta2) {
 
-                    //Load user data into vars
                     $datos2 = mysqli_fetch_assoc($consulta2);
+                    
+                    //Load user data into vars
                     $id_game = $datos2['id_game'];
                     $game_level = $datos2['game_level'];
                     $game_start = $datos2['date_start'];

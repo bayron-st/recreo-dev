@@ -107,6 +107,25 @@
                 if (mysqli_query($conexion , $new_player)) {
                     $text_msj = "Nuevo jugador registrado con exito";
                 }
+
+                $query2b="SELECT * FROM `game` where id_participante = $id_player";
+                $consulta2b = mysqli_query($conexion , $query2b);
+
+                if ($consulta2b) {
+                    //Load user data into vars
+                    $datos2b = mysqli_fetch_assoc($consulta2b);
+                    $id_game = $datos2b['id_game'];
+                    $game_level = $datos2b['game_level'];
+                    $game_start = $datos2b['date_start'];
+                    $game_end = $datos2b['date_end'];
+                    $last_shot = $datos2b['last_shot'];
+                    $last_shot_status = $datos2b['last_shot_status'];
+                    $game_count = $datos2b['game_count'];
+                    $game_shot = $datos2b['game_shot'];
+                    $game_shot_count = $datos2b['game_shot_count'];
+                    $game_shot_count2 = $datos2b['game_shot_count2'];
+                    $custom_day = date('Y-m-d');
+                }
             } 
             
             //Si Existe el usuario
@@ -116,7 +135,7 @@
                 if ($consulta2) {
 
                     $datos2 = mysqli_fetch_assoc($consulta2);
-                    
+
                     //Load user data into vars
                     $id_game = $datos2['id_game'];
                     $game_level = $datos2['game_level'];

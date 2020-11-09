@@ -8,7 +8,7 @@
     if ($countryUser == 'CO') {
         $img1 = 'https://i1.wp.com/elrecreoesdetodos.com/wp-content/uploads/2020/10/texto_5-1.png?w=315&ssl=1';
         $img2 = 'https://i2.wp.com/elrecreoesdetodos.com/wp-content/uploads/2020/10/texto_6-1.png?fit=274%2C55&ssl=1';
-        $img3 = 'https://i2.wp.com/elrecreoesdetodos.com/wp-content/uploads/2020/10/texto_6-1.png?fit=274%2C55&ssl=1';
+        $img3 = 'https://i0.wp.com/elrecreoesdetodos.com/wp-content/uploads/2020/10/texto_7.png?w=304&ssl=1';
     } 
     if ($countryUser == 'EC') {
         $img1 = 'https://i2.wp.com/elrecreoesdetodos.com/wp-content/uploads/2020/10/texto_5_ecuador.png?w=315&ssl=1';

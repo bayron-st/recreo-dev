@@ -18,7 +18,6 @@ $running_year 		=   $this->db->get_where('settings', array('type' => 'running_ye
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="Ekattor School Manager Pro - Creativeitem" />
 		<meta name="author" content="Creativeitem" />
-
 		<?php include 'includes_top.php'; ?>
 
 	</head>
@@ -36,5 +35,6 @@ $running_year 		=   $this->db->get_where('settings', array('type' => 'running_ye
 		</div>
 		<?php include 'includes_bottom.php'; ?>
 		<?php include 'modal.php';?>
+		
 	</body>
 </html>

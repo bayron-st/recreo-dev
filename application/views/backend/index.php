@@ -19,10 +19,25 @@ $running_year 		=   $this->db->get_where('settings', array('type' => 'running_ye
 		<meta name="description" content="Ekattor School Manager Pro - Creativeitem" />
 		<meta name="author" content="Creativeitem" />
 		<?php include 'includes_top.php'; ?>
+	
+	
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-ML7KXVN');</script>
+		<!-- End Google Tag Manager -->
 
 	</head>
 
 	<body class="page-body" style="background-color: #ffffff;">
+
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ML7KXVN"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		
 		<div class="page-container horizontal-menu" style="padding-top: 5px; background-color:#75bee9">
 			<center><img class="img-responsive" src="<?php echo base_url('uploads/logo_header.png'); ?>" /></center>
 			<?php include $account_type . '/navigation.php'; ?>
